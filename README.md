@@ -1,2 +1,2 @@
 # RmorfBinWPF
-Rmorf.bin Editor re-written on WPF (C#)
+Rmorf.bin Editor that re-written on WPF (C#)
