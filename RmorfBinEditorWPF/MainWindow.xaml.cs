@@ -78,6 +78,7 @@ namespace RmorfBinEditorWPF
                         bw.Write(sizeout, 0, 4);
 
                     }
+                    cofd.IsFolderPicker = false;
                 }
                 catch (FormatException)
                 {
@@ -221,6 +222,7 @@ namespace RmorfBinEditorWPF
         }
         #endregion
 
+        #region Inserting groups and objects
         private void InsertGroup_Click(object sender, RoutedEventArgs e)
         {
             if (rgrouplist != null)
@@ -237,12 +239,12 @@ namespace RmorfBinEditorWPF
 
         private void InsertObject_Click(object sender, RoutedEventArgs e)
         {
-            int obj = ObjectsList.SelectedIndex;
+            int obj = GroupsList.SelectedIndex;
 
             if (rgrouplist != null && obj >= 0)
             {
                 string objname = Interaction.InputBox("Type the name of the new object:", "Insert Object", "NewObject.Mesh");
-                if (objname == null)
+                if (objname == "")
                 {
                     MessageBox.Show("You haven't typed the name of the object!", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
@@ -252,11 +254,201 @@ namespace RmorfBinEditorWPF
                     obj_nameslist.Add(objname);
                     GetRmorfGroupPreferences(obj);
                     rgrouplist[obj] = new RmorfBinGroup(grMc, grTOA, grFrq, grU3, grU4, grU5, obj_nameslist);
-
                     VisualizeObject(obj);
                 }
             }
         }
+        #endregion 
+
+        #region Changing preferences by the specified presets
+        private void ApplyPresetButton_Click(object sender, RoutedEventArgs e)
+        {
+            VisualizePresetsComboBox();
+        }
+
+        private void VisualizePresetsComboBox()
+        {
+            switch (PresetsBox.Text)
+            {
+                case "Flag":
+                    TypeOfAnim.Text = "128";
+                    AnimFrq.Text = "160";
+                    Unk1.Text = "1";
+                    Unk2.Text = "1";
+                    Unk3.Text = "1";
+                    break;
+
+                case "Flag (Parnik)":
+                    TypeOfAnim.Text = "128";
+                    AnimFrq.Text = "170";
+                    Unk1.Text = "1";
+                    Unk2.Text = "1";
+                    Unk3.Text = "1";
+                    break;
+
+                case "Flag (Parnik) #2":
+                    TypeOfAnim.Text = "128";
+                    AnimFrq.Text = "200";
+                    Unk1.Text = "1";
+                    Unk2.Text = "1";
+                    Unk3.Text = "1";
+                    break;
+
+                case "Flag (Racing Circuit)":
+                    TypeOfAnim.Text = "128";
+                    AnimFrq.Text = "100";
+                    Unk1.Text = "1";
+                    Unk2.Text = "1";
+                    Unk3.Text = "1";
+                    break;
+
+                case "Tree":
+                    TypeOfAnim.Text = "0";
+                    AnimFrq.Text = "500";
+                    Unk1.Text = "1001";
+                    Unk2.Text = "1";
+                    Unk3.Text = "1";
+                    break;
+
+                case "Tree #2":
+                    TypeOfAnim.Text = "0";
+                    AnimFrq.Text = "500";
+                    Unk1.Text = "1001";
+                    Unk2.Text = "0";
+                    Unk3.Text = "0";
+                    break;
+
+                case "Tree #3":
+                    TypeOfAnim.Text = "0";
+                    AnimFrq.Text = "800";
+                    Unk1.Text = "401";
+                    Unk2.Text = "1";
+                    Unk3.Text = "1";
+                    break;
+
+                case "Spruce":
+                    TypeOfAnim.Text = "0";
+                    AnimFrq.Text = "400";
+                    Unk1.Text = "1001";
+                    Unk2.Text = "1";
+                    Unk3.Text = "1";
+                    break;
+
+                case "Water/Curtain":
+                    TypeOfAnim.Text = "128";
+                    AnimFrq.Text = "1000";
+                    Unk1.Text = "1";
+                    Unk2.Text = "1";
+                    Unk3.Text = "1";
+                    break;
+
+                case "Water #2":
+                    TypeOfAnim.Text = "1";
+                    AnimFrq.Text = "2000";
+                    Unk1.Text = "1";
+                    Unk2.Text = "1";
+                    Unk3.Text = "1";
+                    break;
+
+                case "Clothes":
+                    TypeOfAnim.Text = "129";
+                    AnimFrq.Text = "1000";
+                    Unk1.Text = "1001";
+                    Unk2.Text = "1";
+                    Unk3.Text = "1";
+                    break;
+
+                case "Clothes #2":
+                    TypeOfAnim.Text = "0";
+                    AnimFrq.Text = "1000";
+                    Unk1.Text = "1";
+                    Unk2.Text = "1";
+                    Unk3.Text = "1";
+                    break;
+
+                case "Clothes (Strong wind)":
+                    TypeOfAnim.Text = "0";
+                    AnimFrq.Text = "100";
+                    Unk1.Text = "301";
+                    Unk2.Text = "1";
+                    Unk3.Text = "1";
+                    break;
+
+                case "Clothes (Strong wind) #2":
+                    TypeOfAnim.Text = "128";
+                    AnimFrq.Text = "200";
+                    Unk1.Text = "601";
+                    Unk2.Text = "1";
+                    Unk3.Text = "1";
+                    break;
+
+                case "Signboard":
+                    TypeOfAnim.Text = "0";
+                    AnimFrq.Text = "1000";
+                    Unk1.Text = "201";
+                    Unk2.Text = "1";
+                    Unk3.Text = "1";
+                    break;
+
+                case "Signboard #2":
+                    TypeOfAnim.Text = "0";
+                    AnimFrq.Text = "800";
+                    Unk1.Text = "601";
+                    Unk2.Text = "1";
+                    Unk3.Text = "1";
+                    break;
+
+                case "Truck (MISE09)":
+                    TypeOfAnim.Text = "0";
+                    AnimFrq.Text = "150";
+                    Unk1.Text = "51";
+                    Unk2.Text = "0";
+                    Unk3.Text = "1";
+                    break;
+
+                case "Unknown/None":
+                    TypeOfAnim.Text = "0";
+                    AnimFrq.Text = "0";
+                    Unk1.Text = "0";
+                    Unk2.Text = "0";
+                    Unk3.Text = "0";
+                    break;
+            }
+        }
+        #endregion
+
+        #region Write the settings onto the selected object
+        private void ApplyPresetSettings_Click(object sender, RoutedEventArgs e)
+        {
+            ApplyPresetSettings();
+        }
+
+        private void ApplyPresetSettings()
+        {
+            int obj = GroupsList.SelectedIndex;
+
+            if (obj >= 0)
+            {
+                try
+                {
+                    grMc = (uint)rgrouplist[obj].objNames.Count;
+                    grTOA = uint.Parse(TypeOfAnim.Text);
+                    grFrq = uint.Parse(AnimFrq.Text);
+                    grU3 = uint.Parse(Unk1.Text);
+                    grU4 = uint.Parse(Unk2.Text);
+                    grU5 = uint.Parse(Unk3.Text);
+
+                    obj_nameslist = rgrouplist[obj].objNames;
+                    rgrouplist[obj] = new RmorfBinGroup(grMc, grTOA, grFrq, grU3, grU4, grU5, obj_nameslist);
+
+                    VisualizeComboBox();
+                } catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+        }
+        #endregion
 
         // Getting "Rmorf" group preferences (morf counts, type of anim, frequency of anim, etc.)
         private void GetRmorfGroupPreferences(int i)
@@ -275,7 +467,7 @@ namespace RmorfBinEditorWPF
             VisualizeObject(GroupsList.SelectedIndex);
         }
 
-        #region Visualizing groups and objects onto GUI
+        #region Visualizing groups, preset and objects onto GUI
         private void VisualizeGroup()
         {
             GroupsList.Items.Clear();
@@ -314,16 +506,108 @@ namespace RmorfBinEditorWPF
                 Unk1.Text = rgrouplist[selected].unknown3.ToString();
                 Unk2.Text = rgrouplist[selected].unknown4.ToString();
                 Unk3.Text = rgrouplist[selected].unknown5.ToString();
+
+                VisualizeComboBox();
+            }
+        }
+
+        private void VisualizeComboBox()
+        {
+            if (TypeOfAnim.Text == "128" && AnimFrq.Text == "160" && Unk1.Text == "1" && Unk2.Text == "1" && Unk3.Text == "1")
+            {
+                PresetsBox.Text = "Flag";
+            }
+
+            if (TypeOfAnim.Text == "128" && AnimFrq.Text == "170" && Unk1.Text == "1" && Unk2.Text == "1" && Unk3.Text == "1")
+            {
+                PresetsBox.Text = "Flag (Parnik)";
+            }
+
+            if (TypeOfAnim.Text == "128" && AnimFrq.Text == "200" && Unk1.Text == "1" && Unk2.Text == "1" && Unk3.Text == "1")
+            {
+                PresetsBox.Text = "Flag (Parnik) #2";
+            }
+
+            if (TypeOfAnim.Text == "128" && AnimFrq.Text == "100" && Unk1.Text == "1" && Unk2.Text == "1" && Unk3.Text == "1")
+            {
+                PresetsBox.Text = "Flag (Racing Circuit)";
+            }
+
+            if (TypeOfAnim.Text == "0" && AnimFrq.Text == "500" && Unk1.Text == "1001" && Unk2.Text == "0" && Unk3.Text == "0")
+            {
+                PresetsBox.Text = "Tree";
+            }
+
+            if (TypeOfAnim.Text == "0" && AnimFrq.Text == "500" && Unk1.Text == "1001" && Unk2.Text == "1" && Unk3.Text == "1")
+            {
+                PresetsBox.Text = "Tree #2";
+            }
+
+            if (TypeOfAnim.Text == "0" && AnimFrq.Text == "800" && Unk1.Text == "401" && Unk2.Text == "1" && Unk3.Text == "1")
+            {
+                PresetsBox.Text = "Tree #3";
+            }
+
+            if (TypeOfAnim.Text == "0" && AnimFrq.Text == "400" && Unk1.Text == "1001" && Unk2.Text == "1" && Unk3.Text == "1")
+            {
+                PresetsBox.Text = "Spruce";
+            }
+
+            if (TypeOfAnim.Text == "128" && AnimFrq.Text == "1000" && Unk1.Text == "1" && Unk2.Text == "1" && Unk3.Text == "1")
+            {
+                PresetsBox.Text = "Water/Curtain";
+            }
+
+            if (TypeOfAnim.Text == "1" && AnimFrq.Text == "2000" && Unk1.Text == "1" && Unk2.Text == "1" && Unk3.Text == "1")
+            {
+                PresetsBox.Text = "Water #2";
+            }
+
+            if (TypeOfAnim.Text == "129" && AnimFrq.Text == "1000" && Unk1.Text == "1001" && Unk2.Text == "1" && Unk3.Text == "1")
+            {
+                PresetsBox.Text = "Clothes";
+            }
+
+            if (TypeOfAnim.Text == "0" && AnimFrq.Text == "1000" && Unk1.Text == "1" && Unk2.Text == "1" && Unk3.Text == "1")
+            {
+                PresetsBox.Text = "Clothes #2";
+            }
+
+            if (TypeOfAnim.Text == "0" && AnimFrq.Text == "100" && Unk1.Text == "301" && Unk2.Text == "1" && Unk3.Text == "1")
+            {
+                PresetsBox.Text = "Clothes (Strong wind)";
+            }
+
+            if (TypeOfAnim.Text == "128" && AnimFrq.Text == "200" && Unk1.Text == "601" && Unk2.Text == "1" && Unk3.Text == "1")
+            {
+                PresetsBox.Text = "Clothes (Strong wind) #2";
+            }
+
+            if (TypeOfAnim.Text == "0" && AnimFrq.Text == "1000" && Unk1.Text == "201" && Unk2.Text == "1" && Unk3.Text == "1")
+            {
+                PresetsBox.Text = "Signboard";
+            }
+
+            if (TypeOfAnim.Text == "0" && AnimFrq.Text == "800" && Unk1.Text == "601" && Unk2.Text == "1" && Unk3.Text == "1")
+            {
+                PresetsBox.Text = "Signboard #2";
+            }
+
+            if (TypeOfAnim.Text == "0" && AnimFrq.Text == "150" && Unk1.Text == "51" && Unk2.Text == "0" && Unk3.Text == "1")
+            {
+                PresetsBox.Text = "Truck (MISE09)";
             }
         }
         #endregion
 
+        // "About us" section
         private void Authors_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show($"rmorf.bin Editor v1.0\nAuthors: Firefox3860, Smelson and Legion.\n(c) {DateTime.Now.Year}. From Russia and Kazakhstan with love!", "About Us",
                 MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
+        // Shutdown the app
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();

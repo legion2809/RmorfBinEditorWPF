@@ -34,7 +34,7 @@
         </ComboBox>
         <GroupBox HorizontalAlignment="Left" Height="306" Margin="191,132,0,0" VerticalAlignment="Top" Width="358" Grid.Column="1" FontSize="18">
             <GroupBox.Header>
-                <Label FontWeight="Bold">Presets Parameters</Label>
+                <Label FontWeight="Bold" FontFamily="Aurora BdCn BT" FontSize="22">Presets Parameters</Label>
             </GroupBox.Header>
             <StackPanel>
                 <Label Content="Count of objects:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="14"/>
@@ -45,9 +45,9 @@
                 <Label Content="Unknown parameter 3:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="14"/>
             </StackPanel>
         </GroupBox>
-        <Button x:Name="ApplyPresetButton" Content="Apply Preset" HorizontalAlignment="Left" Margin="396,82,0,0" VerticalAlignment="Top" Width="126" Grid.Column="1" Height="23" RenderTransformOrigin="0.524,1.155"/>
-        <Label Content="Groups:" HorizontalAlignment="Left" Margin="30,42,0,0" VerticalAlignment="Top" Height="35" Width="74" FontSize="18" FontWeight="Bold"/>
-        <Label Content="Objects:" HorizontalAlignment="Left" Margin="317,42,0,0" VerticalAlignment="Top" Height="35" Width="77" FontSize="18" FontWeight="Bold"/>
+        <Button x:Name="ApplyPresetButton" Content="Apply Preset" HorizontalAlignment="Left" Margin="396,82,0,0" VerticalAlignment="Top" Width="126" Grid.Column="1" Height="23" Click="ApplyPresetButton_Click" RenderTransformOrigin="0.524,1.155"/>
+        <Label Content="Groups:" HorizontalAlignment="Left" Margin="30,42,0,0" VerticalAlignment="Top" Height="35" Width="74" FontSize="22" FontWeight="Bold" FontFamily="Aurora BdCn BT"/>
+        <Label Content="Objects:" HorizontalAlignment="Left" Margin="317,42,0,0" VerticalAlignment="Top" Height="35" Width="77" FontSize="22" FontWeight="Bold" FontFamily="Aurora BdCn BT"/>
         <Menu HorizontalAlignment="Left" Height="25" VerticalAlignment="Top" Width="1058" Grid.ColumnSpan="2">
             <MenuItem Header="File" Height="23" Width="41" FontSize="14" Margin="12,0,0,0">
                 <MenuItem Header="New File..." Margin="0,0,0,3" Click="CreateFile_Click"/>
@@ -70,7 +70,8 @@
         <TextBox x:Name="Unk1" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="386,297,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="Unk2" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="386,334,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="Unk3" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="386,375,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Label x:Name="StatusLabel" Content="" HorizontalAlignment="Left" Margin="30,458,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.096,-0.191" FontSize="18" Width="1018" Grid.ColumnSpan="2"/>
+        <Label x:Name="StatusLabel" HorizontalAlignment="Left" Margin="30,458,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.096,-0.191" FontSize="18" Width="615" Grid.ColumnSpan="2" FontFamily="Aurora BdCn BT" Height="27"/>
+        <Button x:Name="ApplySettingsButton" Content="Apply settings" Margin="324,458,183,24" Grid.Column="1" RenderTransformOrigin="-0.027,0.499" Click="ApplyPresetSettings_Click"/>
 
 
     </Grid>
