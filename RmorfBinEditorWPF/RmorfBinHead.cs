@@ -2,9 +2,9 @@
 {
     public class RmorfBinHead
     {
-        private ulong fileSize;
-        private ulong key;
-        private ulong animGroupCCount;
+        public ulong fileSize;
+        public ulong key;
+        public ulong animGroupCCount;
 
         public RmorfBinHead(ulong fsize, ulong k, ulong aGroupC)
         {

@@ -4,14 +4,14 @@ namespace RmorfBinEditorWPF
 {
     public class RmorfBinGroup
     {
-        private uint morfCount;
-        private uint animType;
-        private uint animFrequency;
-        private uint unknown3;
-        private uint unknown4;
-        private uint unknown5;
-        private List<string> objNames;
-        private byte nullb;
+        public uint morfCount;
+        public uint animType;
+        public uint animFrequency;
+        public uint unknown3;
+        public uint unknown4;
+        public uint unknown5;
+        public List<string> objNames;
+        public byte nullb;
 
         public RmorfBinGroup(uint morfC, uint animT, uint animF, uint unk3, uint unk4, uint unk5, List<string> objN)
         {
