@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RmorfBinEditorWPF"
         mc:Ignorable="d"
-        Title="rmorf.bin Editor" Height="508.888" Width="1064.443" FontSize="14" ResizeMode="NoResize" Icon="Untitled-1_1.ico">
+        Title="rmorf.bin Editor" Height="550.402" Width="1064.443" FontSize="14" ResizeMode="NoResize" Icon="Untitled-1_1.ico">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="101*"/>
             <ColumnDefinition Width="146*"/>
         </Grid.ColumnDefinitions>
-        <ListBox x:Name="GroupsList" HorizontalAlignment="Left" Height="356" Margin="30,82,0,0" VerticalAlignment="Top" Width="251"/>
+        <ListBox x:Name="GroupsList" HorizontalAlignment="Left" Height="356" Margin="30,82,0,0" VerticalAlignment="Top" Width="251" SelectionChanged="GroupsList_SelectionChanged"/>
         <ListBox x:Name="ObjectsList" HorizontalAlignment="Left" Height="356" Margin="317,82,0,0" VerticalAlignment="Top" Width="251" Grid.ColumnSpan="2"/>
         <ComboBox x:Name="PresetsBox" HorizontalAlignment="Left" Margin="191,80,0,0" VerticalAlignment="Top" Width="186" Grid.Column="1" Height="25">
             <ComboBoxItem Content="Unknown/None" BorderThickness="0"/>
@@ -50,15 +50,15 @@
         <Label Content="Objects:" HorizontalAlignment="Left" Margin="317,42,0,0" VerticalAlignment="Top" Height="35" Width="77" FontSize="18" FontWeight="Bold"/>
         <Menu HorizontalAlignment="Left" Height="25" VerticalAlignment="Top" Width="1058" Grid.ColumnSpan="2">
             <MenuItem Header="File" Height="23" Width="41" FontSize="14" Margin="12,0,0,0">
-                <MenuItem Header="New File..." Margin="0,0,0,3" Click="CreateFile_Click" />
+                <MenuItem Header="New File..." Margin="0,0,0,3" Click="CreateFile_Click"/>
                 <MenuItem Header="Open" Margin="0,0,0,3" Click="OpenFile_Click" />
                 <MenuItem Header="Save" Click="SaveFile_Click"/>
                 <Separator />
-                <MenuItem Header="Exit" />
+                <MenuItem Header="Exit" Click="Exit_Click"/>
             </MenuItem>
             <MenuItem Header="Insert" FontSize="14" Margin="0">
-                <MenuItem Header="Insert Group" Margin="0,0,0,3" />
-                <MenuItem Header="Insert Object" />
+                <MenuItem Header="Insert Group" Margin="0,0,0,3" Click="InsertGroup_Click"/>
+                <MenuItem Header="Insert Object" Click="InsertObject_Click"/>
             </MenuItem>
             <MenuItem Header="About" FontSize="14" Margin="3,0,0,0">
                 <MenuItem Header="Authors" Click="Authors_Click" />
@@ -70,6 +70,7 @@
         <TextBox x:Name="Unk1" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="386,297,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="Unk2" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="386,334,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="Unk3" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="386,375,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="StatusLabel" Content="" HorizontalAlignment="Left" Margin="30,458,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.096,-0.191" FontSize="18" Width="1018" Grid.ColumnSpan="2"/>
 
 
     </Grid>
