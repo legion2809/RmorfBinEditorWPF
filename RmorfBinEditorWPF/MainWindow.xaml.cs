@@ -27,7 +27,7 @@ namespace RmorfBinEditorWPF
         private uint headfS, headKey, headaGC; // RmorfBinHead preferences
         private uint grMc, grTOA, grFrq, grU3, grU4, grU5; // RmorfBinGroup preferences
         private List<string> obj_nameslist; // For storing object names' list
-        private bool isFileChanged = false; // For logging file's changing
+        private bool isFileChanged; // For logging file's changing
 
         public MainWindow()
         {
@@ -35,6 +35,20 @@ namespace RmorfBinEditorWPF
         }
 
         #region Shortcut keys for "Save", "Open" and etc.
+        /*private void NewFileCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            FileNew.RaiseEvent(new RoutedEventArgs(MenuItem.ClickEvent));
+        }
+
+        private void OpenFileCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            FileOpen.RaiseEvent(new RoutedEventArgs(MenuItem.ClickEvent));
+        }
+
+        private void SaveFileCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            Save.RaiseEvent(new RoutedEventArgs(MenuItem.ClickEvent));
+        }*/
         #endregion
 
         #region Creating, opening and saving a file
@@ -73,10 +87,9 @@ namespace RmorfBinEditorWPF
                         byte[] sizeout = BitConverter.GetBytes(size);
                         bw.Write(sizeout, 0, 4);
                     }
-
-                    isFileChanged = false;
                     StatusLabel.Content = $"New file created, its location - ({path})";
 
+                    isFileChanged = false;
                     ApplySettingsButton.IsEnabled = true;
                     Save.IsEnabled = true;
                     SaveAs.IsEnabled = true;
@@ -86,6 +99,10 @@ namespace RmorfBinEditorWPF
                     MessageBox.Show("Wrong type of data!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
+
+            ObjectsList.Items.Clear();
+            PresetsBox.Text = "Unknown/None";
+            VisualizeGroup();
         }
 
         private void OpenFile()
@@ -99,7 +116,6 @@ namespace RmorfBinEditorWPF
                 ApplySettingsButton.IsEnabled = true;
                 rgrouplist = new List<RmorfBinGroup>();
                 path = ofd.FileName;
-                StatusLabel.Content = $"File opened - ({path})";
 
                 try
                 {
@@ -145,9 +161,9 @@ namespace RmorfBinEditorWPF
                                     rgrouplist.Add(new RmorfBinGroup(grMc, grTOA, grFrq, grU3, grU4, grU5, obj_nameslist));
                                 }
 
-                                isFileChanged = false;
                                 StatusLabel.Content = $"File opened - ({path})";
 
+                                isFileChanged = false;
                                 ApplySettingsButton.IsEnabled = true;
                                 Save.IsEnabled = true;
                                 SaveAs.IsEnabled = true;
@@ -234,13 +250,14 @@ namespace RmorfBinEditorWPF
                 {
                     case MessageBoxResult.Yes:
                         SaveFile();
-                        CreateFile();
+                        OpenFile();
                         break;
                     case MessageBoxResult.No:
                         CreateFile();
                         break;
                 }
-            } else
+            }
+            else
             {
                 CreateFile();
             }
@@ -263,7 +280,8 @@ namespace RmorfBinEditorWPF
                         OpenFile();
                         break;
                 }
-            } else
+            }
+            else
             {
                 OpenFile();
             }
