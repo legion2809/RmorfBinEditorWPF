@@ -54,7 +54,7 @@
 
         <GroupBox HorizontalAlignment="Left" Height="321" Margin="191,132,0,0" VerticalAlignment="Top" Width="358" Grid.Column="2" FontSize="18">
             <GroupBox.Header>
-                <Label FontWeight="Bold" FontFamily="Aurora BdCn BT" FontSize="22">Presets Parameters</Label>
+                <Label FontWeight="Bold" FontFamily="./#Aurora BdCn BT" FontSize="22">Presets Parameters</Label>
             </GroupBox.Header>
             <StackPanel>
                 <Label Content="Count of objects:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="14"/>
@@ -68,8 +68,8 @@
         </GroupBox>
 
         <Button x:Name="ApplyPresetButton" Content="Apply Preset" HorizontalAlignment="Left" Margin="396,80,0,0" VerticalAlignment="Top" Width="126" Grid.Column="2" Height="25" Click="ApplyPresetButton_Click" RenderTransformOrigin="0.524,1.155"/>
-        <Label Content="Groups:" HorizontalAlignment="Left" Margin="30,42,0,0" VerticalAlignment="Top" Height="35" Width="74" FontSize="22" FontWeight="Bold" FontFamily="Aurora BdCn BT"/>
-        <Label Content="Objects:" HorizontalAlignment="Left" Margin="3,42,0,0" VerticalAlignment="Top" Height="35" Width="77" FontSize="22" FontWeight="Bold" FontFamily="Aurora BdCn BT" Grid.Column="1"/>
+        <Label Content="Groups:" HorizontalAlignment="Left" Margin="30,42,0,0" VerticalAlignment="Top" Height="35" Width="74" FontSize="22" FontWeight="Bold" FontFamily="./#Aurora BdCn BT"/>
+        <Label Content="Objects:" HorizontalAlignment="Left" Margin="3,42,0,0" VerticalAlignment="Top" Height="35" Width="77" FontSize="22" FontWeight="Bold" FontFamily="./#Aurora BdCn BT" Grid.Column="1"/>
 
         <Menu HorizontalAlignment="Left" Height="25" VerticalAlignment="Top" Width="1058" Grid.ColumnSpan="3">
             <MenuItem Header="File" Height="23" Width="41" FontSize="14" Margin="12,0,0,0">
