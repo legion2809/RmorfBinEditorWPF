@@ -18,6 +18,9 @@ namespace RmorfBinEditorWPF
         RmorfBinHead rhead;
         List<RmorfBinGroup> rgrouplist;
 
+        Discord.Discord discord = new Discord.Discord();
+        long time;
+
         byte[] fSize = { 0x00, 0x00, 0x00, 0x00 };
         byte[] key = { 0xCD, 0xCC, 0xCC, 0x3D };
         byte[] aGroupCount = { 0x00, 0x00, 0x00, 0x00 };
@@ -33,6 +36,26 @@ namespace RmorfBinEditorWPF
         {
             InitializeComponent();
         }
+
+        #region DiscordIntegration and Background Images
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            discord.Initialize();
+
+            discord.presence.largeImageKey = "logo";
+            discord.presence.largeImageText = "Rmorf.bin Editor";
+
+            time = DateTimeOffset.Now.ToUnixTimeSeconds();
+            discord.presence.startTimestamp = time;
+
+            discord.UpdatePresence("Idling");
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            discord.Shutdown();
+        }
+        #endregion
 
         #region Shortcut keys for "Save", "Open" and etc.
         #endregion
@@ -80,12 +103,19 @@ namespace RmorfBinEditorWPF
                     ApplySettingsButton.IsEnabled = true;
                     Save.IsEnabled = true;
                     SaveAs.IsEnabled = true;
+
+                    discord.UpdatePresence("Editing a file");
                 }
                 catch (FormatException)
                 {
                     MessageBox.Show("Wrong type of data!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                    discord.UpdatePresence("Idling");
                 }
             }
+
+            ObjectsList.Items.Clear();
+            PresetsBox.Text = "Unknown/None";
+            VisualizeGroup();
         }
 
         private void OpenFile()
@@ -99,7 +129,6 @@ namespace RmorfBinEditorWPF
                 ApplySettingsButton.IsEnabled = true;
                 rgrouplist = new List<RmorfBinGroup>();
                 path = ofd.FileName;
-                StatusLabel.Content = $"File opened - ({path})";
 
                 try
                 {
@@ -151,21 +180,26 @@ namespace RmorfBinEditorWPF
                                 ApplySettingsButton.IsEnabled = true;
                                 Save.IsEnabled = true;
                                 SaveAs.IsEnabled = true;
+
+                                discord.UpdatePresence("Editing a file");
                             }
                             catch
                             {
                                 MessageBox.Show("Couldn't parse!\nMaybe, you opened wrong file.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                                discord.UpdatePresence("Idling");
                             }
                         }
                         else
                         {
                             MessageBox.Show("File is wrong!.\nWrong constant.", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                            discord.UpdatePresence("Idling");
                         }
                     }
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message, "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                    discord.UpdatePresence("Idling");
                 }
             }
 
