@@ -4,7 +4,7 @@
 winexe
 C#
 .cs
-C:\Program Files (x86)\!Mafia Projects, since 2021\RmorfBinEditorWPF\RmorfBinEditorWPF\obj\Debug\
+C:\Program Files (x86)\!Mafia Projects, since 2021\RmorfBinEditorWPF\RmorfBinEditorWPF\obj\x86\Debug\
 RmorfBinEditorWPF
 none
 false
@@ -12,7 +12,7 @@ DEBUG;TRACE
 C:\Program Files (x86)\!Mafia Projects, since 2021\RmorfBinEditorWPF\RmorfBinEditorWPF\App.xaml
 1219584333
 
-10187747687
+9-2025130991
 17736302048
 MainWindow.xaml;
 
