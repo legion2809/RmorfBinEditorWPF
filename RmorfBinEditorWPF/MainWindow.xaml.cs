@@ -1,18 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using Microsoft.VisualBasic;
 
@@ -91,7 +81,7 @@ namespace RmorfBinEditorWPF
         {
             System.Windows.Forms.OpenFileDialog ofd = new System.Windows.Forms.OpenFileDialog();
             //cofd.IsFolderPicker = false;
-            ofd.Filter = "rmorf.bin file(*.bin)| *.bin | All Files(*.*) | *.*";
+            ofd.Filter = "rmorf.bin file(*.bin)|*.bin|All Files(*.*)|*.*";
             ofd.Title = "Open File";
 
             if (ofd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
@@ -169,7 +159,7 @@ namespace RmorfBinEditorWPF
         private void SaveFile_Click(object sender, RoutedEventArgs e)
         {
             System.Windows.Forms.SaveFileDialog sfd = new System.Windows.Forms.SaveFileDialog();
-            sfd.Filter = "rmorf.bin file(*.bin)| *.bin | All Files(*.*) | *.* ";
+            sfd.Filter = "rmorf.bin file(*.bin)|*.bin|All Files(*.*)|*.*";
 
             if (sfd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
@@ -222,7 +212,7 @@ namespace RmorfBinEditorWPF
         }
         #endregion
 
-        #region Inserting groups and objects
+        #region Inserting, deleting groups and objects (+ renaming objects)
         private void InsertGroup_Click(object sender, RoutedEventArgs e)
         {
             if (rgrouplist != null)
@@ -235,6 +225,17 @@ namespace RmorfBinEditorWPF
                 ObjectsList.Items.Clear();
                 PresetsBox.Text = "Unknown/None";
             }
+        }
+
+        // Getting "Rmorf" group preferences (morf counts, type of anim, frequency of anim, etc.)
+        private void GetRmorfGroupPreferences(int i)
+        {
+            grMc = (uint)obj_nameslist.Count;
+            grTOA = rgrouplist[i].animType;
+            grFrq = rgrouplist[i].animFrequency;
+            grU3 = rgrouplist[i].unknown3;
+            grU4 = rgrouplist[i].unknown4;
+            grU5 = rgrouplist[i].unknown5;
         }
 
         private void InsertObject_Click(object sender, RoutedEventArgs e)
@@ -258,7 +259,58 @@ namespace RmorfBinEditorWPF
                 }
             }
         }
-        #endregion 
+
+        private void DeleteGroup_Click(object sender, RoutedEventArgs e)
+        {
+            int group = GroupsList.SelectedIndex;
+
+            if (rgrouplist != null && group >= 0)
+            {
+                rgrouplist.RemoveAt(group);
+                headaGC = (uint)rgrouplist.Count;
+
+                VisualizeGroup();
+                ObjectsList.Items.Clear();
+                PresetsBox.Text = "Unknown/None";
+            }
+        }
+
+        private void DeleteObject_Click(object sender, RoutedEventArgs e)
+        {
+            int group = GroupsList.SelectedIndex;
+            int obj = ObjectsList.SelectedIndex;
+
+            if (rgrouplist != null && group >= 0 && obj >= 0)
+            {
+                obj_nameslist = rgrouplist[group].objNames;
+                obj_nameslist.RemoveAt(obj);
+
+                GetRmorfGroupPreferences(group);
+                rgrouplist[group] = new RmorfBinGroup(grMc, grTOA, grFrq, grU3, grU4, grU5, obj_nameslist);
+
+                VisualizeObject(group);
+            }
+        }
+
+        private void RenameObject_Click(object sender, RoutedEventArgs e)
+        {
+            int group = GroupsList.SelectedIndex;
+            int obj = ObjectsList.SelectedIndex;
+
+            if (rgrouplist != null && group >= 0 && obj >= 0)
+            {
+                string new_name = Interaction.InputBox("Type the new name of the object:", "Rename Object", ObjectsList.SelectedItem.ToString());
+                if (new_name == null)
+                {
+                    MessageBox.Show("You haven't typed anything!", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                } else
+                {
+                    rgrouplist[group].objNames[obj] = new_name;
+                    VisualizeObject(group);
+                }
+            }
+        }
+        #endregion
 
         #region Changing preferences by the specified presets
         private void ApplyPresetButton_Click(object sender, RoutedEventArgs e)
@@ -366,7 +418,7 @@ namespace RmorfBinEditorWPF
                     Unk3.Text = "1";
                     break;
 
-                case "Clothes (Strong wind)":
+                case "Clothes (Strong Wind)":
                     TypeOfAnim.Text = "0";
                     AnimFrq.Text = "100";
                     Unk1.Text = "301";
@@ -374,7 +426,7 @@ namespace RmorfBinEditorWPF
                     Unk3.Text = "1";
                     break;
 
-                case "Clothes (Strong wind) #2":
+                case "Clothes (Strong Wind) #2":
                     TypeOfAnim.Text = "128";
                     AnimFrq.Text = "200";
                     Unk1.Text = "601";
@@ -417,7 +469,7 @@ namespace RmorfBinEditorWPF
         }
         #endregion
 
-        #region Write the settings onto the selected object
+        #region Write the settings into the selected object
         private void ApplyPresetSettings_Click(object sender, RoutedEventArgs e)
         {
             ApplyPresetSettings();
@@ -450,16 +502,7 @@ namespace RmorfBinEditorWPF
         }
         #endregion
 
-        // Getting "Rmorf" group preferences (morf counts, type of anim, frequency of anim, etc.)
-        private void GetRmorfGroupPreferences(int i)
-        {
-            grMc = (uint)obj_nameslist.Count;
-            grTOA = rgrouplist[i].animType;
-            grFrq = rgrouplist[i].animFrequency;
-            grU3 = rgrouplist[i].unknown3;
-            grU4 = rgrouplist[i].unknown4;
-            grU5 = rgrouplist[i].unknown5;
-        }
+        #region Visualizing groups, preset and objects values onto GUI
 
         // When you're switching between created groups
         private void GroupsList_SelectionChanged(object sender, RoutedEventArgs e)
@@ -467,7 +510,6 @@ namespace RmorfBinEditorWPF
             VisualizeObject(GroupsList.SelectedIndex);
         }
 
-        #region Visualizing groups, preset and objects onto GUI
         private void VisualizeGroup()
         {
             GroupsList.Items.Clear();
@@ -575,12 +617,12 @@ namespace RmorfBinEditorWPF
 
             if (TypeOfAnim.Text == "0" && AnimFrq.Text == "100" && Unk1.Text == "301" && Unk2.Text == "1" && Unk3.Text == "1")
             {
-                PresetsBox.Text = "Clothes (Strong wind)";
+                PresetsBox.Text = "Clothes (Strong Wind)";
             }
 
             if (TypeOfAnim.Text == "128" && AnimFrq.Text == "200" && Unk1.Text == "601" && Unk2.Text == "1" && Unk3.Text == "1")
             {
-                PresetsBox.Text = "Clothes (Strong wind) #2";
+                PresetsBox.Text = "Clothes (Strong Wind) #2";
             }
 
             if (TypeOfAnim.Text == "0" && AnimFrq.Text == "1000" && Unk1.Text == "201" && Unk2.Text == "1" && Unk3.Text == "1")
