@@ -5,6 +5,8 @@ using System.Text;
 using System.Windows;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using Microsoft.VisualBasic;
+using System.Windows.Input;
+using System.Windows.Controls;
 
 namespace RmorfBinEditorWPF
 {
@@ -25,14 +27,18 @@ namespace RmorfBinEditorWPF
         private uint headfS, headKey, headaGC; // RmorfBinHead preferences
         private uint grMc, grTOA, grFrq, grU3, grU4, grU5; // RmorfBinGroup preferences
         private List<string> obj_nameslist; // For storing object names' list
+        private bool isFileChanged = false; // For logging file's changing
 
         public MainWindow()
         {
             InitializeComponent();
         }
 
+        #region Shortcut keys for "Save", "Open" and etc.
+        #endregion
+
         #region Creating, opening and saving a file
-        private void CreateFile_Click(object sender, RoutedEventArgs e)
+        private void CreateFile()
         {
             CommonOpenFileDialog cofd = new CommonOpenFileDialog();
             cofd.IsFolderPicker = true;
@@ -66,9 +72,14 @@ namespace RmorfBinEditorWPF
                         long size = file.Length;
                         byte[] sizeout = BitConverter.GetBytes(size);
                         bw.Write(sizeout, 0, 4);
-
                     }
-                    cofd.IsFolderPicker = false;
+
+                    isFileChanged = false;
+                    StatusLabel.Content = $"New file created, its location - ({path})";
+
+                    ApplySettingsButton.IsEnabled = true;
+                    Save.IsEnabled = true;
+                    SaveAs.IsEnabled = true;
                 }
                 catch (FormatException)
                 {
@@ -77,15 +88,15 @@ namespace RmorfBinEditorWPF
             }
         }
 
-        private void OpenFile_Click(object sender, RoutedEventArgs e)
+        private void OpenFile()
         {
             System.Windows.Forms.OpenFileDialog ofd = new System.Windows.Forms.OpenFileDialog();
-            //cofd.IsFolderPicker = false;
             ofd.Filter = "rmorf.bin file(*.bin)|*.bin|All Files(*.*)|*.*";
             ofd.Title = "Open File";
 
             if (ofd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
+                ApplySettingsButton.IsEnabled = true;
                 rgrouplist = new List<RmorfBinGroup>();
                 path = ofd.FileName;
                 StatusLabel.Content = $"File opened - ({path})";
@@ -133,6 +144,13 @@ namespace RmorfBinEditorWPF
 
                                     rgrouplist.Add(new RmorfBinGroup(grMc, grTOA, grFrq, grU3, grU4, grU5, obj_nameslist));
                                 }
+
+                                isFileChanged = false;
+                                StatusLabel.Content = $"File opened - ({path})";
+
+                                ApplySettingsButton.IsEnabled = true;
+                                Save.IsEnabled = true;
+                                SaveAs.IsEnabled = true;
                             }
                             catch
                             {
@@ -156,7 +174,107 @@ namespace RmorfBinEditorWPF
             VisualizeGroup();
         }
 
+        private void SaveFile()
+        {
+            try
+            {
+                using (FileStream fs = new FileStream(path, FileMode.Create))
+                using (BinaryWriter bw = new BinaryWriter(fs))
+                {
+                    bw.Write(headfS);
+                    bw.Write(headKey);
+                    bw.Write(headaGC);
+
+                    for (int i = 0; i < rgrouplist.Count; i++)
+                    {
+                        bw.Write(rgrouplist[i].morfCount);
+                        bw.Write(rgrouplist[i].animType);
+                        bw.Write(rgrouplist[i].animFrequency);
+                        bw.Write(rgrouplist[i].unknown3);
+                        bw.Write(rgrouplist[i].unknown4);
+                        bw.Write(rgrouplist[i].unknown5);
+
+                        for (int j = 0; j < rgrouplist[i].objNames.Count; j++)
+                        {
+                            string name = rgrouplist[i].objNames[j];
+                            byte[] arr = Encoding.ASCII.GetBytes(name);
+
+                            bw.Write(arr);
+                            bw.Write(rgrouplist[i].nullb);
+                        }
+                    }
+
+                    bw.Seek(0, SeekOrigin.End);
+                    bw.Write(endofFile);
+                    bw.Seek(0, SeekOrigin.Begin);
+
+                    FileInfo info = new FileInfo(path);
+                    long size = info.Length;
+                    byte[] sizeout = BitConverter.GetBytes(size);
+
+                    bw.Write(sizeout, 0, 4);
+                }
+                isFileChanged = false;
+                StatusLabel.Content = $"File saved - ({path})";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void CreateFile_Click(object sender, RoutedEventArgs e)
+        {
+            if (isFileChanged)
+            {
+                var res = MessageBox.Show("Do you wish save changes to " + path + "?",
+                    "rmorf.bin Editor", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
+
+                switch (res)
+                {
+                    case MessageBoxResult.Yes:
+                        SaveFile();
+                        CreateFile();
+                        break;
+                    case MessageBoxResult.No:
+                        CreateFile();
+                        break;
+                }
+            } else
+            {
+                CreateFile();
+            }
+        }
+
+        private void OpenFile_Click(object sender, RoutedEventArgs e)
+        {
+            if (isFileChanged)
+            {
+                var res = MessageBox.Show("Do you wish save changes to " + path + "?",
+                    "rmorf.bin Editor", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
+
+                switch (res)
+                {
+                    case MessageBoxResult.Yes:
+                        SaveFile();
+                        OpenFile();
+                        break;
+                    case MessageBoxResult.No:
+                        OpenFile();
+                        break;
+                }
+            } else
+            {
+                OpenFile();
+            }
+        }
+
         private void SaveFile_Click(object sender, RoutedEventArgs e)
+        {
+            SaveFile();
+        }
+
+        private void SaveAsFile_Click(object sender, RoutedEventArgs e)
         {
             System.Windows.Forms.SaveFileDialog sfd = new System.Windows.Forms.SaveFileDialog();
             sfd.Filter = "rmorf.bin file(*.bin)|*.bin|All Files(*.*)|*.*";
@@ -202,7 +320,9 @@ namespace RmorfBinEditorWPF
 
                         bw.Write(sizeout, 0, 4);
                     }
-                    StatusLabel.Content = $"File saved - ({path})";
+
+                    isFileChanged = false;
+                    StatusLabel.Content = $"File successfully saved, its location - ({path})";
                 }
                 catch (Exception ex)
                 {
@@ -224,6 +344,8 @@ namespace RmorfBinEditorWPF
 
                 ObjectsList.Items.Clear();
                 PresetsBox.Text = "Unknown/None";
+                isFileChanged = true;
+                StatusLabel.Content = $"File changed - ({path}*)";
             }
         }
 
@@ -255,7 +377,11 @@ namespace RmorfBinEditorWPF
                     obj_nameslist.Add(objname);
                     GetRmorfGroupPreferences(obj);
                     rgrouplist[obj] = new RmorfBinGroup(grMc, grTOA, grFrq, grU3, grU4, grU5, obj_nameslist);
+
                     VisualizeObject(obj);
+
+                    isFileChanged = true;
+                    StatusLabel.Content = $"File changed - ({path})*";
                 }
             }
         }
@@ -270,8 +396,11 @@ namespace RmorfBinEditorWPF
                 headaGC = (uint)rgrouplist.Count;
 
                 VisualizeGroup();
+
                 ObjectsList.Items.Clear();
                 PresetsBox.Text = "Unknown/None";
+                isFileChanged = true;
+                StatusLabel.Content = $"File changed - ({path})*";
             }
         }
 
@@ -289,6 +418,9 @@ namespace RmorfBinEditorWPF
                 rgrouplist[group] = new RmorfBinGroup(grMc, grTOA, grFrq, grU3, grU4, grU5, obj_nameslist);
 
                 VisualizeObject(group);
+
+                isFileChanged = true;
+                StatusLabel.Content = $"File changed - ({path})*";
             }
         }
 
@@ -303,16 +435,19 @@ namespace RmorfBinEditorWPF
                 if (new_name == null)
                 {
                     MessageBox.Show("You haven't typed anything!", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
-                } else
+                }
+                else
                 {
                     rgrouplist[group].objNames[obj] = new_name;
                     VisualizeObject(group);
+                    isFileChanged = true;
+                    StatusLabel.Content = $"File changed - ({path})*";
                 }
             }
         }
         #endregion
 
-        #region Changing preferences by the specified presets
+        #region Changing preferences in textboxes by the chosen preset
         private void ApplyPresetButton_Click(object sender, RoutedEventArgs e)
         {
             VisualizePresetsComboBox();
@@ -494,7 +629,11 @@ namespace RmorfBinEditorWPF
                     rgrouplist[obj] = new RmorfBinGroup(grMc, grTOA, grFrq, grU3, grU4, grU5, obj_nameslist);
 
                     VisualizeComboBox();
-                } catch (Exception ex)
+
+                    isFileChanged = true;
+                    StatusLabel.Content = $"File changed - ({path})*";
+                }
+                catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
@@ -642,6 +781,8 @@ namespace RmorfBinEditorWPF
         }
         #endregion
 
+        #region "About us" and "Exit"
+
         // "About us" section
         private void Authors_Click(object sender, RoutedEventArgs e)
         {
@@ -654,5 +795,6 @@ namespace RmorfBinEditorWPF
         {
             Application.Current.Shutdown();
         }
+        #endregion
     }
 }
