@@ -112,17 +112,14 @@ namespace RmorfBinEditorWPF
                     }
                     StatusLabel.Content = $"New file created, its location - ({path})";
 
-                    isFileChanged = false;
-                    ApplySettingsButton.IsEnabled = true;
-                    Save.IsEnabled = true;
-                    SaveAs.IsEnabled = true;
+                    EnableButtons();
 
                     discord.UpdatePresence("Editing a file");
                 }
                 catch (FormatException)
                 {
                     MessageBox.Show("Wrong type of data!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
-                    discord.UpdatePresence("Idling");
+                    ErrorCatched();
                 }
             }
 
@@ -134,7 +131,7 @@ namespace RmorfBinEditorWPF
         private void OpenFile()
         {
             System.Windows.Forms.OpenFileDialog ofd = new System.Windows.Forms.OpenFileDialog();
-            ofd.Filter = "rmorf.bin file(*.bin)|*.bin|All Files(*.*)|*.*";
+            ofd.Filter = "Rmorf.bin file(*.bin)|*.bin|All Files(*.*)|*.*";
             ofd.Title = "Open File";
 
             if (ofd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
@@ -188,30 +185,27 @@ namespace RmorfBinEditorWPF
 
                                 StatusLabel.Content = $"File opened - ({path})";
 
-                                isFileChanged = false;
-                                ApplySettingsButton.IsEnabled = true;
-                                Save.IsEnabled = true;
-                                SaveAs.IsEnabled = true;
+                                EnableButtons();
 
                                 discord.UpdatePresence("Editing a file");
                             }
                             catch
                             {
                                 MessageBox.Show("Couldn't parse!\nMaybe, you opened wrong file.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                                discord.UpdatePresence("Idling");
+                                ErrorCatched();
                             }
                         }
                         else
                         {
                             MessageBox.Show("File is wrong!.\nWrong constant.", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
-                            discord.UpdatePresence("Idling");
+                            ErrorCatched();
                         }
                     }
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message, "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
-                    discord.UpdatePresence("Idling");
+                    ErrorCatched();
                 }
             }
 
@@ -379,6 +373,32 @@ namespace RmorfBinEditorWPF
                 }
             }
         }
+
+        #region Enabling/Disabling control buttons (depends on result of reading a file)
+        private void EnableButtons()
+        {
+            ApplySettingsButton.IsEnabled = true;
+            Save.IsEnabled = true;
+            SaveAs.IsEnabled = true;
+            InsertGroup.IsEnabled = true;
+            InsertObject.IsEnabled = true;
+        }
+        private void ErrorCatched()
+        {
+            rgrouplist = null;
+            StatusLabel.Content = string.Empty;
+            isFileChanged = false;
+
+            ApplySettingsButton.IsEnabled = false;
+            Save.IsEnabled = false;
+            SaveAs.IsEnabled = false;
+            InsertGroup.IsEnabled = false;
+            InsertObject.IsEnabled = false;
+
+            discord.UpdatePresence("Idling");
+        }
+        #endregion
+
         #endregion
 
         #region Inserting, deleting groups and objects (+ renaming objects)
@@ -395,6 +415,8 @@ namespace RmorfBinEditorWPF
                 PresetsBox.Text = "Unknown/None";
                 isFileChanged = true;
                 StatusLabel.Content = $"File changed - ({path}*)";
+
+                discord.UpdatePresence("Editing a file");
             }
         }
 
@@ -415,7 +437,7 @@ namespace RmorfBinEditorWPF
 
             if (rgrouplist != null && obj >= 0)
             {
-                string objname = Interaction.InputBox("Type the name of the new object:", "Insert Object", "NewObject.Mesh");
+                string objname = Interaction.InputBox("Type the name of the new object:", "Insert Object", "Scene2.bin Object.Morfable Mesh");
                 if (objname == "")
                 {
                     MessageBox.Show("You haven't typed the name of the object!", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -431,6 +453,8 @@ namespace RmorfBinEditorWPF
 
                     isFileChanged = true;
                     StatusLabel.Content = $"File changed - ({path})*";
+
+                    discord.UpdatePresence("Editing a file");
                 }
             }
         }
@@ -835,7 +859,7 @@ namespace RmorfBinEditorWPF
         // "About us" section
         private void Authors_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show($"rmorf.bin Editor v1.0\nAuthors: Firefox3860, Smelson and Legion.\n(c) {DateTime.Now.Year}. From Russia and Kazakhstan with love!", "About Us",
+            MessageBox.Show($"Rmorf.bin Editor v1.0\nAuthors: Firefox3860, Smelson and Legion.\n(c) {DateTime.Now.Year}. From Russia and Kazakhstan with love!", "About Us",
                 MessageBoxButton.OK, MessageBoxImage.Information);
         }
 

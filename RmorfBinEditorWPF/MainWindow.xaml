@@ -82,8 +82,8 @@
                 <MenuItem x:Name="Exit" Header="Exit" Click="Exit_Click"/>
             </MenuItem>
             <MenuItem Header="Insert" FontSize="14" Margin="0">
-                <MenuItem x:Name="InsertGroup" Header="Insert Group" InputGestureText="Alt + G" Margin="0,0,0,3" Click="InsertGroup_Click"/>
-                <MenuItem x:Name="InsertObject" Header="Insert Object" InputGestureText="Alt + O" Click="InsertObject_Click"/>
+                <MenuItem x:Name="InsertGroup" Header="Insert Group" InputGestureText="Alt + G" Margin="0,0,0,3" Click="InsertGroup_Click" IsEnabled="False"/>
+                <MenuItem x:Name="InsertObject" Header="Insert Object" InputGestureText="Alt + O" Click="InsertObject_Click" IsEnabled="False"/>
             </MenuItem>
             <MenuItem Header="About" FontSize="14" Margin="3,0,0,0">
                 <MenuItem x:Name="AboutUs" Header="Authors" InputGestureText="F1" Click="Authors_Click" />
@@ -96,7 +96,7 @@
         <TextBox x:Name="Unk1" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="386,297,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="Unk2" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="386,334,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="Unk3" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="386,375,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Label x:Name="StatusLabel" HorizontalAlignment="Left" Margin="30,458,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.096,-0.191" FontSize="18" Width="615" Grid.ColumnSpan="3" FontFamily="Aurora BdCn BT" Height="27"/>
+        <Label x:Name="StatusLabel" HorizontalAlignment="Left" Margin="30,458,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.096,-0.191" FontSize="18" Width="968" Grid.ColumnSpan="3" FontFamily="Aurora BdCn BT" Height="27"/>
 
 
     </Grid>
