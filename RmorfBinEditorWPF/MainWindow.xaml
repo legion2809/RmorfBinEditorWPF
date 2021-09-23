@@ -5,13 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RmorfBinEditorWPF"
         mc:Ignorable="d"
-        Title="rmorf.bin Editor" Height="530.124" Width="1029.681" FontSize="14" ResizeMode="NoResize" Icon="Untitled-1_1.ico">
+        Title="Rmorf.bin Editor" Height="530.124" Width="1029.681" FontSize="14" ResizeMode="NoResize" Icon="Untitled-1_1.ico"
+        Loaded="Window_Loaded"
+        Closing="Window_Closing">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="101*"/>
-            <ColumnDefinition Width="146*"/>
+            <ColumnDefinition Width="314*"/>
+            <ColumnDefinition Width="107*"/>
+            <ColumnDefinition Width="609*"/>
         </Grid.ColumnDefinitions>
-        
+
         <ListBox x:Name="GroupsList" HorizontalAlignment="Left" Height="371" Margin="30,82,0,0" VerticalAlignment="Top" Width="251" SelectionChanged="GroupsList_SelectionChanged">
             <ListBox.ContextMenu>
                 <ContextMenu>
@@ -19,8 +22,8 @@
                 </ContextMenu>
             </ListBox.ContextMenu>
         </ListBox>
-        
-        <ListBox x:Name="ObjectsList" HorizontalAlignment="Left" Height="371" Margin="317,82,0,0" VerticalAlignment="Top" Width="251" Grid.ColumnSpan="2">
+
+        <ListBox x:Name="ObjectsList" HorizontalAlignment="Left" Height="371" Margin="3,82,0,0" VerticalAlignment="Top" Width="251" Grid.ColumnSpan="2" Grid.Column="1">
             <ListBox.ContextMenu>
                 <ContextMenu>
                     <MenuItem Header="Rename" Click="RenameObject_Click"/>
@@ -28,8 +31,8 @@
                 </ContextMenu>
             </ListBox.ContextMenu>
         </ListBox>
-        
-        <ComboBox x:Name="PresetsBox" HorizontalAlignment="Left" Margin="191,80,0,0" VerticalAlignment="Top" Width="186" Grid.Column="1" Height="25">
+
+        <ComboBox x:Name="PresetsBox" HorizontalAlignment="Left" Margin="191,80,0,0" VerticalAlignment="Top" Width="186" Grid.Column="2" Height="25">
             <ComboBoxItem Content="Unknown/None" BorderThickness="0"/>
             <ComboBoxItem Content="Flag" BorderThickness="0"/>
             <ComboBoxItem Content="Flag (Parnik)" BorderThickness="0"/>
@@ -48,10 +51,10 @@
             <ComboBoxItem Content="Signboard #2" BorderThickness="0"/>
             <ComboBoxItem Content="Truck (MISE09)" BorderThickness="0"/>
         </ComboBox>
-        
-        <GroupBox HorizontalAlignment="Left" Height="321" Margin="191,132,0,0" VerticalAlignment="Top" Width="358" Grid.Column="1" FontSize="18">
+
+        <GroupBox HorizontalAlignment="Left" Height="321" Margin="191,132,0,0" VerticalAlignment="Top" Width="358" Grid.Column="2" FontSize="18">
             <GroupBox.Header>
-                <Label FontWeight="Bold" FontFamily="Aurora BdCn BT" FontSize="22">Presets Parameters</Label>
+                <Label FontWeight="Bold" FontFamily="./#Aurora BdCn BT" FontSize="22">Presets Parameters</Label>
             </GroupBox.Header>
             <StackPanel>
                 <Label Content="Count of objects:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="14"/>
@@ -63,12 +66,12 @@
                 <Button x:Name="ApplySettingsButton" Content="Apply settings" Margin="116,11,116,0" RenderTransformOrigin="-0.027,0.499" Click="ApplyPresetSettings_Click" Height="25" FontSize="14" IsEnabled="False"/>
             </StackPanel>
         </GroupBox>
-        
-        <Button x:Name="ApplyPresetButton" Content="Apply Preset" HorizontalAlignment="Left" Margin="396,80,0,0" VerticalAlignment="Top" Width="126" Grid.Column="1" Height="25" Click="ApplyPresetButton_Click" RenderTransformOrigin="0.524,1.155"/>
-        <Label Content="Groups:" HorizontalAlignment="Left" Margin="30,42,0,0" VerticalAlignment="Top" Height="35" Width="74" FontSize="22" FontWeight="Bold" FontFamily="Aurora BdCn BT"/>
-        <Label Content="Objects:" HorizontalAlignment="Left" Margin="317,42,0,0" VerticalAlignment="Top" Height="35" Width="77" FontSize="22" FontWeight="Bold" FontFamily="Aurora BdCn BT"/>
-        
-        <Menu HorizontalAlignment="Left" Height="25" VerticalAlignment="Top" Width="1058" Grid.ColumnSpan="2">
+
+        <Button x:Name="ApplyPresetButton" Content="Apply Preset" HorizontalAlignment="Left" Margin="396,80,0,0" VerticalAlignment="Top" Width="126" Grid.Column="2" Height="25" Click="ApplyPresetButton_Click" RenderTransformOrigin="0.524,1.155"/>
+        <Label Content="Groups:" HorizontalAlignment="Left" Margin="30,42,0,0" VerticalAlignment="Top" Height="35" Width="74" FontSize="22" FontWeight="Bold" FontFamily="./#Aurora BdCn BT"/>
+        <Label Content="Objects:" HorizontalAlignment="Left" Margin="3,42,0,0" VerticalAlignment="Top" Height="35" Width="77" FontSize="22" FontWeight="Bold" FontFamily="./#Aurora BdCn BT" Grid.Column="1"/>
+
+        <Menu HorizontalAlignment="Left" Height="25" VerticalAlignment="Top" Width="1058" Grid.ColumnSpan="3">
             <MenuItem Header="File" Height="23" Width="41" FontSize="14" Margin="12,0,0,0">
                 <MenuItem x:Name="FileNew" Header="New File..." InputGestureText="Ctrl + N" Margin="0,0,0,3" Click="CreateFile_Click"/>
                 <MenuItem x:Name="FileOpen" Header="Open" InputGestureText="Ctrl + O" Margin="0,0,0,3" Click="OpenFile_Click" />
@@ -86,14 +89,14 @@
                 <MenuItem x:Name="AboutUs" Header="Authors" InputGestureText="F1" Click="Authors_Click" />
             </MenuItem>
         </Menu>
-        
-        <TextBox x:Name="CountOfObjects" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="386,180,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
-        <TextBox x:Name="TypeOfAnim" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="386,219,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="AnimFrq" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="386,258,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="Unk1" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="386,297,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="Unk2" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="386,334,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="Unk3" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="386,375,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Label x:Name="StatusLabel" HorizontalAlignment="Left" Margin="30,458,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.096,-0.191" FontSize="18" Width="615" Grid.ColumnSpan="2" FontFamily="Aurora BdCn BT" Height="27"/>
+
+        <TextBox x:Name="CountOfObjects" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="386,180,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
+        <TextBox x:Name="TypeOfAnim" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="386,219,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="AnimFrq" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="386,258,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="Unk1" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="386,297,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="Unk2" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="386,334,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="Unk3" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="386,375,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="StatusLabel" HorizontalAlignment="Left" Margin="30,458,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.096,-0.191" FontSize="18" Width="615" Grid.ColumnSpan="3" FontFamily="Aurora BdCn BT" Height="27"/>
 
 
     </Grid>
