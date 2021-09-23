@@ -113,7 +113,6 @@ namespace RmorfBinEditorWPF
 
             if (ofd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                ApplySettingsButton.IsEnabled = true;
                 rgrouplist = new List<RmorfBinGroup>();
                 path = ofd.FileName;
 
@@ -171,17 +170,23 @@ namespace RmorfBinEditorWPF
                             catch
                             {
                                 MessageBox.Show("Couldn't parse!\nMaybe, you opened wrong file.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                                rgrouplist = null;
+                                StatusLabel.Content = string.Empty;
                             }
                         }
                         else
                         {
                             MessageBox.Show("File is wrong!.\nWrong constant.", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                            rgrouplist = null;
+                            StatusLabel.Content = string.Empty;
                         }
                     }
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message, "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                    rgrouplist = null;
+                    StatusLabel.Content = string.Empty;
                 }
             }
 
@@ -296,6 +301,7 @@ namespace RmorfBinEditorWPF
         {
             System.Windows.Forms.SaveFileDialog sfd = new System.Windows.Forms.SaveFileDialog();
             sfd.Filter = "rmorf.bin file(*.bin)|*.bin|All Files(*.*)|*.*";
+            sfd.Filter = "Save As";
 
             if (sfd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
