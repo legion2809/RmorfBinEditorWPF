@@ -6,17 +6,6 @@
         xmlns:local="clr-namespace:RmorfBinEditorWPF"
         mc:Ignorable="d"
         Title="rmorf.bin Editor" Height="530.124" Width="1029.681" FontSize="14" ResizeMode="NoResize" Icon="Untitled-1_1.ico">
-    <!-- <Window.CommandBindings>
-        <CommandBinding Command="New" Executed="NewFileCommand_Executed"/>
-        <CommandBinding Command="Open" Executed="OpenFileCommand_Executed"/>
-        <CommandBinding Command="Save" Executed="SaveFileCommand_Executed"/>
-    </Window.CommandBindings>
-    <Window.InputBindings>
-        <KeyBinding Gesture="Ctrl+N"/>
-        <KeyBinding Gesture="Ctrl+O"/>
-        <KeyBinding Gesture="Ctrl+S"/>
-    </Window.InputBindings> -->
-    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="101*"/>
