@@ -30,14 +30,145 @@ namespace RmorfBinEditorWPF
         private uint headfS, headKey, headaGC; // RmorfBinHead preferences
         private uint grMc, grTOA, grFrq, grU3, grU4, grU5; // RmorfBinGroup preferences
         private List<string> obj_nameslist; // For storing object names' list
-        private bool isFileChanged = false; // For logging file's changing
+        private bool isFileChanged; // For logging file's changing
+
+        #region Shortcut keys for "Save", "Open" and etc.
+        public static RoutedCommand exitCommand = new RoutedCommand();
+        public static RoutedCommand saveAsCommand = new RoutedCommand();
+
+        public static RoutedCommand insertGroup = new RoutedCommand();
+        public static RoutedCommand insertObject = new RoutedCommand();
+
+        public static RoutedCommand aboutCommand = new RoutedCommand();
 
         public MainWindow()
         {
             InitializeComponent();
+
+            exitCommand.InputGestures.Add(new KeyGesture(Key.F4, ModifierKeys.Alt));
+            aboutCommand.InputGestures.Add(new KeyGesture(Key.F1));
+
+            insertGroup.InputGestures.Add(new KeyGesture(Key.G, ModifierKeys.Alt));
+            insertObject.InputGestures.Add(new KeyGesture(Key.O, ModifierKeys.Alt));
         }
 
-        #region DiscordIntegration and Background Images
+        // "New File..."
+        private void NewFile_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void NewFile_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            FileNew.RaiseEvent(new RoutedEventArgs(MenuItem.ClickEvent));
+        }
+
+        // Open file
+        private void OpenFile_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void OpenFile_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            FileOpen.RaiseEvent(new RoutedEventArgs(MenuItem.ClickEvent));
+        }
+
+        // Save file
+        private void SaveFile_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            if (Save.IsEnabled == false)
+            {
+                e.CanExecute = false;
+            } else
+            {
+                e.CanExecute = true;
+            }
+        }
+
+        private void SaveFile_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            Save.RaiseEvent(new RoutedEventArgs(MenuItem.ClickEvent));
+        }
+
+        // Save As
+        private void SaveAs_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            if (Save.IsEnabled == false)
+            {
+                e.CanExecute = false;
+            }
+            else
+            {
+                e.CanExecute = true;
+            }
+        }
+
+        private void SaveAs_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            SaveAs.RaiseEvent(new RoutedEventArgs(MenuItem.ClickEvent));
+        }
+
+        // Insert group
+        private void InsertGroup_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            if (Save.IsEnabled == false)
+            {
+                e.CanExecute = false;
+            }
+            else
+            {
+                e.CanExecute = true;
+            }
+        }
+
+        private void InsertGroup_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            InsertGroup.RaiseEvent(new RoutedEventArgs(MenuItem.ClickEvent));
+        }
+
+        // Insert object
+        private void InsertObject_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            if (Save.IsEnabled == false)
+            {
+                e.CanExecute = false;
+            }
+            else
+            {
+                e.CanExecute = true;
+            }
+        }
+
+        private void InsertObject_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            InsertObject.RaiseEvent(new RoutedEventArgs(MenuItem.ClickEvent));
+        }
+
+        // About
+        private void About_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void About_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            AboutUs.RaiseEvent(new RoutedEventArgs(MenuItem.ClickEvent));
+        }
+
+        // Exit from app
+        private void Exit_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void Exit_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            Exit.RaiseEvent(new RoutedEventArgs(MenuItem.ClickEvent));
+        }
+        #endregion
+
+        #region Discord Rich Presence Integration and Background Images
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             discord.Initialize();
@@ -55,9 +186,6 @@ namespace RmorfBinEditorWPF
         {
             discord.Shutdown();
         }
-        #endregion
-
-        #region Shortcut keys for "Save", "Open" and etc.
         #endregion
 
         #region Creating, opening and saving a file
@@ -96,8 +224,6 @@ namespace RmorfBinEditorWPF
                         byte[] sizeout = BitConverter.GetBytes(size);
                         bw.Write(sizeout, 0, 4);
                     }
-
-                    isFileChanged = false;
                     StatusLabel.Content = $"New file created, its location - ({path})";
 
                     EnableButtons();
@@ -171,7 +297,6 @@ namespace RmorfBinEditorWPF
                                     rgrouplist.Add(new RmorfBinGroup(grMc, grTOA, grFrq, grU3, grU4, grU5, obj_nameslist));
                                 }
 
-                                isFileChanged = false;
                                 StatusLabel.Content = $"File opened - ({path})";
 
                                 EnableButtons();
@@ -263,13 +388,14 @@ namespace RmorfBinEditorWPF
                 {
                     case MessageBoxResult.Yes:
                         SaveFile();
-                        CreateFile();
+                        OpenFile();
                         break;
                     case MessageBoxResult.No:
                         CreateFile();
                         break;
                 }
-            } else
+            }
+            else
             {
                 CreateFile();
             }
@@ -292,7 +418,8 @@ namespace RmorfBinEditorWPF
                         OpenFile();
                         break;
                 }
-            } else
+            }
+            else
             {
                 OpenFile();
             }
@@ -307,6 +434,7 @@ namespace RmorfBinEditorWPF
         {
             System.Windows.Forms.SaveFileDialog sfd = new System.Windows.Forms.SaveFileDialog();
             sfd.Filter = "rmorf.bin file(*.bin)|*.bin|All Files(*.*)|*.*";
+            sfd.Title = "Save As";
 
             if (sfd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
@@ -369,6 +497,7 @@ namespace RmorfBinEditorWPF
             InsertGroup.IsEnabled = true;
             InsertObject.IsEnabled = true;
         }
+
         private void ErrorCatched()
         {
             rgrouplist = null;

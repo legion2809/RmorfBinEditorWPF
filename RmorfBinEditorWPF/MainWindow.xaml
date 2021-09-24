@@ -8,6 +8,22 @@
         Title="Rmorf.bin Editor" Height="530.124" Width="1029.681" FontSize="14" ResizeMode="NoResize" Icon="Untitled-1_1.ico"
         Loaded="Window_Loaded"
         Closing="Window_Closing">
+    
+    <Window.CommandBindings>
+        <CommandBinding Command="New" CanExecute="NewFile_CanExecute" Executed="NewFile_Executed"/>
+        <CommandBinding Command="Open" CanExecute="OpenFile_CanExecute" Executed="OpenFile_Executed"/>
+        <CommandBinding Command="Save" CanExecute="SaveFile_CanExecute" Executed="SaveFile_Executed"/>
+        <CommandBinding Command="{x:Static local:MainWindow.exitCommand}" CanExecute="Exit_CanExecute" Executed="Exit_Executed"/>
+        <CommandBinding Command="{x:Static local:MainWindow.aboutCommand}" CanExecute="About_CanExecute" Executed="About_Executed"/>
+        <CommandBinding Command="{x:Static local:MainWindow.saveAsCommand}" CanExecute="SaveAs_CanExecute" Executed="SaveAs_Executed"/>
+        <CommandBinding Command="{x:Static local:MainWindow.insertGroup}" CanExecute="InsertGroup_CanExecute" Executed="InsertGroup_Executed"/>
+        <CommandBinding Command="{x:Static local:MainWindow.insertObject}" CanExecute="InsertObject_CanExecute" Executed="InsertObject_Executed"/>
+    </Window.CommandBindings>
+
+    <Window.InputBindings>
+        <KeyBinding Gesture="Ctrl+Alt+S" Command="{x:Static local:MainWindow.saveAsCommand}"/>
+    </Window.InputBindings>
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="314*"/>
@@ -72,21 +88,21 @@
         <Label Content="Objects:" HorizontalAlignment="Left" Margin="3,42,0,0" VerticalAlignment="Top" Height="35" Width="77" FontSize="22" FontWeight="Bold" FontFamily="./#Aurora BdCn BT" Grid.Column="1"/>
 
         <Menu HorizontalAlignment="Left" Height="25" VerticalAlignment="Top" Width="1058" Grid.ColumnSpan="3">
-            <MenuItem Header="File" Height="23" Width="41" FontSize="14" Margin="12,0,0,0">
-                <MenuItem x:Name="FileNew" Header="New File..." InputGestureText="Ctrl + N" Margin="0,0,0,3" Click="CreateFile_Click"/>
-                <MenuItem x:Name="FileOpen" Header="Open" InputGestureText="Ctrl + O" Margin="0,0,0,3" Click="OpenFile_Click" />
+            <MenuItem Header="File" Height="23" Width="41" FontSize="18" Margin="12,0,0,0" FontFamily="./#Aurora BdCn BT">
+                <MenuItem x:Name="FileNew" InputGestureText="Ctrl+N" Header="New File..."  Margin="0,0,0,3" Click="CreateFile_Click" FontFamily="./#Aurora BdCn BT"/>
+                <MenuItem x:Name="FileOpen" InputGestureText="Ctrl+O" Header="Open" Margin="0,0,0,3" Click="OpenFile_Click" FontFamily="./#Aurora BdCn BT"/>
                 <Separator />
-                <MenuItem x:Name="Save" InputGestureText="Ctrl + S" Header="Save" Click="SaveFile_Click" IsEnabled="False"/>
-                <MenuItem x:Name="SaveAs" InputGestureText="Ctrl + Shift + S" Header="Save As..." Click="SaveAsFile_Click" IsEnabled="False"/>
+                <MenuItem x:Name="Save" InputGestureText="Ctrl+S" Header="Save" Click="SaveFile_Click" IsEnabled="False" FontFamily="./#Aurora BdCn BT"/>
+                <MenuItem x:Name="SaveAs" InputGestureText="Ctrl + Shift + S" Header="Save As..." Click="SaveAsFile_Click" IsEnabled="False" FontFamily="./#Aurora BdCn BT"/>
                 <Separator />
-                <MenuItem x:Name="Exit" Header="Exit" Click="Exit_Click"/>
+                <MenuItem x:Name="Exit" Header="Exit" Click="Exit_Click" FontFamily="./#Aurora BdCn BT"/>
             </MenuItem>
-            <MenuItem Header="Insert" FontSize="14" Margin="0">
-                <MenuItem x:Name="InsertGroup" Header="Insert Group" InputGestureText="Alt + G" Margin="0,0,0,3" Click="InsertGroup_Click" IsEnabled="False"/>
-                <MenuItem x:Name="InsertObject" Header="Insert Object" InputGestureText="Alt + O" Click="InsertObject_Click" IsEnabled="False"/>
+            <MenuItem Header="Insert" FontSize="18" Margin="0" FontFamily="./#Aurora BdCn BT">
+                <MenuItem x:Name="InsertGroup" Header="Insert Group" InputGestureText="Alt + G" Margin="0,0,0,3" Click="InsertGroup_Click" IsEnabled="False" FontFamily="./#Aurora BdCn BT"/>
+                <MenuItem x:Name="InsertObject" Header="Insert Object" InputGestureText="Alt + O" Click="InsertObject_Click" IsEnabled="False" FontFamily="./#Aurora BdCn BT"/>
             </MenuItem>
-            <MenuItem Header="About" FontSize="14" Margin="3,0,0,0">
-                <MenuItem x:Name="AboutUs" Header="Authors" InputGestureText="F1" Click="Authors_Click" />
+            <MenuItem Header="About" FontSize="18" Margin="3,0,0,0" FontFamily="./#Aurora BdCn BT">
+                <MenuItem x:Name="AboutUs" Header="Authors" InputGestureText="F1" Click="Authors_Click" FontFamily="./#Aurora BdCn BT"/>
             </MenuItem>
         </Menu>
 
@@ -96,7 +112,7 @@
         <TextBox x:Name="Unk1" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="386,297,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="Unk2" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="386,334,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="Unk3" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="386,375,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Label x:Name="StatusLabel" HorizontalAlignment="Left" Margin="30,458,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.096,-0.191" FontSize="18" Width="968" Grid.ColumnSpan="3" FontFamily="Aurora BdCn BT" Height="27"/>
+        <Label x:Name="StatusLabel" HorizontalAlignment="Left" Margin="30,458,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.096,-0.191" FontSize="18" Width="968" Grid.ColumnSpan="3" FontFamily="./#Aurora BdCn BT" Height="27"/>
 
 
     </Grid>
