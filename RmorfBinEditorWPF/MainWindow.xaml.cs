@@ -37,7 +37,7 @@ namespace RmorfBinEditorWPF
             InitializeComponent();
         }
 
-        #region DiscordIntegration and Background Images
+        #region Discord Rich Presence Integration and Background Images
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             discord.Initialize();
@@ -58,20 +58,38 @@ namespace RmorfBinEditorWPF
         #endregion
 
         #region Shortcut keys for "Save", "Open" and etc.
-        /*private void NewFileCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+        // "New File..."
+        private void NewFile_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void NewFile_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             FileNew.RaiseEvent(new RoutedEventArgs(MenuItem.ClickEvent));
         }
 
-        private void OpenFileCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+        // Open file
+        private void OpenFile_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void OpenFile_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             FileOpen.RaiseEvent(new RoutedEventArgs(MenuItem.ClickEvent));
         }
 
-        private void SaveFileCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+        // Save file
+        private void SaveFile_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void SaveFile_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             Save.RaiseEvent(new RoutedEventArgs(MenuItem.ClickEvent));
-        }*/
+        }
         #endregion
 
         #region Creating, opening and saving a file
@@ -320,7 +338,7 @@ namespace RmorfBinEditorWPF
         {
             System.Windows.Forms.SaveFileDialog sfd = new System.Windows.Forms.SaveFileDialog();
             sfd.Filter = "rmorf.bin file(*.bin)|*.bin|All Files(*.*)|*.*";
-            sfd.Filter = "Save As";
+            sfd.Title = "Save As";
 
             if (sfd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
@@ -383,6 +401,7 @@ namespace RmorfBinEditorWPF
             InsertGroup.IsEnabled = true;
             InsertObject.IsEnabled = true;
         }
+
         private void ErrorCatched()
         {
             rgrouplist = null;
