@@ -17,3 +17,23 @@ C:\Program Files (x86)\!Mafia Projects, since 2021\RmorfBinEditorWPF\RmorfBinEdi
 C:\Program Files (x86)\!Mafia Projects, since 2021\RmorfBinEditorWPF\RmorfBinEditorWPF\obj\x86\Release\RmorfBinEditorWPF.exe
 C:\Program Files (x86)\!Mafia Projects, since 2021\RmorfBinEditorWPF\RmorfBinEditorWPF\obj\x86\Release\RmorfBinEditorWPF.pdb
 C:\Program Files (x86)\!Mafia Projects, since 2021\RmorfBinEditorWPF\RmorfBinEditorWPF\obj\x86\Release\RmorfBinEditorWPF.csproj.CopyComplete
+E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\RmorfBinEditorWPF\bin\x86\Release\RmorfBinEditorWPF.exe.config
+E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\RmorfBinEditorWPF\bin\x86\Release\RmorfBinEditorWPF.exe
+E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\RmorfBinEditorWPF\bin\x86\Release\RmorfBinEditorWPF.pdb
+E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\RmorfBinEditorWPF\bin\x86\Release\Microsoft.WindowsAPICodePack.dll
+E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\RmorfBinEditorWPF\bin\x86\Release\Microsoft.WindowsAPICodePack.Shell.dll
+E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\RmorfBinEditorWPF\bin\x86\Release\Microsoft.WindowsAPICodePack.xml
+E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\RmorfBinEditorWPF\bin\x86\Release\Microsoft.WindowsAPICodePack.Shell.xml
+E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\RmorfBinEditorWPF\obj\x86\Release\RmorfBinEditorWPF.csproj.AssemblyReference.cache
+E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\RmorfBinEditorWPF\obj\x86\Release\MainWindow.g.cs
+E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\RmorfBinEditorWPF\obj\x86\Release\App.g.cs
+E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\RmorfBinEditorWPF\obj\x86\Release\RmorfBinEditorWPF_MarkupCompile.cache
+E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\RmorfBinEditorWPF\obj\x86\Release\RmorfBinEditorWPF_MarkupCompile.lref
+E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\RmorfBinEditorWPF\obj\x86\Release\MainWindow.baml
+E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\RmorfBinEditorWPF\obj\x86\Release\RmorfBinEditorWPF.g.resources
+E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\RmorfBinEditorWPF\obj\x86\Release\RmorfBinEditorWPF.Properties.Resources.resources
+E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\RmorfBinEditorWPF\obj\x86\Release\RmorfBinEditorWPF.csproj.GenerateResource.cache
+E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\RmorfBinEditorWPF\obj\x86\Release\RmorfBinEditorWPF.csproj.CoreCompileInputs.cache
+E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\RmorfBinEditorWPF\obj\x86\Release\RmorfBinEditorWPF.csproj.CopyComplete
+E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\RmorfBinEditorWPF\obj\x86\Release\RmorfBinEditorWPF.exe
+E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\RmorfBinEditorWPF\obj\x86\Release\RmorfBinEditorWPF.pdb
