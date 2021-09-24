@@ -32,32 +32,26 @@ namespace RmorfBinEditorWPF
         private List<string> obj_nameslist; // For storing object names' list
         private bool isFileChanged; // For logging file's changing
 
+        #region Shortcut keys for "Save", "Open" and etc.
+        public static RoutedCommand exitCommand = new RoutedCommand();
+        public static RoutedCommand saveAsCommand = new RoutedCommand();
+
+        public static RoutedCommand insertGroup = new RoutedCommand();
+        public static RoutedCommand insertObject = new RoutedCommand();
+
+        public static RoutedCommand aboutCommand = new RoutedCommand();
+
         public MainWindow()
         {
             InitializeComponent();
+
+            exitCommand.InputGestures.Add(new KeyGesture(Key.F4, ModifierKeys.Alt));
+            aboutCommand.InputGestures.Add(new KeyGesture(Key.F1));
+
+            insertGroup.InputGestures.Add(new KeyGesture(Key.G, ModifierKeys.Alt));
+            insertObject.InputGestures.Add(new KeyGesture(Key.O, ModifierKeys.Alt));
         }
 
-        #region Discord Rich Presence Integration and Background Images
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            discord.Initialize();
-
-            discord.presence.largeImageKey = "logo";
-            discord.presence.largeImageText = "Rmorf.bin Editor";
-
-            time = DateTimeOffset.Now.ToUnixTimeSeconds();
-            discord.presence.startTimestamp = time;
-
-            discord.UpdatePresence("Idling");
-        }
-
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            discord.Shutdown();
-        }
-        #endregion
-
-        #region Shortcut keys for "Save", "Open" and etc.
         // "New File..."
         private void NewFile_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
@@ -83,12 +77,114 @@ namespace RmorfBinEditorWPF
         // Save file
         private void SaveFile_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            e.CanExecute = true;
+            if (Save.IsEnabled == false)
+            {
+                e.CanExecute = false;
+            } else
+            {
+                e.CanExecute = true;
+            }
         }
 
         private void SaveFile_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             Save.RaiseEvent(new RoutedEventArgs(MenuItem.ClickEvent));
+        }
+
+        // Save As
+        private void SaveAs_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            if (Save.IsEnabled == false)
+            {
+                e.CanExecute = false;
+            }
+            else
+            {
+                e.CanExecute = true;
+            }
+        }
+
+        private void SaveAs_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            SaveAs.RaiseEvent(new RoutedEventArgs(MenuItem.ClickEvent));
+        }
+
+        // Insert group
+        private void InsertGroup_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            if (Save.IsEnabled == false)
+            {
+                e.CanExecute = false;
+            }
+            else
+            {
+                e.CanExecute = true;
+            }
+        }
+
+        private void InsertGroup_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            InsertGroup.RaiseEvent(new RoutedEventArgs(MenuItem.ClickEvent));
+        }
+
+        // Insert object
+        private void InsertObject_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            if (Save.IsEnabled == false)
+            {
+                e.CanExecute = false;
+            }
+            else
+            {
+                e.CanExecute = true;
+            }
+        }
+
+        private void InsertObject_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            InsertObject.RaiseEvent(new RoutedEventArgs(MenuItem.ClickEvent));
+        }
+
+        // About
+        private void About_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void About_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            AboutUs.RaiseEvent(new RoutedEventArgs(MenuItem.ClickEvent));
+        }
+
+        // Exit from app
+        private void Exit_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void Exit_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            Exit.RaiseEvent(new RoutedEventArgs(MenuItem.ClickEvent));
+        }
+        #endregion
+
+        #region Discord Rich Presence Integration and Background Images
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            discord.Initialize();
+
+            discord.presence.largeImageKey = "logo";
+            discord.presence.largeImageText = "Rmorf.bin Editor";
+
+            time = DateTimeOffset.Now.ToUnixTimeSeconds();
+            discord.presence.startTimestamp = time;
+
+            discord.UpdatePresence("Idling");
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            discord.Shutdown();
         }
         #endregion
 
