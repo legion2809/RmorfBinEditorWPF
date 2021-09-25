@@ -18,7 +18,7 @@ namespace RmorfBinEditorWPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        string CurrentVersion = "Beta 0.3.1";
+        string CurrentVersion = "Beta 0.3.2";
         string NewVersion = null;
 
         RmorfBinHead rhead;
@@ -980,7 +980,7 @@ namespace RmorfBinEditorWPF
         }
 
         // Shutdown the app
-        private void Exit_Click(object sender, RoutedEventHandler e)
+        private void Exit_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.MainWindow.Close();
         }
