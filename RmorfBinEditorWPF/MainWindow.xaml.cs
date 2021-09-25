@@ -188,6 +188,20 @@ namespace RmorfBinEditorWPF
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            if (isFileChanged == true) 
+            {
+                var res = MessageBox.Show("Do you wish save changes to " + path + "?",
+                    "rmorf.bin Editor", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
+
+                switch (res) 
+                {
+                    case MessageBoxResult.Yes:
+                        SaveFile();
+                        break;
+                    case MessageBoxResult.No:
+                        break;
+                }
+            }
             discord.Shutdown();
         }
         #endregion
