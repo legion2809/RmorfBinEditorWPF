@@ -7,3 +7,4 @@ C:\Program Files (x86)\!Mafia Projects, since 2021\RmorfBinEditorWPF\Updater\obj
 C:\Program Files (x86)\!Mafia Projects, since 2021\RmorfBinEditorWPF\Updater\obj\Debug\Updater.exe
 C:\Program Files (x86)\!Mafia Projects, since 2021\RmorfBinEditorWPF\Updater\obj\Debug\Updater.pdb
 C:\Program Files (x86)\!Mafia Projects, since 2021\RmorfBinEditorWPF\Updater\obj\Debug\Updater.Main.resources
+C:\Program Files (x86)\!Mafia Projects, since 2021\RmorfBinEditorWPF\Updater\obj\Debug\Updater.csproj.AssemblyReference.cache
