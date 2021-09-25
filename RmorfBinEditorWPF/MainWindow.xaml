@@ -8,6 +8,7 @@
         mc:Ignorable="d"
         Title="Rmorf.bin Editor" Height="530.124" Width="1029.681" FontSize="14" ResizeMode="NoResize" Icon="Untitled-1_1.ico"
         Loaded="Window_Loaded"
+        Closed="Window_Closed"
         Closing="Window_Closing">
     <Window.Resources>
         <SolidColorBrush x:Key="ListBox.Static.Background" Color="#FFFFFFFF"/>
@@ -820,7 +821,7 @@
         <Label Content="Groups:" HorizontalAlignment="Left" Margin="30,42,0,0" VerticalAlignment="Top" Height="35" Width="74" FontSize="22" FontWeight="Bold" FontFamily="./#Aurora BdCn BT"/>
         <Label Content="Objects:" HorizontalAlignment="Left" Margin="3,42,0,0" VerticalAlignment="Top" Height="35" Width="77" FontSize="22" FontWeight="Bold" FontFamily="./#Aurora BdCn BT" Grid.Column="1"/>
 
-        <Menu HorizontalAlignment="Left" Height="25" VerticalAlignment="Top" Width="1058" Grid.ColumnSpan="3">
+        <Menu HorizontalAlignment="Left" Height="25" VerticalAlignment="Top" Width="1024" Grid.ColumnSpan="3">
             <MenuItem Header="File" Height="23" Width="41" FontSize="18" Margin="12,0,0,0" FontFamily="./#Aurora BdCn BT">
                 <MenuItem x:Name="FileNew" InputGestureText="Ctrl+N" Header="New File..."  Margin="0,0,0,3" Click="CreateFile_Click" FontFamily="./#Aurora BdCn BT"/>
                 <MenuItem x:Name="FileOpen" InputGestureText="Ctrl+O" Header="Open" Margin="0,0,0,3" Click="OpenFile_Click" FontFamily="./#Aurora BdCn BT"/>

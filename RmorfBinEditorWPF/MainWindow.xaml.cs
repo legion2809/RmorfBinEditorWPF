@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Windows.Controls;
 using System.Net;
 using System.Diagnostics;
+using System.ComponentModel;
 
 namespace RmorfBinEditorWPF
 {
@@ -17,7 +18,7 @@ namespace RmorfBinEditorWPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        string CurrentVersion = "Beta 0.3";
+        string CurrentVersion = "Beta 0.3.1";
         string NewVersion = null;
 
         RmorfBinHead rhead;
@@ -186,7 +187,7 @@ namespace RmorfBinEditorWPF
             discord.UpdatePresence("Idling");
         }
 
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        private void Window_Closing(object sender, CancelEventArgs e)
         {
             if (isFileChanged == true) 
             {
@@ -199,13 +200,19 @@ namespace RmorfBinEditorWPF
                         SaveFile();
                         break;
                     case MessageBoxResult.No:
+                        e.Cancel = false;
                         break;
                     case MessageBoxResult.Cancel:
                         e.Cancel = true;
                         break;
                 }
             }
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
             discord.Shutdown();
+            Application.Current.Shutdown();
         }
         #endregion
 
@@ -961,23 +968,21 @@ namespace RmorfBinEditorWPF
                             break;
                     }
                 }
-
                 else
                 {
                     MessageBox.Show($"You're using the latest version ({CurrentVersion}) of the program!", $"Rmorf.bin Editor {CurrentVersion}", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
-
             catch
             {
-
+                MessageBox.Show("Something went wrong!\nMaybe, your Internet connection is disabled.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
         // Shutdown the app
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Shutdown();
+            Application.Current.MainWindow.Close();
         }
         #endregion
     }
