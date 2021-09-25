@@ -135,5 +135,8 @@
   <ItemGroup>
     <Resource Include="Untitled-1_1.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Version for Updater\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
