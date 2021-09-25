@@ -17,7 +17,7 @@ namespace RmorfBinEditorWPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        string CurrentVersion = "Beta 0.3";
+        string CurrentVersion = "Beta 0.3.1";
         string NewVersion = null;
 
         RmorfBinHead rhead;
@@ -186,6 +186,11 @@ namespace RmorfBinEditorWPF
             discord.UpdatePresence("Idling");
         }
 
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            discord.Shutdown();
+        }
+
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             if (isFileChanged == true) 
@@ -205,7 +210,6 @@ namespace RmorfBinEditorWPF
                         break;
                 }
             }
-            discord.Shutdown();
         }
         #endregion
 
@@ -975,7 +979,7 @@ namespace RmorfBinEditorWPF
         }
 
         // Shutdown the app
-        private void Exit_Click(object sender, RoutedEventArgs e)
+        private void Exit_Click(object sender, RoutedEventHandler e)
         {
             Application.Current.Shutdown();
         }
