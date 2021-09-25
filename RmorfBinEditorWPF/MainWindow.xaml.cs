@@ -18,7 +18,7 @@ namespace RmorfBinEditorWPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        string CurrentVersion = "Beta 0.3.2";
+        string CurrentVersion = "Beta 0.3.3";
         string NewVersion = null;
 
         RmorfBinHead rhead;
@@ -179,7 +179,7 @@ namespace RmorfBinEditorWPF
             discord.Initialize();
 
             discord.presence.largeImageKey = "logo";
-            discord.presence.largeImageText = "Rmorf.bin Editor";
+            discord.presence.largeImageText = $"Rmorf.bin Editor {CurrentVersion}";
 
             time = DateTimeOffset.Now.ToUnixTimeSeconds();
             discord.presence.startTimestamp = time;
