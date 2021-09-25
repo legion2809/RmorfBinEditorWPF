@@ -781,7 +781,7 @@
             </ListBox.ContextMenu>
         </ListBox>
 
-        <ComboBox x:Name="PresetsBox" FontFamily="./#Aurora BdCn BT" FontSize="18" HorizontalAlignment="Left" Margin="191,80,0,0" VerticalAlignment="Top" Width="186" Grid.Column="2" Height="25" Style="{DynamicResource PresetsBoxStyle}">
+        <ComboBox x:Name="PresetsBox" FontFamily="./#Aurora BdCn BT" FontSize="18" HorizontalAlignment="Left" Margin="191,80,0,0" VerticalAlignment="Top" Width="211" Grid.Column="2" Height="25" Style="{DynamicResource PresetsBoxStyle}">
             <ComboBoxItem Content="Unknown/None" BorderThickness="0"/>
             <ComboBoxItem Content="Flag" BorderThickness="0"/>
             <ComboBoxItem Content="Flag (Parnik)" BorderThickness="0"/>
@@ -816,7 +816,7 @@
             </StackPanel>
         </GroupBox>
 
-        <Button x:Name="ApplyPresetButton" Content="Apply Preset" FontFamily="./#Aurora BdCn BT" FontSize="17" HorizontalAlignment="Left" Margin="396,80,0,0" VerticalAlignment="Top" Width="126" Grid.Column="2" Height="25" Click="ApplyPresetButton_Click" RenderTransformOrigin="0.524,1.155" Style="{DynamicResource ApplyPresetButtonStyle}"/>
+        <Button x:Name="ApplyPresetButton" Content="Apply Preset" FontFamily="./#Aurora BdCn BT" FontSize="17" HorizontalAlignment="Left" Margin="423,80,0,0" VerticalAlignment="Top" Width="126" Grid.Column="2" Height="25" Click="ApplyPresetButton_Click" RenderTransformOrigin="0.524,1.155" Style="{DynamicResource ApplyPresetButtonStyle}"/>
         <Label Content="Groups:" HorizontalAlignment="Left" Margin="30,42,0,0" VerticalAlignment="Top" Height="35" Width="74" FontSize="22" FontWeight="Bold" FontFamily="./#Aurora BdCn BT"/>
         <Label Content="Objects:" HorizontalAlignment="Left" Margin="3,42,0,0" VerticalAlignment="Top" Height="35" Width="77" FontSize="22" FontWeight="Bold" FontFamily="./#Aurora BdCn BT" Grid.Column="1"/>
 
@@ -840,12 +840,12 @@
             </MenuItem>
         </Menu>
 
-        <TextBox x:Name="CountOfObjects" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="386,180,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False" Style="{DynamicResource CountOfObjectsStyle}"/>
-        <TextBox x:Name="TypeOfAnim" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="386,219,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Style="{DynamicResource TypeOfAnimStyle}"/>
+        <TextBox x:Name="CountOfObjects" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="386,179,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False" Style="{DynamicResource CountOfObjectsStyle}"/>
+        <TextBox x:Name="TypeOfAnim" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="386,218,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Style="{DynamicResource TypeOfAnimStyle}"/>
         <TextBox x:Name="AnimFrq" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="386,258,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Style="{DynamicResource AnimFrqStyle}"/>
         <TextBox x:Name="Unk1" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="386,297,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Style="{DynamicResource Unk1Style}"/>
-        <TextBox x:Name="Unk2" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="386,334,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Style="{DynamicResource Unk2Style}"/>
-        <TextBox x:Name="Unk3" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="386,375,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Style="{DynamicResource Unk3Style}"/>
+        <TextBox x:Name="Unk2" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="386,336,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Style="{DynamicResource Unk2Style}"/>
+        <TextBox x:Name="Unk3" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="386,374,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Style="{DynamicResource Unk3Style}"/>
         <Label x:Name="StatusLabel" HorizontalAlignment="Left" Margin="30,458,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.096,-0.191" FontSize="18" Width="968" Grid.ColumnSpan="3" FontFamily="./#Aurora BdCn BT" Height="27"/>
 
 

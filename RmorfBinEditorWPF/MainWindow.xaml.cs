@@ -200,6 +200,9 @@ namespace RmorfBinEditorWPF
                         break;
                     case MessageBoxResult.No:
                         break;
+                    case MessageBoxResult.Cancel:
+                        e.Cancel = true;
+                        break;
                 }
             }
             discord.Shutdown();
