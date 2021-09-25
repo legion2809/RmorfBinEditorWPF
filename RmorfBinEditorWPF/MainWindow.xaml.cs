@@ -21,11 +21,13 @@ namespace RmorfBinEditorWPF
         string NewVersion = null;
 
         RmorfBinHead rhead;
-        List<RmorfBinGroup> rgrouplist;
+        List<RmorfBinGroup> rgrouplist; // Will contains groups' list that have been created
 
+        // For Discord RPC stuff
         Discord.Discord discord = new Discord.Discord();
         long time;
 
+        // Necessary bunch of bytes for rmorf.bin file
         byte[] fSize = { 0x00, 0x00, 0x00, 0x00 };
         byte[] key = { 0xCD, 0xCC, 0xCC, 0x3D };
         byte[] aGroupCount = { 0x00, 0x00, 0x00, 0x00 };
@@ -800,7 +802,7 @@ namespace RmorfBinEditorWPF
 
             if (rgrouplist != null) {
                 for (int i = 0; i < rgrouplist.Count; i++) {
-                    GroupsList.Items.Add("Group №" + (i + 1).ToString());
+                    GroupsList.Items.Add("Group #" + (i + 1).ToString());
                 }
             }
 
