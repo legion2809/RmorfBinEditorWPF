@@ -187,6 +187,12 @@ namespace RmorfBinEditorWPF
             discord.UpdatePresence("Idling");
         }
 
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            discord.Shutdown();
+            Application.Current.Shutdown();
+        }
+
         private void Window_Closing(object sender, CancelEventArgs e)
         {
             if (isFileChanged == true) 
@@ -207,12 +213,6 @@ namespace RmorfBinEditorWPF
                         break;
                 }
             }
-        }
-
-        private void Window_Closed(object sender, EventArgs e)
-        {
-            discord.Shutdown();
-            Application.Current.Shutdown();
         }
         #endregion
 
@@ -980,7 +980,7 @@ namespace RmorfBinEditorWPF
         }
 
         // Shutdown the app
-        private void Exit_Click(object sender, RoutedEventArgs e)
+        private void Exit_Click(object sender, RoutedEventHandler e)
         {
             Application.Current.MainWindow.Close();
         }

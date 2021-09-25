@@ -36,4 +36,4 @@ E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\RmorfBinEditorWPF\obj\x86\
 E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\RmorfBinEditorWPF\obj\x86\Debug\RmorfBinEditorWPF.csproj.CopyComplete
 E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\RmorfBinEditorWPF\obj\x86\Debug\RmorfBinEditorWPF.exe
 E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\RmorfBinEditorWPF\obj\x86\Debug\RmorfBinEditorWPF.pdb
-C:\Program Files (x86)\!Mafia Projects, since 2021\RmorfBinEditorWPF\RmorfBinEditorWPF\obj\x86\Debug\RmorfBinEditorWPF.csproj.CopyComplete
+C:\Program Files (x86)\!Mafia Projects, since 2021\RmorfBinEditorWPF\RmorfBinEditorWPF\obj\x86\Debug\RmorfBinEditorWPF.csproj.AssemblyReference.cache
