@@ -103,6 +103,7 @@
             </MenuItem>
             <MenuItem Header="About" FontSize="18" Margin="3,0,0,0" FontFamily="./#Aurora BdCn BT">
                 <MenuItem x:Name="AboutUs" Header="Authors" InputGestureText="F1" Click="Authors_Click" FontFamily="./#Aurora BdCn BT"/>
+                <MenuItem x:Name="CheckUpdates" Header="Check for updates" Click="CheckUpdates_Click" FontFamily="./#Aurora BdCn BT"/>
             </MenuItem>
         </Menu>
 
