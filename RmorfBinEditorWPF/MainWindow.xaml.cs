@@ -210,10 +210,10 @@ namespace RmorfBinEditorWPF
                 CultureInfo lang = m_item.Tag as CultureInfo;
 
                 if (lang != null) {
-                    App.Language = lang; 
+                    App.Language = lang;
                     ChangeElementsWidth(lang);
 
-                    switch(lang.ToString()) {
+                    switch (lang.ToString()) {
                         case "en-US":
                             StatusLabel.Content = "Language has been switched to English!";
                             break;
@@ -710,7 +710,16 @@ namespace RmorfBinEditorWPF
                 VisualizeGroup();
 
                 ObjectsList.Items.Clear();
-                PresetsBox.Text = "Unknown/None";
+
+                switch (App.Language.ToString()) {
+                    case "en-US":
+                        PresetsBox.Text = "Unknown/None";
+                        break;
+                    case "ru-RU":
+                        PresetsBox.Text = "Неизвестный/Ничего";
+                        break;
+                }
+
                 isFileChanged = true;
 
                 switch (App.Language.ToString()) {
@@ -740,11 +749,27 @@ namespace RmorfBinEditorWPF
         private void InsertObject_Click(object sender, RoutedEventArgs e)
         {
             int obj = GroupsList.SelectedIndex;
+            string objname = "";
 
             if (rgrouplist != null && obj >= 0) {
-                string objname = Interaction.InputBox("Type the name of the new object:", "Insert Object", "Scene2.bin Object.Morfable Mesh");
+                switch (App.Language.ToString()) {
+                    case "en-US":
+                        objname = Interaction.InputBox("Type the name of the new object:", "Insert Object", "Scene2.bin Object.Morfable Mesh");
+                        break;
+                    case "ru-RU":
+                        objname = Interaction.InputBox("Введите имя нового объекта:", "Добавить объект", "Scene2.bin Object.Morfable Mesh");
+                        break;
+                }
+
                 if (objname == string.Empty) {
-                    MessageBox.Show("You haven't typed the name of the object!", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    switch (App.Language.ToString()) {
+                        case "en-US":
+                            MessageBox.Show("You haven't typed the name of the object!", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            break;
+                        case "ru-RU":
+                            MessageBox.Show("Вы не ввели имя объекта!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            break;
+                    }
                 }
                 else {
                     obj_nameslist = rgrouplist[obj].objNames;
@@ -780,7 +805,14 @@ namespace RmorfBinEditorWPF
                 VisualizeGroup();
 
                 ObjectsList.Items.Clear();
-                PresetsBox.Text = "Unknown/None";
+                switch (App.Language.ToString()) {
+                    case "en-US":
+                        PresetsBox.Text = "Unknown/None";
+                        break;
+                    case "ru-RU":
+                        PresetsBox.Text = "Неизвестный/Ничего";
+                        break;
+                }
                 isFileChanged = true;
                 switch (App.Language.ToString()) {
                     case "en-US":
@@ -823,11 +855,27 @@ namespace RmorfBinEditorWPF
         {
             int group = GroupsList.SelectedIndex;
             int obj = ObjectsList.SelectedIndex;
+            string new_name = "";
 
             if (rgrouplist != null && group >= 0 && obj >= 0) {
-                string new_name = Interaction.InputBox("Type the new name of the object:", "Rename Object", ObjectsList.SelectedItem.ToString());
+                switch (App.Language.ToString()) {
+                    case "en-US":
+                        new_name = Interaction.InputBox("Type the new name of the object:", "Rename Object", ObjectsList.SelectedItem.ToString());
+                        break;
+                    case "ru-RU":
+                        new_name = Interaction.InputBox("Введите новое имя объекта:", "Переименовать объект", "Scene2.bin Object.Morfable Mesh");
+                        break;
+                }
+
                 if (new_name == string.Empty) {
-                    MessageBox.Show("You haven't typed anything!", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    switch (App.Language.ToString()) {
+                        case "en-US":
+                            MessageBox.Show("You haven't typed anything!", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            break;
+                        case "ru-RU":
+                            MessageBox.Show("Вы ничего не ввели!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            break;
+                    }
                 }
                 else {
                     rgrouplist[group].objNames[obj] = new_name;

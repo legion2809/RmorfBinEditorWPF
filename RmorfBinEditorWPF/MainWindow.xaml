@@ -857,7 +857,7 @@
         <TextBox x:Name="Unk1" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="386,297,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Style="{DynamicResource Unk1Style}"/>
         <TextBox x:Name="Unk2" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="386,336,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Style="{DynamicResource Unk2Style}"/>
         <TextBox x:Name="Unk3" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="386,374,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Style="{DynamicResource Unk3Style}"/>
-        <Label x:Name="StatusLabel" HorizontalAlignment="Left" Margin="30,458,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.096,-0.191" FontSize="18" Width="968" Grid.ColumnSpan="3" FontFamily="./#ApicalC" Height="46"/>
+        <Label x:Name="StatusLabel" HorizontalAlignment="Left" Margin="30,458,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.096,-0.191" FontSize="18" Width="968" Grid.ColumnSpan="3" FontFamily="./#ApicalC" Height="33"/>
 
 
     </Grid>
