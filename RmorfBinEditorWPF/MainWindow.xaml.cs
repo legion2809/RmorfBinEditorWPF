@@ -10,6 +10,7 @@ using System.Windows.Controls;
 using System.Net;
 using System.Diagnostics;
 using System.ComponentModel;
+using System.Globalization;
 
 namespace RmorfBinEditorWPF
 {
@@ -52,6 +53,21 @@ namespace RmorfBinEditorWPF
         public MainWindow()
         {
             InitializeComponent();
+
+            App.LanguageChanged += LanguageChanged;
+
+            CultureInfo currLang = App.Language;
+
+            SwitchLang.Items.Clear();
+            foreach (var lang in App.Languages) {
+                MenuItem menuLang = new MenuItem();
+                menuLang.Header = lang.DisplayName;
+                menuLang.Tag = lang;
+                menuLang.IsChecked = lang.Equals(currLang);
+                menuLang.Click += ChangeLanguageClick;
+
+                SwitchLang.Items.Add(menuLang);
+            }
 
             this.Title = $"Rmorf.bin Editor {CurrentVersion}";
 
@@ -171,11 +187,50 @@ namespace RmorfBinEditorWPF
         }
         #endregion
 
+        #region Localization stuff
+        /*private void SetLanguage(string culture)
+        {
+            ResourceDictionary dict = new ResourceDictionary();
+
+            switch (culture) {
+                case "en-US":
+                    dict.Source = new Uri("..\\Resources\\Lang.xaml", UriKind.Relative);
+                    break;
+                case "ru-RU":
+                    dict.Source = new Uri("..\\Resources\\Lang.ru-RU.xaml", UriKind.Relative);
+                    break;
+            }
+
+            Application.Current.Resources.MergedDictionaries.Add(dict);
+        }*/
+
+        private void LanguageChanged(object sender, EventArgs e)
+        {
+            CultureInfo curr_lang = App.Language;
+
+            foreach (MenuItem i in SwitchLang.Items) {
+                CultureInfo ci = i.Tag as CultureInfo;
+                i.IsChecked = ci != null && ci.Equals(curr_lang);
+            }
+        }
+
+        private void ChangeLanguageClick(object sender, EventArgs e)
+        {
+            MenuItem m_item = sender as MenuItem;
+
+            if (m_item != null) {
+                CultureInfo lang = m_item.Tag as CultureInfo;
+
+                if (lang != null) {
+                    App.Language = lang;
+                }
+            }
+        }
+        #endregion
+
         #region Discord Rich Presence Integration and Background Images
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            //CheckUpdatesMethod();
-
             discord.Initialize();
 
             discord.presence.largeImageKey = "logo";

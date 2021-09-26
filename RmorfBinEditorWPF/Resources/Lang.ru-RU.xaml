@@ -14,6 +14,9 @@
     <system:String x:Key="insertgroup">Добавить группу</system:String>
     <system:String x:Key="insertobject">Добавить объект</system:String>
 
+    <!-- "Switch language" menu section -->
+    <system:String x:Key="switchlang">Поменять язык</system:String>
+
     <!-- "About" menu section -->
     <system:String x:Key="about">Справка</system:String>
     <system:String x:Key="authors">Авторы</system:String>

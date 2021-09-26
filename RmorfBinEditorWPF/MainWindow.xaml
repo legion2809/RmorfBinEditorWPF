@@ -760,15 +760,15 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="314*"/>
-            <ColumnDefinition Width="107*"/>
-            <ColumnDefinition Width="609*"/>
+            <ColumnDefinition Width="156*"/>
+            <ColumnDefinition Width="59*"/>
+            <ColumnDefinition Width="297*"/>
         </Grid.ColumnDefinitions>
 
         <ListBox x:Name="GroupsList" FontFamily="./#Aurora BdCn BT" FontSize="18" HorizontalAlignment="Left" Height="371" Margin="30,82,0,0" VerticalAlignment="Top" Width="251" SelectionChanged="GroupsList_SelectionChanged" Style="{DynamicResource GroupsListStyle}">
             <ListBox.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Header="Delete" Click="DeleteGroup_Click"/>
+                    <MenuItem Header="{DynamicResource delete}" Click="DeleteGroup_Click"/>
                 </ContextMenu>
             </ListBox.ContextMenu>
         </ListBox>
@@ -776,68 +776,69 @@
         <ListBox x:Name="ObjectsList" FontFamily="./#Aurora BdCn BT" FontSize="18" HorizontalAlignment="Left" Height="371" Margin="3,82,0,0" VerticalAlignment="Top" Width="251" Grid.ColumnSpan="2" Grid.Column="1" Style="{DynamicResource ObjectsListStyle}">
             <ListBox.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Header="Rename" Click="RenameObject_Click"/>
-                    <MenuItem Header="Delete" Click="DeleteObject_Click"/>
+                    <MenuItem Header="{DynamicResource rename}" Click="RenameObject_Click"/>
+                    <MenuItem Header="{DynamicResource delete}" Click="DeleteObject_Click"/>
                 </ContextMenu>
             </ListBox.ContextMenu>
         </ListBox>
 
         <ComboBox x:Name="PresetsBox" FontFamily="./#Aurora BdCn BT" FontSize="18" HorizontalAlignment="Left" Margin="191,80,0,0" VerticalAlignment="Top" Width="211" Grid.Column="2" Height="25" Style="{DynamicResource PresetsBoxStyle}">
-            <ComboBoxItem Content="Unknown/None" BorderThickness="0"/>
-            <ComboBoxItem Content="Flag" BorderThickness="0"/>
-            <ComboBoxItem Content="Flag (Parnik)" BorderThickness="0"/>
-            <ComboBoxItem Content="Flag (Parnik) #2" BorderThickness="0"/>
-            <ComboBoxItem Content="Tree" BorderThickness="0"/>
-            <ComboBoxItem Content="Tree #2" BorderThickness="0"/>
-            <ComboBoxItem Content="Tree #3" BorderThickness="0"/>
-            <ComboBoxItem Content="Spruce" BorderThickness="0"/>
-            <ComboBoxItem Content="Water/Curtain" BorderThickness="0"/>
-            <ComboBoxItem Content="Water #2" BorderThickness="0"/>
-            <ComboBoxItem Content="Clothes" BorderThickness="0"/>
-            <ComboBoxItem Content="Clothes #2" BorderThickness="0"/>
-            <ComboBoxItem Content="Clothes (Strong Wind)" BorderThickness="0"/>
-            <ComboBoxItem Content="Clothes (Strong Wind) #2" BorderThickness="0"/>
-            <ComboBoxItem Content="Signboard" BorderThickness="0"/>
-            <ComboBoxItem Content="Signboard #2" BorderThickness="0"/>
-            <ComboBoxItem Content="Truck (MISE09)" BorderThickness="0"/>
+            <ComboBoxItem Content="{DynamicResource unknown}" BorderThickness="0"/>
+            <ComboBoxItem Content="{DynamicResource flag}" BorderThickness="0"/>
+            <ComboBoxItem Content="{DynamicResource flagparnik}" BorderThickness="0"/>
+            <ComboBoxItem Content="{DynamicResource flagparnik2}" BorderThickness="0"/>
+            <ComboBoxItem Content="{DynamicResource tree}" BorderThickness="0"/>
+            <ComboBoxItem Content="{DynamicResource tree2}" BorderThickness="0"/>
+            <ComboBoxItem Content="{DynamicResource tree3}" BorderThickness="0"/>
+            <ComboBoxItem Content="{DynamicResource spruce}" BorderThickness="0"/>
+            <ComboBoxItem Content="{DynamicResource watercurtain}" BorderThickness="0"/>
+            <ComboBoxItem Content="{DynamicResource water2}" BorderThickness="0"/>
+            <ComboBoxItem Content="{DynamicResource clothes}" BorderThickness="0"/>
+            <ComboBoxItem Content="{DynamicResource clothes2}" BorderThickness="0"/>
+            <ComboBoxItem Content="{DynamicResource clotheswind}" BorderThickness="0"/>
+            <ComboBoxItem Content="{DynamicResource clotheswind2}" BorderThickness="0"/>
+            <ComboBoxItem Content="{DynamicResource signboard}" BorderThickness="0"/>
+            <ComboBoxItem Content="{DynamicResource signboard2}" BorderThickness="0"/>
+            <ComboBoxItem Content="{DynamicResource truck}" BorderThickness="0"/>
         </ComboBox>
 
         <GroupBox HorizontalAlignment="Left" Height="321" Margin="191,132,0,0" VerticalAlignment="Top" Width="358" Grid.Column="2" FontSize="18" Style="{DynamicResource GroupBoxStyle}">
             <GroupBox.Header>
-                <Label FontWeight="Bold" FontFamily="./#Aurora BdCn BT" FontSize="22" Content="Presets Parameters"/>
+                <Label FontWeight="Bold" FontFamily="./#Aurora BdCn BT" FontSize="22" Content="{DynamicResource title}"/>
             </GroupBox.Header>
             <StackPanel>
-                <Label Content="Count of objects:" FontFamily="./#Aurora BdCn BT" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="17"/>
-                <Label Content="Type of animation:" FontFamily="./#Aurora BdCn BT" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="17"/>
-                <Label Content="Frequency of animation:" FontFamily="./#Aurora BdCn BT" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="17"/>
-                <Label Content="Unknown parameter 1:" FontFamily="./#Aurora BdCn BT" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="17"/>
-                <Label Content="Unknown parameter 2:" FontFamily="./#Aurora BdCn BT" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="17"/>
-                <Label Content="Unknown parameter 3:" FontFamily="./#Aurora BdCn BT" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="17"/>
-                <Button x:Name="ApplySettingsButton" FontFamily="./#Aurora BdCn BT" Content="Apply settings" Margin="90,11,90,0" RenderTransformOrigin="-0.027,0.499" Click="ApplyPresetSettings_Click" Width="130" Height="25" FontSize="17" IsEnabled="False" Style="{DynamicResource ApplySettingsButtonStyle}"/>
+                <Label Content="{DynamicResource objectscount}" FontFamily="./#Aurora BdCn BT" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="17"/>
+                <Label Content="{DynamicResource typeofanim}" FontFamily="./#Aurora BdCn BT" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="17"/>
+                <Label Content="{DynamicResource animfrq}" FontFamily="./#Aurora BdCn BT" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="17"/>
+                <Label Content="{DynamicResource unk1}" FontFamily="./#Aurora BdCn BT" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="17"/>
+                <Label Content="{DynamicResource unk2}" FontFamily="./#Aurora BdCn BT" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="17"/>
+                <Label Content="{DynamicResource unk3}" FontFamily="./#Aurora BdCn BT" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="17"/>
+                <Button x:Name="ApplySettingsButton" FontFamily="./#Aurora BdCn BT" Content="{DynamicResource applysettings}" Margin="90,11,90,0" RenderTransformOrigin="-0.027,0.499" Click="ApplyPresetSettings_Click" Width="130" Height="25" FontSize="17" IsEnabled="False" Style="{DynamicResource ApplySettingsButtonStyle}"/>
             </StackPanel>
         </GroupBox>
 
-        <Button x:Name="ApplyPresetButton" Content="Apply preset" FontFamily="./#Aurora BdCn BT" FontSize="17" HorizontalAlignment="Left" Margin="423,80,0,0" VerticalAlignment="Top" Width="126" Grid.Column="2" Height="25" Click="ApplyPresetButton_Click" RenderTransformOrigin="0.524,1.155" Style="{DynamicResource ApplyPresetButtonStyle}"/>
-        <Label Content="Groups:" HorizontalAlignment="Left" Margin="30,42,0,0" VerticalAlignment="Top" Height="35" Width="74" FontSize="22" FontWeight="Bold" FontFamily="./#Aurora BdCn BT"/>
-        <Label Content="Objects:" HorizontalAlignment="Left" Margin="3,42,0,0" VerticalAlignment="Top" Height="35" Width="77" FontSize="22" FontWeight="Bold" FontFamily="./#Aurora BdCn BT" Grid.Column="1"/>
+        <Button x:Name="ApplyPresetButton" Content="{DynamicResource applypreset}" FontFamily="./#Aurora BdCn BT" FontSize="17" HorizontalAlignment="Left" Margin="423,80,0,0" VerticalAlignment="Top" Width="126" Grid.Column="2" Height="25" Click="ApplyPresetButton_Click" RenderTransformOrigin="0.524,1.155" Style="{DynamicResource ApplyPresetButtonStyle}"/>
+        <Label Content="{DynamicResource groups}" HorizontalAlignment="Left" Margin="30,42,0,0" VerticalAlignment="Top" Height="35" Width="97" FontSize="22" FontWeight="Bold" FontFamily="./#Aurora BdCn BT"/>
+        <Label Content="{DynamicResource objects}" HorizontalAlignment="Left" Margin="3,42,0,0" VerticalAlignment="Top" Height="35" Width="115" FontSize="22" FontWeight="Bold" FontFamily="./#Aurora BdCn BT" Grid.Column="1"/>
 
         <Menu HorizontalAlignment="Left" Height="25" VerticalAlignment="Top" Width="1024" Grid.ColumnSpan="3">
-            <MenuItem Header="File" Height="23" Width="41" FontSize="18" Margin="12,0,0,0" FontFamily="./#Aurora BdCn BT">
-                <MenuItem x:Name="FileNew" InputGestureText="Ctrl+N" Header="New File..."  Margin="0,0,0,3" Click="CreateFile_Click" FontFamily="./#Aurora BdCn BT"/>
-                <MenuItem x:Name="FileOpen" InputGestureText="Ctrl+O" Header="Open" Margin="0,0,0,3" Click="OpenFile_Click" FontFamily="./#Aurora BdCn BT"/>
+            <MenuItem Header="{DynamicResource file}" Height="23" Width="41" FontSize="18" Margin="12,0,0,0" FontFamily="./#Aurora BdCn BT">
+                <MenuItem x:Name="FileNew" InputGestureText="Ctrl+N" Header="{DynamicResource newFile}"  Margin="0,0,0,3" Click="CreateFile_Click" FontFamily="./#Aurora BdCn BT"/>
+                <MenuItem x:Name="FileOpen" InputGestureText="Ctrl+O" Header="{DynamicResource open}" Margin="0,0,0,3" Click="OpenFile_Click" FontFamily="./#Aurora BdCn BT"/>
                 <Separator />
-                <MenuItem x:Name="Save" InputGestureText="Ctrl+S" Header="Save" Click="SaveFile_Click" IsEnabled="False" FontFamily="./#Aurora BdCn BT"/>
-                <MenuItem x:Name="SaveAs" InputGestureText="Ctrl + Alt + S" Header="Save As..." Click="SaveAsFile_Click" IsEnabled="False" FontFamily="./#Aurora BdCn BT"/>
+                <MenuItem x:Name="Save" InputGestureText="Ctrl+S" Header="{DynamicResource save}" Click="SaveFile_Click" IsEnabled="False" FontFamily="./#Aurora BdCn BT"/>
+                <MenuItem x:Name="SaveAs" InputGestureText="Ctrl + Alt + S" Header="{DynamicResource saveAs}" Click="SaveAsFile_Click" IsEnabled="False" FontFamily="./#Aurora BdCn BT"/>
                 <Separator />
-                <MenuItem x:Name="Exit" Header="Exit" Click="Exit_Click" FontFamily="./#Aurora BdCn BT"/>
+                <MenuItem x:Name="Exit" Header="{DynamicResource exit}" Click="Exit_Click" FontFamily="./#Aurora BdCn BT"/>
             </MenuItem>
-            <MenuItem Header="Insert" FontSize="18" Margin="0" FontFamily="./#Aurora BdCn BT">
-                <MenuItem x:Name="InsertGroup" Header="Insert Group" InputGestureText="Alt + G" Margin="0,0,0,3" Click="InsertGroup_Click" IsEnabled="False" FontFamily="./#Aurora BdCn BT"/>
-                <MenuItem x:Name="InsertObject" Header="Insert Object" InputGestureText="Alt + O" Click="InsertObject_Click" IsEnabled="False" FontFamily="./#Aurora BdCn BT"/>
+            <MenuItem Header="{DynamicResource insert}" FontSize="18" Margin="0" FontFamily="./#Aurora BdCn BT">
+                <MenuItem x:Name="InsertGroup" Header="{DynamicResource insertgroup}" InputGestureText="Alt + G" Margin="0,0,0,3" Click="InsertGroup_Click" IsEnabled="False" FontFamily="./#Aurora BdCn BT"/>
+                <MenuItem x:Name="InsertObject" Header="{DynamicResource insertobject}" InputGestureText="Alt + O" Click="InsertObject_Click" IsEnabled="False" FontFamily="./#Aurora BdCn BT"/>
             </MenuItem>
-            <MenuItem Header="About" FontSize="18" Margin="3,0,0,0" FontFamily="./#Aurora BdCn BT">
-                <MenuItem x:Name="AboutUs" Header="Authors" InputGestureText="F1" Click="Authors_Click" FontFamily="./#Aurora BdCn BT"/>
-                <MenuItem x:Name="CheckUpdates" Header="Check for updates" Click="CheckUpdates_Click" FontFamily="./#Aurora BdCn BT"/>
+            <MenuItem x:Name="SwitchLang" Header="{DynamicResource switchlang}" FontFamily="./#Aurora BdCn BT" FontSize="18"/>
+            <MenuItem Header="{DynamicResource about}" FontSize="18" Margin="3,0,0,0" FontFamily="./#Aurora BdCn BT">
+                <MenuItem x:Name="AboutUs" Header="{DynamicResource authors}" InputGestureText="F1" Click="Authors_Click" FontFamily="./#Aurora BdCn BT"/>
+                <MenuItem x:Name="CheckUpdates" Header="{DynamicResource checkUpdates}" Click="CheckUpdates_Click" FontFamily="./#Aurora BdCn BT"/>
             </MenuItem>
         </Menu>
 

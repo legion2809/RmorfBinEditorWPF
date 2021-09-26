@@ -14,6 +14,9 @@
     <system:String x:Key="insertgroup">Insert Group</system:String>
     <system:String x:Key="insertobject">Insert Object</system:String>
 
+    <!-- "Switch language" menu section -->
+    <system:String x:Key="switchlang">Switch language</system:String>
+
     <!-- "About" menu section -->
     <system:String x:Key="about">About</system:String>
     <system:String x:Key="authors">Authors</system:String>
