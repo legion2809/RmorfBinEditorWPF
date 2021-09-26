@@ -931,7 +931,7 @@ namespace RmorfBinEditorWPF
                     break;
 
                 case "Flag (Racing Circuit)":
-                case "Флаг (Пароход) #3":
+                case "Флаг (Гоночный Трек)":
                     TypeOfAnim.Text = "128";
                     AnimFrq.Text = "100";
                     Unk1.Text = "1";
@@ -1117,7 +1117,6 @@ namespace RmorfBinEditorWPF
         #endregion
 
         #region Visualizing groups, preset and objects values onto GUI
-
         // When you're switching between created groups
         private void GroupsList_SelectionChanged(object sender, RoutedEventArgs e)
         {
@@ -1174,71 +1173,190 @@ namespace RmorfBinEditorWPF
         private void VisualizeComboBox()
         {
             if (TypeOfAnim.Text == "128" && AnimFrq.Text == "160" && Unk1.Text == "1" && Unk2.Text == "1" && Unk3.Text == "1") {
-                PresetsBox.Text = "Flag";
+                switch (App.Language.ToString()) {
+                    case "en-US":
+                        PresetsBox.Text = "Flag";
+                        break;
+                    case "ru-RU":
+                        PresetsBox.Text = "Флаг";
+                        break;
+                }
             }
 
             if (TypeOfAnim.Text == "128" && AnimFrq.Text == "170" && Unk1.Text == "1" && Unk2.Text == "1" && Unk3.Text == "1") {
-                PresetsBox.Text = "Flag (Parnik)";
+                switch (App.Language.ToString()) {
+                    case "en-US":
+                        PresetsBox.Text = "Flag (Parnik)";
+                        break;
+                    case "ru-RU":
+                        PresetsBox.Text = "Флаг (Пароход)";
+                        break;
+                }
             }
 
             if (TypeOfAnim.Text == "128" && AnimFrq.Text == "200" && Unk1.Text == "1" && Unk2.Text == "1" && Unk3.Text == "1") {
-                PresetsBox.Text = "Flag (Parnik) #2";
+                switch (App.Language.ToString()) {
+                    case "en-US":
+                        PresetsBox.Text = "Flag (Parnik) #2";
+                        break;
+                    case "ru-RU":
+                        PresetsBox.Text = "Флаг (Пароход) #2";
+                        break;
+                }
             }
 
             if (TypeOfAnim.Text == "128" && AnimFrq.Text == "100" && Unk1.Text == "1" && Unk2.Text == "1" && Unk3.Text == "1") {
-                PresetsBox.Text = "Flag (Racing Circuit)";
+                switch (App.Language.ToString()) {
+                    case "en-US":
+                        PresetsBox.Text = "Flag (Racing Circuit)";
+                        break;
+                    case "ru-RU":
+                        PresetsBox.Text = "Флаг (Гоночный Трек)";
+                        break;
+                }
             }
 
             if (TypeOfAnim.Text == "0" && AnimFrq.Text == "500" && Unk1.Text == "1001" && Unk2.Text == "0" && Unk3.Text == "0") {
-                PresetsBox.Text = "Tree";
+                switch (App.Language.ToString()) {
+                    case "en-US":
+                        PresetsBox.Text = "Tree";
+                        break;
+                    case "ru-RU":
+                        PresetsBox.Text = "Дерево";
+                        break;
+                }
             }
 
             if (TypeOfAnim.Text == "0" && AnimFrq.Text == "500" && Unk1.Text == "1001" && Unk2.Text == "1" && Unk3.Text == "1") {
-                PresetsBox.Text = "Tree #2";
+                switch (App.Language.ToString()) {
+                    case "en-US":
+                        PresetsBox.Text = "Tree #2";
+                        break;
+                    case "ru-RU":
+                        PresetsBox.Text = "Дерево #2";
+                        break;
+                }
             }
 
             if (TypeOfAnim.Text == "0" && AnimFrq.Text == "800" && Unk1.Text == "401" && Unk2.Text == "1" && Unk3.Text == "1") {
-                PresetsBox.Text = "Tree #3";
+                switch (App.Language.ToString()) {
+                    case "en-US":
+                        PresetsBox.Text = "Tree #3";
+                        break;
+                    case "ru-RU":
+                        PresetsBox.Text = "Дерево #3";
+                        break;
+                }
             }
 
             if (TypeOfAnim.Text == "0" && AnimFrq.Text == "400" && Unk1.Text == "1001" && Unk2.Text == "1" && Unk3.Text == "1") {
-                PresetsBox.Text = "Spruce";
+                switch (App.Language.ToString()) {
+                    case "en-US":
+                        PresetsBox.Text = "Spruce";
+                        break;
+                    case "ru-RU":
+                        PresetsBox.Text = "Ель";
+                        break;
+                }
             }
 
             if (TypeOfAnim.Text == "128" && AnimFrq.Text == "1000" && Unk1.Text == "1" && Unk2.Text == "1" && Unk3.Text == "1") {
-                PresetsBox.Text = "Water/Curtain";
+                switch (App.Language.ToString()) {
+                    case "en-US":
+                        PresetsBox.Text = "Water/Curtain";
+                        break;
+                    case "ru-RU":
+                        PresetsBox.Text = "Вода/Занавесы";
+                        break;
+                }
             }
 
             if (TypeOfAnim.Text == "1" && AnimFrq.Text == "2000" && Unk1.Text == "1" && Unk2.Text == "1" && Unk3.Text == "1") {
-                PresetsBox.Text = "Water #2";
+                switch (App.Language.ToString()) {
+                    case "en-US":
+                        PresetsBox.Text = "Water #2";
+                        break;
+                    case "ru-RU":
+                        PresetsBox.Text = "Вода #2";
+                        break;
+                }
             }
 
             if (TypeOfAnim.Text == "129" && AnimFrq.Text == "1000" && Unk1.Text == "1001" && Unk2.Text == "1" && Unk3.Text == "1") {
-                PresetsBox.Text = "Clothes";
+                switch (App.Language.ToString()) {
+                    case "en-US":
+                        PresetsBox.Text = "Clothes";
+                        break;
+                    case "ru-RU":
+                        PresetsBox.Text = "Одежда";
+                        break;
+                }
             }
 
             if (TypeOfAnim.Text == "0" && AnimFrq.Text == "1000" && Unk1.Text == "1" && Unk2.Text == "1" && Unk3.Text == "1") {
-                PresetsBox.Text = "Clothes #2";
+                switch (App.Language.ToString()) {
+                    case "en-US":
+                        PresetsBox.Text = "Clothes #2";
+                        break;
+                    case "ru-RU":
+                        PresetsBox.Text = "Одежда #2";
+                        break;
+                }
             }
 
             if (TypeOfAnim.Text == "0" && AnimFrq.Text == "100" && Unk1.Text == "301" && Unk2.Text == "1" && Unk3.Text == "1") {
-                PresetsBox.Text = "Clothes (Strong Wind)";
+                switch (App.Language.ToString()) {
+                    case "en-US":
+                        PresetsBox.Text = "Clothes (Strong Wind)";
+                        break;
+                    case "ru-RU":
+                        PresetsBox.Text = "Одежда (на ветру)";
+                        break;
+                }
             }
 
             if (TypeOfAnim.Text == "128" && AnimFrq.Text == "200" && Unk1.Text == "601" && Unk2.Text == "1" && Unk3.Text == "1") {
-                PresetsBox.Text = "Clothes (Strong Wind) #2";
+                switch (App.Language.ToString()) {
+                    case "en-US":
+                        PresetsBox.Text = "Clothes (Strong Wind) #2";
+                        break;
+                    case "ru-RU":
+                        PresetsBox.Text = "Одежда (на ветру) #2";
+                        break;
+                }
             }
 
             if (TypeOfAnim.Text == "0" && AnimFrq.Text == "1000" && Unk1.Text == "201" && Unk2.Text == "1" && Unk3.Text == "1") {
-                PresetsBox.Text = "Signboard";
+                switch (App.Language.ToString()) {
+                    case "en-US":
+                        PresetsBox.Text = "Signboard";
+                        break;
+                    case "ru-RU":
+                        PresetsBox.Text = "Вывеска";
+                        break;
+                }
             }
 
             if (TypeOfAnim.Text == "0" && AnimFrq.Text == "800" && Unk1.Text == "601" && Unk2.Text == "1" && Unk3.Text == "1") {
-                PresetsBox.Text = "Signboard #2";
+                switch (App.Language.ToString()) {
+                    case "en-US":
+                        PresetsBox.Text = "Signboard #2";
+                        break;
+                    case "ru-RU":
+                        PresetsBox.Text = "Вывеска #2";
+                        break;
+                }
             }
 
             if (TypeOfAnim.Text == "0" && AnimFrq.Text == "150" && Unk1.Text == "51" && Unk2.Text == "0" && Unk3.Text == "1") {
-                PresetsBox.Text = "Truck (MISE09)";
+                switch (App.Language.ToString()) {
+                    case "en-US":
+                        PresetsBox.Text = "Truck (MISE09)";
+                        break;
+                    case "ru-RU":
+                        PresetsBox.Text = "Кузов грузовика (MISE09)";
+                        break;
+                }
             }
         }
         #endregion
@@ -1253,7 +1371,6 @@ namespace RmorfBinEditorWPF
                     MessageBox.Show($"Rmorf.bin Editor {CurrentVersion}\nAuthors: Firefox3860, Smelson and Legion.\n(С) {DateTime.Now.Year}. From Russia and Kazakhstan with love!", "About Us",
                     MessageBoxButton.OK, MessageBoxImage.Information);
                     break;
-
                 case "ru-RU":
                     MessageBox.Show($"Rmorf.bin Editor {CurrentVersion}\nАвторы: Firefox3860, Smelson and Legion.\n(С) {DateTime.Now.Year}. Из России и Казахстана с любовью!", "О нас",
                     MessageBoxButton.OK, MessageBoxImage.Information);
@@ -1279,7 +1396,6 @@ namespace RmorfBinEditorWPF
                         case "en-US":
                             res = MessageBox.Show($"Version {NewVersion} has been found! Do you want to update now?", $"Update to {NewVersion}", MessageBoxButton.YesNo, MessageBoxImage.Question);
                             break;
-
                         case "ru-RU":
                             res = MessageBox.Show($"Версия {NewVersion} была найдена! Хотите обновиться до нее?", $"Обновиться до {NewVersion}", MessageBoxButton.YesNo, MessageBoxImage.Question);
                             break;
@@ -1290,7 +1406,6 @@ namespace RmorfBinEditorWPF
                             Process.Start("Updater");
                             Application.Current.Shutdown();
                             break;
-
                         case MessageBoxResult.No:
                             break;
                     }
@@ -1300,7 +1415,6 @@ namespace RmorfBinEditorWPF
                         case "en-US":
                             MessageBox.Show($"You're using the latest version ({CurrentVersion}) of the program!", $"Rmorf.bin Editor {CurrentVersion}", MessageBoxButton.OK, MessageBoxImage.Information);
                             break;
-
                         case "ru-RU":
                             MessageBox.Show($"Вы используете последнюю версию программы ({CurrentVersion})!", $"Rmorf.bin Editor {CurrentVersion}", MessageBoxButton.OK, MessageBoxImage.Information);
                             break;
