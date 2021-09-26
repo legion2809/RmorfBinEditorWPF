@@ -19,7 +19,7 @@ namespace RmorfBinEditorWPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        string CurrentVersion = "Beta 0.4.2";
+        string CurrentVersion = "Beta 0.5";
         string NewVersion = null;
 
         MessageBoxResult res;
@@ -210,8 +210,18 @@ namespace RmorfBinEditorWPF
                 CultureInfo lang = m_item.Tag as CultureInfo;
 
                 if (lang != null) {
-                    App.Language = lang;
+                    App.Language = lang; 
                     ChangeElementsWidth(lang);
+
+                    switch(lang.ToString()) {
+                        case "en-US":
+                            StatusLabel.Content = "Language has been switched to English!";
+                            break;
+
+                        case "ru-RU":
+                            StatusLabel.Content = "Язык был изменен на русский!";
+                            break;
+                    }
                 }
             }
         }
