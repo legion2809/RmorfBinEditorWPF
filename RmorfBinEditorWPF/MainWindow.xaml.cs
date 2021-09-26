@@ -19,7 +19,7 @@ namespace RmorfBinEditorWPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        string CurrentVersion = "Beta 0.4";
+        string CurrentVersion = "Beta 0.4.1";
         string NewVersion = null;
 
         MessageBoxResult res;
@@ -1067,9 +1067,8 @@ namespace RmorfBinEditorWPF
 
                 NewVersion = WC.DownloadString("https://pastebin.com/raw/Rn6NX04n");
 
-                if (CurrentVersion != NewVersion)
-                {
-                    switch(App.Language.ToString()) {
+                if (CurrentVersion != NewVersion) {
+                    switch (App.Language.ToString()) {
                         case "en-US":
                             res = MessageBox.Show($"Version {NewVersion} has been found! Do you want to update now?", $"Update to {NewVersion}", MessageBoxButton.YesNo, MessageBoxImage.Question);
                             break;
@@ -1079,8 +1078,7 @@ namespace RmorfBinEditorWPF
                             break;
                     }
 
-                    switch (res)
-                    {
+                    switch (res) {
                         case MessageBoxResult.Yes:
                             Process.Start("Updater");
                             Application.Current.Shutdown();
@@ -1090,9 +1088,16 @@ namespace RmorfBinEditorWPF
                             break;
                     }
                 }
-                else
-                {
-                    MessageBox.Show($"You're using the latest version ({CurrentVersion}) of the program!", $"Rmorf.bin Editor {CurrentVersion}", MessageBoxButton.OK, MessageBoxImage.Information);
+                else {
+                    switch (App.Language.ToString()) {
+                        case "en-US":
+                            MessageBox.Show($"You're using the latest version ({CurrentVersion}) of the program!", $"Rmorf.bin Editor {CurrentVersion}", MessageBoxButton.OK, MessageBoxImage.Information);
+                            break;
+
+                        case "ru-RU":
+                            MessageBox.Show($"Вы используете последнюю версию программы ({CurrentVersion})!", $"Rmorf.bin Editor {CurrentVersion}", MessageBoxButton.OK, MessageBoxImage.Information);
+                            break;
+                    }   
                 }
             }
             catch
