@@ -21,4 +21,4 @@ C:\Program Files (x86)\!Mafia Projects, since 2021\RmorfBinEditorWPF\Updater\bin
 C:\Program Files (x86)\!Mafia Projects, since 2021\RmorfBinEditorWPF\Updater\bin\Debug\DotNetZip.pdb
 C:\Program Files (x86)\!Mafia Projects, since 2021\RmorfBinEditorWPF\Updater\bin\Debug\DotNetZip.xml
 C:\Program Files (x86)\!Mafia Projects, since 2021\RmorfBinEditorWPF\Updater\bin\Debug\Newtonsoft.Json.xml
-C:\Program Files (x86)\!Mafia Projects, since 2021\RmorfBinEditorWPF\Updater\obj\Debug\Updater.csproj.CopyComplete
+C:\Program Files (x86)\!Mafia Projects, since 2021\RmorfBinEditorWPF\Updater\obj\Debug\Updater.csproj.AssemblyReference.cache
