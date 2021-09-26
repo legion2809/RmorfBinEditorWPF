@@ -19,7 +19,7 @@ namespace RmorfBinEditorWPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        string CurrentVersion = "Beta 0.4.1";
+        string CurrentVersion = "Beta 0.4.2";
         string NewVersion = null;
 
         MessageBoxResult res;
@@ -930,7 +930,7 @@ namespace RmorfBinEditorWPF
 
             if (rgrouplist != null) {
                 for (int i = 0; i < rgrouplist.Count; i++) {
-                    GroupsList.Items.Add("Group #" + (i + 1).ToString());
+                    GroupsList.Items.Add("№" + (i + 1).ToString());
                 }
             }
 
