@@ -33,7 +33,14 @@ namespace Updater
                 WC.DownloadFile(link, "Rmorf.bin Editor.zip");
 
                 using (ZipFile zip = new ZipFile("Rmorf.bin Editor.zip")) {
-                    zip.ExtractAll(@".", ExtractExistingFileAction.OverwriteSilently);
+                    
+                    foreach (ZipEntry entry in zip.Entries) {
+                        if (entry.FileName == "libs/DotNetZip.dll" && File.Exists("libs/DotNetZip.dll")) continue;
+                        if (entry.FileName == "libs/Newtonsoft.Json.dll" && File.Exists("libs/Newtonsoft.Json.dll")) continue;
+                        entry.Extract(ExtractExistingFileAction.OverwriteSilently);
+                    }
+                    
+                    //zip.ExtractAll(@".", ExtractExistingFileAction.OverwriteSilently);
                 }
 
                 File.Delete("Rmorf.bin Editor.zip");
