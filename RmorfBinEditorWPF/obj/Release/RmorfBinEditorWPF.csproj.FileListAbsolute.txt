@@ -20,3 +20,4 @@ E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\RmorfBinEditorWPF\obj\Rele
 E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\RmorfBinEditorWPF\obj\Release\Resources\Lang.ru-RU.baml
 E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\RmorfBinEditorWPF\obj\Release\Resources\Lang.baml
 E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\RmorfBinEditorWPF\obj\Release\App.baml
+E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\RmorfBinEditorWPF\obj\Release\RmorfBinEditorWPF.csproj.AssemblyReference.cache
