@@ -19,8 +19,10 @@ namespace RmorfBinEditorWPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        string CurrentVersion = "Beta 0.3.3";
+        string CurrentVersion = "Beta 0.4";
         string NewVersion = null;
+
+        MessageBoxResult res;
 
         RmorfBinHead rhead;
         List<RmorfBinGroup> rgrouplist; // Will contains groups' list that have been created
@@ -68,6 +70,8 @@ namespace RmorfBinEditorWPF
 
                 SwitchLang.Items.Add(menuLang);
             }
+
+            ChangeElementsWidth(currLang);
 
             this.Title = $"Rmorf.bin Editor {CurrentVersion}";
 
@@ -223,7 +227,21 @@ namespace RmorfBinEditorWPF
 
                 if (lang != null) {
                     App.Language = lang;
+                    ChangeElementsWidth(lang);
                 }
+            }
+        }
+
+        private void ChangeElementsWidth(CultureInfo Lang)
+        {
+            switch (Lang.ToString()) {
+                case "ru-RU":
+                    File.Width = 49;
+                    break;
+
+                case "en-US":
+                    File.Width = 41;
+                    break;
             }
         }
         #endregion
@@ -252,8 +270,21 @@ namespace RmorfBinEditorWPF
         {
             if (isFileChanged == true) 
             {
-                var res = MessageBox.Show("Do you wish save changes to " + path + "?",
-                    "rmorf.bin Editor", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
+                
+                switch (App.Language.ToString())
+                {
+                    case "en-US":
+                        res = MessageBox.Show("Do you wish save changes to " + path + "?",
+                        "Rmorf.bin Editor", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
+                        break;
+
+                    case "ru-RU":
+                        res = MessageBox.Show("Хотите ли вы сохранить изменения в " + path + "?",
+                        "Rmorf.bin Editor", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
+                        break;
+                }
+
+                
 
                 switch (res) 
                 {
@@ -1009,8 +1040,18 @@ namespace RmorfBinEditorWPF
         // "About us" section
         private void Authors_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show($"Rmorf.bin Editor {CurrentVersion}\nAuthors: Firefox3860, Smelson and Legion.\n(c) {DateTime.Now.Year}. From Russia and Kazakhstan with love!", "About Us",
-                MessageBoxButton.OK, MessageBoxImage.Information);
+            switch (App.Language.ToString()) {
+                case "en-US":
+                    MessageBox.Show($"Rmorf.bin Editor {CurrentVersion}\nAuthors: Firefox3860, Smelson and Legion.\n(С) {DateTime.Now.Year}. From Russia and Kazakhstan with love!", "About Us",
+                    MessageBoxButton.OK, MessageBoxImage.Information);
+                    break;
+
+                case "ru-RU":
+                    MessageBox.Show($"Rmorf.bin Editor {CurrentVersion}\nАвторы: Firefox3860, Smelson and Legion.\n(С) {DateTime.Now.Year}. Из России и Казахстана с любовью!", "О нас",
+                    MessageBoxButton.OK, MessageBoxImage.Information);
+                    break;
+
+            }
         }
 
         private void CheckUpdates_Click(object sender, RoutedEventArgs e)
@@ -1028,9 +1069,17 @@ namespace RmorfBinEditorWPF
 
                 if (CurrentVersion != NewVersion)
                 {
-                    var DialogResult = MessageBox.Show($"Version {NewVersion} has been found! Do you want to update now?", $"Update to {NewVersion}", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    switch(App.Language.ToString()) {
+                        case "en-US":
+                            res = MessageBox.Show($"Version {NewVersion} has been found! Do you want to update now?", $"Update to {NewVersion}", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                            break;
 
-                    switch (DialogResult)
+                        case "ru-RU":
+                            res = MessageBox.Show($"Версия {NewVersion} была найдена! Хотите обновиться до нее?", $"Обновиться до {NewVersion}", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                            break;
+                    }
+
+                    switch (res)
                     {
                         case MessageBoxResult.Yes:
                             Process.Start("Updater");
