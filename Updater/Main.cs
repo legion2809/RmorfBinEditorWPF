@@ -30,12 +30,7 @@ namespace Updater
 
                 WC.DownloadFile("https://github.com/legion2809/RmorfBinEditorWPF/blob/main/RmorfBinEditorWPF/Version%20for%20Updater/Rmorf.bin%20Editor.exe?raw=true", "Rmorf.bin Editor New.exe");
 
-                if (!File.Exists("Rmorf.bin Editor.exe.old")) {
-                    File.Move("Rmorf.bin Editor.exe", "Rmorf.bin Editor.exe.old");
-                } else {
-                    File.Delete("Rmorf.bin Editor.exe.old");
-                    File.Move("Rmorf.bin Editor.exe", "Rmorf.bin Editor.exe.old");
-                }
+                File.Move("Rmorf.bin Editor.exe", "Rmorf.bin Editor.exe.old");
 
                 File.Move("Rmorf.bin Editor New.exe", "Rmorf.bin Editor.exe");
 

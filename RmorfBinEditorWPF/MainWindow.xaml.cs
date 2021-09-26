@@ -9,6 +9,8 @@ using System.Windows.Input;
 using System.Windows.Controls;
 using System.Net;
 using System.Diagnostics;
+using System.ComponentModel;
+using System.Globalization;
 
 namespace RmorfBinEditorWPF
 {
@@ -17,8 +19,10 @@ namespace RmorfBinEditorWPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        string CurrentVersion = "Beta 0.3";
+        string CurrentVersion = "Beta 0.5.1";
         string NewVersion = null;
+
+        MessageBoxResult res;
 
         RmorfBinHead rhead;
         List<RmorfBinGroup> rgrouplist; // Will contains groups' list that have been created
@@ -51,6 +55,23 @@ namespace RmorfBinEditorWPF
         public MainWindow()
         {
             InitializeComponent();
+
+            App.LanguageChanged += LanguageChanged;
+
+            CultureInfo currLang = App.Language;
+
+            SwitchLang.Items.Clear();
+            foreach (var lang in App.Languages) {
+                MenuItem menuLang = new MenuItem();
+                menuLang.Header = lang.DisplayName;
+                menuLang.Tag = lang;
+                menuLang.IsChecked = lang.Equals(currLang);
+                menuLang.Click += ChangeLanguageClick;
+
+                SwitchLang.Items.Add(menuLang);
+            }
+
+            ChangeElementsWidth(currLang);
 
             this.Title = $"Rmorf.bin Editor {CurrentVersion}";
 
@@ -170,15 +191,62 @@ namespace RmorfBinEditorWPF
         }
         #endregion
 
+        #region Localization stuff
+        private void LanguageChanged(object sender, EventArgs e)
+        {
+            CultureInfo curr_lang = App.Language;
+
+            foreach (MenuItem i in SwitchLang.Items) {
+                CultureInfo ci = i.Tag as CultureInfo;
+                i.IsChecked = ci != null && ci.Equals(curr_lang);
+            }
+        }
+
+        private void ChangeLanguageClick(object sender, EventArgs e)
+        {
+            MenuItem m_item = sender as MenuItem;
+
+            if (m_item != null) {
+                CultureInfo lang = m_item.Tag as CultureInfo;
+
+                if (lang != null) {
+                    App.Language = lang;
+                    ChangeElementsWidth(lang);
+
+                    switch (lang.ToString()) {
+                        case "en-US":
+                            StatusLabel.Content = "Language has been switched to English!";
+                            break;
+
+                        case "ru-RU":
+                            StatusLabel.Content = "Язык был изменен на русский!";
+                            break;
+                    }
+                }
+            }
+        }
+
+        private void ChangeElementsWidth(CultureInfo Lang)
+        {
+            switch (Lang.ToString()) {
+                case "ru-RU":
+                    File.Width = 49;
+                    break;
+
+                case "en-US":
+                    File.Width = 41;
+                    break;
+            }
+        }
+        #endregion
+
         #region Discord Rich Presence Integration and Background Images
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            //CheckUpdatesMethod();
-
             discord.Initialize();
 
             discord.presence.largeImageKey = "logo";
-            discord.presence.largeImageText = "Rmorf.bin Editor";
+            discord.presence.largeImageText = $"Rmorf.bin Editor {CurrentVersion}";
 
             time = DateTimeOffset.Now.ToUnixTimeSeconds();
             discord.presence.startTimestamp = time;
@@ -186,12 +254,29 @@ namespace RmorfBinEditorWPF
             discord.UpdatePresence("Idling");
         }
 
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            discord.Shutdown();
+            Application.Current.Shutdown();
+        }
+
+        private void Window_Closing(object sender, CancelEventArgs e)
         {
             if (isFileChanged == true) 
             {
-                var res = MessageBox.Show("Do you wish save changes to " + path + "?",
-                    "rmorf.bin Editor", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
+                
+                switch (App.Language.ToString())
+                {
+                    case "en-US":
+                        res = MessageBox.Show("Do you wish save changes to " + path + "?",
+                        "Rmorf.bin Editor", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
+                        break;
+
+                    case "ru-RU":
+                        res = MessageBox.Show("Хотите ли вы сохранить изменения в " + path + "?",
+                        "Rmorf.bin Editor", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
+                        break;
+                }
 
                 switch (res) 
                 {
@@ -199,13 +284,13 @@ namespace RmorfBinEditorWPF
                         SaveFile();
                         break;
                     case MessageBoxResult.No:
+                        e.Cancel = false;
                         break;
                     case MessageBoxResult.Cancel:
                         e.Cancel = true;
                         break;
                 }
             }
-            discord.Shutdown();
         }
         #endregion
 
@@ -242,20 +327,43 @@ namespace RmorfBinEditorWPF
                         byte[] sizeout = BitConverter.GetBytes(size);
                         bw.Write(sizeout, 0, 4);
                     }
-                    StatusLabel.Content = $"New file created, its location - ({path})";
+
+                    switch (App.Language.ToString()) {
+                        case "en-US":
+                            StatusLabel.Content = $"New file created, its location - ({path})";
+                            break;
+                        case "ru-RU":
+                            StatusLabel.Content = $"Создан новый файл, его местоположение - ({path})";
+                            break;
+                    }
 
                     EnableButtons();
 
                     discord.UpdatePresence("Editing a file");
                 }
                 catch (FormatException) {
-                    MessageBox.Show("Wrong type of data!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                    switch (App.Language.ToString()) {
+                        case "en-US":
+                            MessageBox.Show("Wrong type of data!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            break;
+                        case "ru-RU":
+                            MessageBox.Show("Неверный тип данных!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                            break;
+                    }
                     ErrorCatched();
                 }
             }
 
             ObjectsList.Items.Clear();
-            PresetsBox.Text = "Unknown/None";
+            switch (App.Language.ToString()) {
+                case "en-US":
+                    PresetsBox.Text = "Unknown/None";
+                    break;
+                case "ru-RU":
+                    PresetsBox.Text = "Неизвестный/Ничего";
+                    break;
+            }
             VisualizeGroup();
         }
 
@@ -306,31 +414,69 @@ namespace RmorfBinEditorWPF
                                     rgrouplist.Add(new RmorfBinGroup(grMc, grTOA, grFrq, grU3, grU4, grU5, obj_nameslist));
                                 }
 
-                                StatusLabel.Content = $"File opened - ({path})";
+                                switch (App.Language.ToString()) {
+                                    case "en-US":
+                                        StatusLabel.Content = $"File opened - ({path})";
+                                        break;
+                                    case "ru-RU":
+                                        StatusLabel.Content = $"Открыт файл - ({path})";
+                                        break;
+                                }
 
                                 EnableButtons();
 
                                 discord.UpdatePresence("Editing a file");
                             }
                             catch {
-                                MessageBox.Show("Couldn't parse!\nMaybe, you opened wrong file.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                                switch (App.Language.ToString()) {
+                                    case "en-US":
+                                        MessageBox.Show("Couldn't parse!\nMaybe, you opened wrong file.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                                        break;
+                                    case "ru-RU":
+                                        MessageBox.Show("Невозможно спарсить файл!\nВозможно, вы открыли не тот файл.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                                        break;
+                                }
                                 ErrorCatched();
                             }
                         }
                         else {
-                            MessageBox.Show("File is wrong!.\nWrong constant.", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                            switch (App.Language.ToString()) {
+                                case "en-US":
+                                    MessageBox.Show("File is wrong!.\nWrong constant.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                                    break;
+                                case "ru-RU":
+                                    MessageBox.Show("Неверный файл!.\nНеверная константа.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                                    break;
+                            }
                             ErrorCatched();
                         }
                     }
                 }
                 catch (Exception ex) {
-                    MessageBox.Show(ex.Message, "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                    switch (App.Language.ToString()) {
+                        case "en-US":
+                            MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            break;
+                        case "ru-RU":
+                            MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                            break;
+                    }
                     ErrorCatched();
                 }
             }
 
             ObjectsList.Items.Clear();
-            PresetsBox.Text = "Unknown/None";
+            switch (App.Language.ToString()) {
+                case "en-US":
+                    PresetsBox.Text = "Unknown/None";
+                    break;
+                case "ru-RU":
+                    PresetsBox.Text = "Неизвестный/Ничего";
+                    break;
+            }
             VisualizeGroup();
         }
 
@@ -371,18 +517,43 @@ namespace RmorfBinEditorWPF
                     bw.Write(sizeout, 0, 4);
                 }
                 isFileChanged = false;
-                StatusLabel.Content = $"File saved - ({path})";
+                
+
+                switch (App.Language.ToString()) {
+                    case "en-US":
+                        StatusLabel.Content = $"File saved - ({path})";
+                        break;
+                    case "ru-RU":
+                        StatusLabel.Content = $"Файл сохранен - ({path})";
+                        break;
+                }
             }
             catch (Exception ex) {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                switch (App.Language.ToString()) {
+                    case "en-US":
+                        MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        break;
+                    case "ru-RU":
+                        MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                        break;
+                }
             }
         }
 
         private void CreateFile_Click(object sender, RoutedEventArgs e)
         {
             if (isFileChanged) {
-                var res = MessageBox.Show("Do you wish save changes to " + path + "?",
-                    "rmorf.bin Editor", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
+                switch (App.Language.ToString()) {
+                    case "en-US":
+                        res = MessageBox.Show("Do you wish save changes to " + path + "?",
+                        "Rmorf.bin Editor", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
+                        break;
+
+                    case "ru-RU":
+                        res = MessageBox.Show("Хотите ли вы сохранить изменения в " + path + "?",
+                        "Rmorf.bin Editor", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
+                        break;
+                }
 
                 switch (res) {
                     case MessageBoxResult.Yes:
@@ -402,8 +573,17 @@ namespace RmorfBinEditorWPF
         private void OpenFile_Click(object sender, RoutedEventArgs e)
         {
             if (isFileChanged) {
-                var res = MessageBox.Show("Do you wish save changes to " + path + "?",
-                    "rmorf.bin Editor", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
+                switch (App.Language.ToString()) {
+                    case "en-US":
+                        res = MessageBox.Show("Do you wish save changes to " + path + "?",
+                        "Rmorf.bin Editor", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
+                        break;
+
+                    case "ru-RU":
+                        res = MessageBox.Show("Хотите ли вы сохранить изменения в " + path + "?",
+                        "Rmorf.bin Editor", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
+                        break;
+                }
 
                 switch (res) {
                     case MessageBoxResult.Yes:
@@ -469,10 +649,25 @@ namespace RmorfBinEditorWPF
                     }
 
                     isFileChanged = false;
-                    StatusLabel.Content = $"File successfully saved, its location - ({path})";
+
+                    switch (App.Language.ToString()) {
+                        case "en-US":
+                            StatusLabel.Content = $"File successfully saved, its location - ({path})";
+                            break;
+                        case "ru-RU":
+                            StatusLabel.Content = $"Файл успешно сохранен, его местоположение - ({path})";
+                            break;
+                    }
                 }
                 catch (Exception ex) {
-                    MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    switch (App.Language.ToString()) {
+                        case "en-US":
+                            MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            break;
+                        case "ru-RU":
+                            MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                            break;
+                    }
                 }
             }
         }
@@ -515,10 +710,27 @@ namespace RmorfBinEditorWPF
                 VisualizeGroup();
 
                 ObjectsList.Items.Clear();
-                PresetsBox.Text = "Unknown/None";
-                isFileChanged = true;
-                StatusLabel.Content = $"File changed - ({path}*)";
 
+                switch (App.Language.ToString()) {
+                    case "en-US":
+                        PresetsBox.Text = "Unknown/None";
+                        break;
+                    case "ru-RU":
+                        PresetsBox.Text = "Неизвестный/Ничего";
+                        break;
+                }
+
+                isFileChanged = true;
+
+                switch (App.Language.ToString()) {
+                    case "en-US":
+                        StatusLabel.Content = $"File changed - ({path}*)";
+                        break;
+                    case "ru-RU":
+                        StatusLabel.Content = $"Файл был изменен - ({path}*)";
+                        break;
+                }
+                
                 discord.UpdatePresence("Editing a file");
             }
         }
@@ -537,11 +749,27 @@ namespace RmorfBinEditorWPF
         private void InsertObject_Click(object sender, RoutedEventArgs e)
         {
             int obj = GroupsList.SelectedIndex;
+            string objname = "";
 
             if (rgrouplist != null && obj >= 0) {
-                string objname = Interaction.InputBox("Type the name of the new object:", "Insert Object", "Scene2.bin Object.Morfable Mesh");
-                if (objname == "") {
-                    MessageBox.Show("You haven't typed the name of the object!", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                switch (App.Language.ToString()) {
+                    case "en-US":
+                        objname = Interaction.InputBox("Type the name of the new object:", "Insert Object", "Scene2.bin Object.Morfable Mesh");
+                        break;
+                    case "ru-RU":
+                        objname = Interaction.InputBox("Введите имя нового объекта:", "Добавить объект", "Scene2.bin Object.Morfable Mesh");
+                        break;
+                }
+
+                if (objname == string.Empty) {
+                    switch (App.Language.ToString()) {
+                        case "en-US":
+                            MessageBox.Show("You haven't typed the name of the object!", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            break;
+                        case "ru-RU":
+                            MessageBox.Show("Вы не ввели имя объекта!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            break;
+                    }
                 }
                 else {
                     obj_nameslist = rgrouplist[obj].objNames;
@@ -552,7 +780,14 @@ namespace RmorfBinEditorWPF
                     VisualizeObject(obj);
 
                     isFileChanged = true;
-                    StatusLabel.Content = $"File changed - ({path})*";
+                    switch (App.Language.ToString()) {
+                        case "en-US":
+                            StatusLabel.Content = $"File changed - ({path}*)";
+                            break;
+                        case "ru-RU":
+                            StatusLabel.Content = $"Файл был изменен - ({path}*)";
+                            break;
+                    }
 
                     discord.UpdatePresence("Editing a file");
                 }
@@ -570,9 +805,23 @@ namespace RmorfBinEditorWPF
                 VisualizeGroup();
 
                 ObjectsList.Items.Clear();
-                PresetsBox.Text = "Unknown/None";
+                switch (App.Language.ToString()) {
+                    case "en-US":
+                        PresetsBox.Text = "Unknown/None";
+                        break;
+                    case "ru-RU":
+                        PresetsBox.Text = "Неизвестный/Ничего";
+                        break;
+                }
                 isFileChanged = true;
-                StatusLabel.Content = $"File changed - ({path})*";
+                switch (App.Language.ToString()) {
+                    case "en-US":
+                        StatusLabel.Content = $"File changed - ({path}*)";
+                        break;
+                    case "ru-RU":
+                        StatusLabel.Content = $"Файл был изменен - ({path}*)";
+                        break;
+                }
             }
         }
 
@@ -591,7 +840,14 @@ namespace RmorfBinEditorWPF
                 VisualizeObject(group);
 
                 isFileChanged = true;
-                StatusLabel.Content = $"File changed - ({path})*";
+                switch (App.Language.ToString()) {
+                    case "en-US":
+                        StatusLabel.Content = $"File changed - ({path}*)";
+                        break;
+                    case "ru-RU":
+                        StatusLabel.Content = $"Файл был изменен - ({path}*)";
+                        break;
+                }
             }
         }
 
@@ -599,17 +855,40 @@ namespace RmorfBinEditorWPF
         {
             int group = GroupsList.SelectedIndex;
             int obj = ObjectsList.SelectedIndex;
+            string new_name = "";
 
             if (rgrouplist != null && group >= 0 && obj >= 0) {
-                string new_name = Interaction.InputBox("Type the new name of the object:", "Rename Object", ObjectsList.SelectedItem.ToString());
-                if (new_name == null) {
-                    MessageBox.Show("You haven't typed anything!", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                switch (App.Language.ToString()) {
+                    case "en-US":
+                        new_name = Interaction.InputBox("Type the new name of the object:", "Rename Object", ObjectsList.SelectedItem.ToString());
+                        break;
+                    case "ru-RU":
+                        new_name = Interaction.InputBox("Введите новое имя объекта:", "Переименовать объект", "Scene2.bin Object.Morfable Mesh");
+                        break;
+                }
+
+                if (new_name == string.Empty) {
+                    switch (App.Language.ToString()) {
+                        case "en-US":
+                            MessageBox.Show("You haven't typed anything!", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            break;
+                        case "ru-RU":
+                            MessageBox.Show("Вы ничего не ввели!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            break;
+                    }
                 }
                 else {
                     rgrouplist[group].objNames[obj] = new_name;
                     VisualizeObject(group);
                     isFileChanged = true;
-                    StatusLabel.Content = $"File changed - ({path})*";
+                    switch (App.Language.ToString()) {
+                        case "en-US":
+                            StatusLabel.Content = $"File changed - ({path}*)";
+                            break;
+                        case "ru-RU":
+                            StatusLabel.Content = $"Файл был изменен - ({path}*)";
+                            break;
+                    }
                 }
             }
         }
@@ -625,6 +904,7 @@ namespace RmorfBinEditorWPF
         {
             switch (PresetsBox.Text) {
                 case "Flag":
+                case "Флаг":
                     TypeOfAnim.Text = "128";
                     AnimFrq.Text = "160";
                     Unk1.Text = "1";
@@ -633,6 +913,7 @@ namespace RmorfBinEditorWPF
                     break;
 
                 case "Flag (Parnik)":
+                case "Флаг (Пароход)":
                     TypeOfAnim.Text = "128";
                     AnimFrq.Text = "170";
                     Unk1.Text = "1";
@@ -641,6 +922,7 @@ namespace RmorfBinEditorWPF
                     break;
 
                 case "Flag (Parnik) #2":
+                case "Флаг (Пароход) #2":
                     TypeOfAnim.Text = "128";
                     AnimFrq.Text = "200";
                     Unk1.Text = "1";
@@ -649,6 +931,7 @@ namespace RmorfBinEditorWPF
                     break;
 
                 case "Flag (Racing Circuit)":
+                case "Флаг (Гоночный Трек)":
                     TypeOfAnim.Text = "128";
                     AnimFrq.Text = "100";
                     Unk1.Text = "1";
@@ -657,6 +940,7 @@ namespace RmorfBinEditorWPF
                     break;
 
                 case "Tree":
+                case "Дерево":
                     TypeOfAnim.Text = "0";
                     AnimFrq.Text = "500";
                     Unk1.Text = "1001";
@@ -665,6 +949,7 @@ namespace RmorfBinEditorWPF
                     break;
 
                 case "Tree #2":
+                case "Дерево #2":
                     TypeOfAnim.Text = "0";
                     AnimFrq.Text = "500";
                     Unk1.Text = "1001";
@@ -673,6 +958,7 @@ namespace RmorfBinEditorWPF
                     break;
 
                 case "Tree #3":
+                case "Дерево #3":
                     TypeOfAnim.Text = "0";
                     AnimFrq.Text = "800";
                     Unk1.Text = "401";
@@ -681,6 +967,7 @@ namespace RmorfBinEditorWPF
                     break;
 
                 case "Spruce":
+                case "Ель":
                     TypeOfAnim.Text = "0";
                     AnimFrq.Text = "400";
                     Unk1.Text = "1001";
@@ -689,6 +976,7 @@ namespace RmorfBinEditorWPF
                     break;
 
                 case "Water/Curtain":
+                case "Вода/Занавесы":
                     TypeOfAnim.Text = "128";
                     AnimFrq.Text = "1000";
                     Unk1.Text = "1";
@@ -697,6 +985,7 @@ namespace RmorfBinEditorWPF
                     break;
 
                 case "Water #2":
+                case "Вода #2":
                     TypeOfAnim.Text = "1";
                     AnimFrq.Text = "2000";
                     Unk1.Text = "1";
@@ -705,6 +994,7 @@ namespace RmorfBinEditorWPF
                     break;
 
                 case "Clothes":
+                case "Одежда":
                     TypeOfAnim.Text = "129";
                     AnimFrq.Text = "1000";
                     Unk1.Text = "1001";
@@ -713,6 +1003,7 @@ namespace RmorfBinEditorWPF
                     break;
 
                 case "Clothes #2":
+                case "Одежда #2":
                     TypeOfAnim.Text = "0";
                     AnimFrq.Text = "1000";
                     Unk1.Text = "1";
@@ -721,6 +1012,7 @@ namespace RmorfBinEditorWPF
                     break;
 
                 case "Clothes (Strong Wind)":
+                case "Одежда (на ветру)":
                     TypeOfAnim.Text = "0";
                     AnimFrq.Text = "100";
                     Unk1.Text = "301";
@@ -729,6 +1021,7 @@ namespace RmorfBinEditorWPF
                     break;
 
                 case "Clothes (Strong Wind) #2":
+                case "Одежда (на ветру) #2":
                     TypeOfAnim.Text = "128";
                     AnimFrq.Text = "200";
                     Unk1.Text = "601";
@@ -737,6 +1030,7 @@ namespace RmorfBinEditorWPF
                     break;
 
                 case "Signboard":
+                case "Вывеска":
                     TypeOfAnim.Text = "0";
                     AnimFrq.Text = "1000";
                     Unk1.Text = "201";
@@ -745,6 +1039,7 @@ namespace RmorfBinEditorWPF
                     break;
 
                 case "Signboard #2":
+                case "Вывеска #2":
                     TypeOfAnim.Text = "0";
                     AnimFrq.Text = "800";
                     Unk1.Text = "601";
@@ -753,6 +1048,7 @@ namespace RmorfBinEditorWPF
                     break;
 
                 case "Truck (MISE09)":
+                case "Кузов грузовика (MISE09)":
                     TypeOfAnim.Text = "0";
                     AnimFrq.Text = "150";
                     Unk1.Text = "51";
@@ -761,6 +1057,7 @@ namespace RmorfBinEditorWPF
                     break;
 
                 case "Unknown/None":
+                case "Неизвестный/Ничего":
                     TypeOfAnim.Text = "0";
                     AnimFrq.Text = "0";
                     Unk1.Text = "0";
@@ -796,17 +1093,30 @@ namespace RmorfBinEditorWPF
                     VisualizeComboBox();
 
                     isFileChanged = true;
-                    StatusLabel.Content = $"File changed - ({path})*";
+                    switch (App.Language.ToString()) {
+                        case "en-US":
+                            StatusLabel.Content = $"File changed - ({path}*)";
+                            break;
+                        case "ru-RU":
+                            StatusLabel.Content = $"Файл был изменен - ({path}*)";
+                            break;
+                    }
                 }
                 catch (Exception ex) {
-                    MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    switch (App.Language.ToString()) {
+                        case "en-US":
+                            MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            break;
+                        case "ru-RU":
+                            MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                            break;
+                    }
                 }
             }
         }
         #endregion
 
         #region Visualizing groups, preset and objects values onto GUI
-
         // When you're switching between created groups
         private void GroupsList_SelectionChanged(object sender, RoutedEventArgs e)
         {
@@ -819,7 +1129,7 @@ namespace RmorfBinEditorWPF
 
             if (rgrouplist != null) {
                 for (int i = 0; i < rgrouplist.Count; i++) {
-                    GroupsList.Items.Add("Group #" + (i + 1).ToString());
+                    GroupsList.Items.Add("№" + (i + 1).ToString());
                 }
             }
 
@@ -834,7 +1144,15 @@ namespace RmorfBinEditorWPF
         private void VisualizeObject(int selected)
         {
             ObjectsList.Items.Clear();
-            PresetsBox.Text = "Unknown/None";
+
+            switch (App.Language.ToString()) {
+                case "en-US":
+                    PresetsBox.Text = "Unknown/None";
+                    break;
+                case "ru-RU":
+                    PresetsBox.Text = "Неизвестный/Ничего";
+                    break;
+            }
 
             if (selected >= 0 && rgrouplist[selected].objNames != null) {
                 for (int i = 0; i < rgrouplist[selected].objNames.Count; i++) {
@@ -855,71 +1173,190 @@ namespace RmorfBinEditorWPF
         private void VisualizeComboBox()
         {
             if (TypeOfAnim.Text == "128" && AnimFrq.Text == "160" && Unk1.Text == "1" && Unk2.Text == "1" && Unk3.Text == "1") {
-                PresetsBox.Text = "Flag";
+                switch (App.Language.ToString()) {
+                    case "en-US":
+                        PresetsBox.Text = "Flag";
+                        break;
+                    case "ru-RU":
+                        PresetsBox.Text = "Флаг";
+                        break;
+                }
             }
 
             if (TypeOfAnim.Text == "128" && AnimFrq.Text == "170" && Unk1.Text == "1" && Unk2.Text == "1" && Unk3.Text == "1") {
-                PresetsBox.Text = "Flag (Parnik)";
+                switch (App.Language.ToString()) {
+                    case "en-US":
+                        PresetsBox.Text = "Flag (Parnik)";
+                        break;
+                    case "ru-RU":
+                        PresetsBox.Text = "Флаг (Пароход)";
+                        break;
+                }
             }
 
             if (TypeOfAnim.Text == "128" && AnimFrq.Text == "200" && Unk1.Text == "1" && Unk2.Text == "1" && Unk3.Text == "1") {
-                PresetsBox.Text = "Flag (Parnik) #2";
+                switch (App.Language.ToString()) {
+                    case "en-US":
+                        PresetsBox.Text = "Flag (Parnik) #2";
+                        break;
+                    case "ru-RU":
+                        PresetsBox.Text = "Флаг (Пароход) #2";
+                        break;
+                }
             }
 
             if (TypeOfAnim.Text == "128" && AnimFrq.Text == "100" && Unk1.Text == "1" && Unk2.Text == "1" && Unk3.Text == "1") {
-                PresetsBox.Text = "Flag (Racing Circuit)";
+                switch (App.Language.ToString()) {
+                    case "en-US":
+                        PresetsBox.Text = "Flag (Racing Circuit)";
+                        break;
+                    case "ru-RU":
+                        PresetsBox.Text = "Флаг (Гоночный Трек)";
+                        break;
+                }
             }
 
             if (TypeOfAnim.Text == "0" && AnimFrq.Text == "500" && Unk1.Text == "1001" && Unk2.Text == "0" && Unk3.Text == "0") {
-                PresetsBox.Text = "Tree";
+                switch (App.Language.ToString()) {
+                    case "en-US":
+                        PresetsBox.Text = "Tree";
+                        break;
+                    case "ru-RU":
+                        PresetsBox.Text = "Дерево";
+                        break;
+                }
             }
 
             if (TypeOfAnim.Text == "0" && AnimFrq.Text == "500" && Unk1.Text == "1001" && Unk2.Text == "1" && Unk3.Text == "1") {
-                PresetsBox.Text = "Tree #2";
+                switch (App.Language.ToString()) {
+                    case "en-US":
+                        PresetsBox.Text = "Tree #2";
+                        break;
+                    case "ru-RU":
+                        PresetsBox.Text = "Дерево #2";
+                        break;
+                }
             }
 
             if (TypeOfAnim.Text == "0" && AnimFrq.Text == "800" && Unk1.Text == "401" && Unk2.Text == "1" && Unk3.Text == "1") {
-                PresetsBox.Text = "Tree #3";
+                switch (App.Language.ToString()) {
+                    case "en-US":
+                        PresetsBox.Text = "Tree #3";
+                        break;
+                    case "ru-RU":
+                        PresetsBox.Text = "Дерево #3";
+                        break;
+                }
             }
 
             if (TypeOfAnim.Text == "0" && AnimFrq.Text == "400" && Unk1.Text == "1001" && Unk2.Text == "1" && Unk3.Text == "1") {
-                PresetsBox.Text = "Spruce";
+                switch (App.Language.ToString()) {
+                    case "en-US":
+                        PresetsBox.Text = "Spruce";
+                        break;
+                    case "ru-RU":
+                        PresetsBox.Text = "Ель";
+                        break;
+                }
             }
 
             if (TypeOfAnim.Text == "128" && AnimFrq.Text == "1000" && Unk1.Text == "1" && Unk2.Text == "1" && Unk3.Text == "1") {
-                PresetsBox.Text = "Water/Curtain";
+                switch (App.Language.ToString()) {
+                    case "en-US":
+                        PresetsBox.Text = "Water/Curtain";
+                        break;
+                    case "ru-RU":
+                        PresetsBox.Text = "Вода/Занавесы";
+                        break;
+                }
             }
 
             if (TypeOfAnim.Text == "1" && AnimFrq.Text == "2000" && Unk1.Text == "1" && Unk2.Text == "1" && Unk3.Text == "1") {
-                PresetsBox.Text = "Water #2";
+                switch (App.Language.ToString()) {
+                    case "en-US":
+                        PresetsBox.Text = "Water #2";
+                        break;
+                    case "ru-RU":
+                        PresetsBox.Text = "Вода #2";
+                        break;
+                }
             }
 
             if (TypeOfAnim.Text == "129" && AnimFrq.Text == "1000" && Unk1.Text == "1001" && Unk2.Text == "1" && Unk3.Text == "1") {
-                PresetsBox.Text = "Clothes";
+                switch (App.Language.ToString()) {
+                    case "en-US":
+                        PresetsBox.Text = "Clothes";
+                        break;
+                    case "ru-RU":
+                        PresetsBox.Text = "Одежда";
+                        break;
+                }
             }
 
             if (TypeOfAnim.Text == "0" && AnimFrq.Text == "1000" && Unk1.Text == "1" && Unk2.Text == "1" && Unk3.Text == "1") {
-                PresetsBox.Text = "Clothes #2";
+                switch (App.Language.ToString()) {
+                    case "en-US":
+                        PresetsBox.Text = "Clothes #2";
+                        break;
+                    case "ru-RU":
+                        PresetsBox.Text = "Одежда #2";
+                        break;
+                }
             }
 
             if (TypeOfAnim.Text == "0" && AnimFrq.Text == "100" && Unk1.Text == "301" && Unk2.Text == "1" && Unk3.Text == "1") {
-                PresetsBox.Text = "Clothes (Strong Wind)";
+                switch (App.Language.ToString()) {
+                    case "en-US":
+                        PresetsBox.Text = "Clothes (Strong Wind)";
+                        break;
+                    case "ru-RU":
+                        PresetsBox.Text = "Одежда (на ветру)";
+                        break;
+                }
             }
 
             if (TypeOfAnim.Text == "128" && AnimFrq.Text == "200" && Unk1.Text == "601" && Unk2.Text == "1" && Unk3.Text == "1") {
-                PresetsBox.Text = "Clothes (Strong Wind) #2";
+                switch (App.Language.ToString()) {
+                    case "en-US":
+                        PresetsBox.Text = "Clothes (Strong Wind) #2";
+                        break;
+                    case "ru-RU":
+                        PresetsBox.Text = "Одежда (на ветру) #2";
+                        break;
+                }
             }
 
             if (TypeOfAnim.Text == "0" && AnimFrq.Text == "1000" && Unk1.Text == "201" && Unk2.Text == "1" && Unk3.Text == "1") {
-                PresetsBox.Text = "Signboard";
+                switch (App.Language.ToString()) {
+                    case "en-US":
+                        PresetsBox.Text = "Signboard";
+                        break;
+                    case "ru-RU":
+                        PresetsBox.Text = "Вывеска";
+                        break;
+                }
             }
 
             if (TypeOfAnim.Text == "0" && AnimFrq.Text == "800" && Unk1.Text == "601" && Unk2.Text == "1" && Unk3.Text == "1") {
-                PresetsBox.Text = "Signboard #2";
+                switch (App.Language.ToString()) {
+                    case "en-US":
+                        PresetsBox.Text = "Signboard #2";
+                        break;
+                    case "ru-RU":
+                        PresetsBox.Text = "Вывеска #2";
+                        break;
+                }
             }
 
             if (TypeOfAnim.Text == "0" && AnimFrq.Text == "150" && Unk1.Text == "51" && Unk2.Text == "0" && Unk3.Text == "1") {
-                PresetsBox.Text = "Truck (MISE09)";
+                switch (App.Language.ToString()) {
+                    case "en-US":
+                        PresetsBox.Text = "Truck (MISE09)";
+                        break;
+                    case "ru-RU":
+                        PresetsBox.Text = "Кузов грузовика (MISE09)";
+                        break;
+                }
             }
         }
         #endregion
@@ -929,8 +1366,16 @@ namespace RmorfBinEditorWPF
         // "About us" section
         private void Authors_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show($"Rmorf.bin Editor {CurrentVersion}\nAuthors: Firefox3860, Smelson and Legion.\n(c) {DateTime.Now.Year}. From Russia and Kazakhstan with love!", "About Us",
-                MessageBoxButton.OK, MessageBoxImage.Information);
+            switch (App.Language.ToString()) {
+                case "en-US":
+                    MessageBox.Show($"Rmorf.bin Editor {CurrentVersion}\nAuthors: Firefox3860, Smelson and Legion.\n(С) {DateTime.Now.Year}. From Russia and Kazakhstan with love!", "About Us",
+                    MessageBoxButton.OK, MessageBoxImage.Information);
+                    break;
+                case "ru-RU":
+                    MessageBox.Show($"Rmorf.bin Editor {CurrentVersion}\nАвторы: Firefox3860, Smelson and Legion.\n(С) {DateTime.Now.Year}. Из России и Казахстана с любовью!", "О нас",
+                    MessageBoxButton.OK, MessageBoxImage.Information);
+                    break;
+            }
         }
 
         private void CheckUpdates_Click(object sender, RoutedEventArgs e)
@@ -946,38 +1391,53 @@ namespace RmorfBinEditorWPF
 
                 NewVersion = WC.DownloadString("https://pastebin.com/raw/Rn6NX04n");
 
-                if (CurrentVersion != NewVersion)
-                {
-                    var DialogResult = MessageBox.Show($"Version {NewVersion} has been found! Do you want to update now?", $"Update to {NewVersion}", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (CurrentVersion != NewVersion) {
+                    switch (App.Language.ToString()) {
+                        case "en-US":
+                            res = MessageBox.Show($"Version {NewVersion} has been found! Do you want to update now?", $"Update to {NewVersion}", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                            break;
+                        case "ru-RU":
+                            res = MessageBox.Show($"Версия {NewVersion} была найдена! Хотите обновиться до нее?", $"Обновиться до {NewVersion}", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                            break;
+                    }
 
-                    switch (DialogResult)
-                    {
+                    switch (res) {
                         case MessageBoxResult.Yes:
                             Process.Start("Updater");
                             Application.Current.Shutdown();
                             break;
-
                         case MessageBoxResult.No:
                             break;
                     }
                 }
-
-                else
-                {
-                    MessageBox.Show($"You're using the latest version ({CurrentVersion}) of the program!", $"Rmorf.bin Editor {CurrentVersion}", MessageBoxButton.OK, MessageBoxImage.Information);
+                else {
+                    switch (App.Language.ToString()) {
+                        case "en-US":
+                            MessageBox.Show($"You're using the latest version ({CurrentVersion}) of the program!", $"Rmorf.bin Editor {CurrentVersion}", MessageBoxButton.OK, MessageBoxImage.Information);
+                            break;
+                        case "ru-RU":
+                            MessageBox.Show($"Вы используете последнюю версию программы ({CurrentVersion})!", $"Rmorf.bin Editor {CurrentVersion}", MessageBoxButton.OK, MessageBoxImage.Information);
+                            break;
+                    }   
                 }
             }
-
             catch
             {
-
+                switch (App.Language.ToString()) {
+                    case "en-US":
+                        MessageBox.Show("Something went wrong!\nMaybe, your Internet connection is disabled.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        break;
+                    case "ru-RU":
+                        MessageBox.Show("Что-то не пошло не так!\nВозможно, у вас нет Интернет-соединения.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                        break;
+                }
             }
         }
 
         // Shutdown the app
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Shutdown();
+            Application.Current.MainWindow.Close();
         }
         #endregion
     }

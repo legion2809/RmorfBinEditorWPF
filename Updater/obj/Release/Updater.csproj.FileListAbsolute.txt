@@ -7,3 +7,13 @@ C:\Program Files (x86)\!Mafia Projects, since 2021\RmorfBinEditorWPF\Updater\obj
 C:\Program Files (x86)\!Mafia Projects, since 2021\RmorfBinEditorWPF\Updater\obj\Release\Updater.csproj.CoreCompileInputs.cache
 C:\Program Files (x86)\!Mafia Projects, since 2021\RmorfBinEditorWPF\Updater\obj\Release\Updater.exe
 C:\Program Files (x86)\!Mafia Projects, since 2021\RmorfBinEditorWPF\Updater\obj\Release\Updater.pdb
+E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\Updater\bin\Release\Updater.exe.config
+E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\Updater\bin\Release\Updater.exe
+E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\Updater\bin\Release\Updater.pdb
+E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\Updater\obj\Release\Updater.Main.resources
+E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\Updater\obj\Release\Updater.Properties.Resources.resources
+E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\Updater\obj\Release\Updater.csproj.GenerateResource.cache
+E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\Updater\obj\Release\Updater.csproj.CoreCompileInputs.cache
+E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\Updater\obj\Release\Updater.exe
+E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\Updater\obj\Release\Updater.pdb
+C:\Program Files (x86)\!Mafia Projects, since 2021\RmorfBinEditorWPF\Updater\obj\Release\Updater.csproj.AssemblyReference.cache

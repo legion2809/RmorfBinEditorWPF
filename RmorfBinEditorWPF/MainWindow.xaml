@@ -8,6 +8,7 @@
         mc:Ignorable="d"
         Title="Rmorf.bin Editor" Height="530.124" Width="1029.681" FontSize="14" ResizeMode="NoResize" Icon="Untitled-1_1.ico"
         Loaded="Window_Loaded"
+        Closed="Window_Closed"
         Closing="Window_Closing">
     <Window.Resources>
         <SolidColorBrush x:Key="ListBox.Static.Background" Color="#FFFFFFFF"/>
@@ -759,94 +760,105 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="314*"/>
-            <ColumnDefinition Width="107*"/>
-            <ColumnDefinition Width="609*"/>
+            <ColumnDefinition Width="156*"/>
+            <ColumnDefinition Width="59*"/>
+            <ColumnDefinition Width="297*"/>
         </Grid.ColumnDefinitions>
 
-        <ListBox x:Name="GroupsList" FontFamily="./#Aurora BdCn BT" FontSize="18" HorizontalAlignment="Left" Height="371" Margin="30,82,0,0" VerticalAlignment="Top" Width="251" SelectionChanged="GroupsList_SelectionChanged" Style="{DynamicResource GroupsListStyle}">
+        <ListBox x:Name="GroupsList" FontFamily="./#ApicalC" FontSize="18" HorizontalAlignment="Left" Height="371" Margin="30,82,0,0" VerticalAlignment="Top" Width="251" SelectionChanged="GroupsList_SelectionChanged" Style="{DynamicResource GroupsListStyle}">
             <ListBox.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Header="Delete" Click="DeleteGroup_Click"/>
+                    <MenuItem Header="{DynamicResource delete}" Click="DeleteGroup_Click"/>
                 </ContextMenu>
             </ListBox.ContextMenu>
         </ListBox>
 
-        <ListBox x:Name="ObjectsList" FontFamily="./#Aurora BdCn BT" FontSize="18" HorizontalAlignment="Left" Height="371" Margin="3,82,0,0" VerticalAlignment="Top" Width="251" Grid.ColumnSpan="2" Grid.Column="1" Style="{DynamicResource ObjectsListStyle}">
+        <ListBox x:Name="ObjectsList" FontFamily="./#ApicalC" FontSize="18" HorizontalAlignment="Left" Height="371" Margin="3,82,0,0" VerticalAlignment="Top" Width="251" Grid.ColumnSpan="2" Grid.Column="1" Style="{DynamicResource ObjectsListStyle}">
             <ListBox.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Header="Rename" Click="RenameObject_Click"/>
-                    <MenuItem Header="Delete" Click="DeleteObject_Click"/>
+                    <MenuItem Header="{DynamicResource rename}" Click="RenameObject_Click"/>
+                    <MenuItem Header="{DynamicResource delete}" Click="DeleteObject_Click"/>
                 </ContextMenu>
             </ListBox.ContextMenu>
         </ListBox>
 
-        <ComboBox x:Name="PresetsBox" FontFamily="./#Aurora BdCn BT" FontSize="18" HorizontalAlignment="Left" Margin="191,80,0,0" VerticalAlignment="Top" Width="211" Grid.Column="2" Height="25" Style="{DynamicResource PresetsBoxStyle}">
-            <ComboBoxItem Content="Unknown/None" BorderThickness="0"/>
-            <ComboBoxItem Content="Flag" BorderThickness="0"/>
-            <ComboBoxItem Content="Flag (Parnik)" BorderThickness="0"/>
-            <ComboBoxItem Content="Flag (Parnik) #2" BorderThickness="0"/>
-            <ComboBoxItem Content="Tree" BorderThickness="0"/>
-            <ComboBoxItem Content="Tree #2" BorderThickness="0"/>
-            <ComboBoxItem Content="Tree #3" BorderThickness="0"/>
-            <ComboBoxItem Content="Spruce" BorderThickness="0"/>
-            <ComboBoxItem Content="Water/Curtain" BorderThickness="0"/>
-            <ComboBoxItem Content="Water #2" BorderThickness="0"/>
-            <ComboBoxItem Content="Clothes" BorderThickness="0"/>
-            <ComboBoxItem Content="Clothes #2" BorderThickness="0"/>
-            <ComboBoxItem Content="Clothes (Strong Wind)" BorderThickness="0"/>
-            <ComboBoxItem Content="Clothes (Strong Wind) #2" BorderThickness="0"/>
-            <ComboBoxItem Content="Signboard" BorderThickness="0"/>
-            <ComboBoxItem Content="Signboard #2" BorderThickness="0"/>
-            <ComboBoxItem Content="Truck (MISE09)" BorderThickness="0"/>
+        <ComboBox x:Name="PresetsBox" FontFamily="./#ApicalC" FontSize="18" HorizontalAlignment="Left" Margin="191,80,0,0" VerticalAlignment="Top" Width="211" Grid.Column="2" Height="25" Style="{DynamicResource PresetsBoxStyle}">
+            <ComboBoxItem Content="{DynamicResource unknown}" BorderThickness="0"/>
+            <ComboBoxItem Content="{DynamicResource flag}" BorderThickness="0"/>
+            <ComboBoxItem Content="{DynamicResource flagparnik}" BorderThickness="0"/>
+            <ComboBoxItem Content="{DynamicResource flagparnik2}" BorderThickness="0"/>
+            <ComboBoxItem Content="{DynamicResource racing}" BorderThickness="0"/>
+            <ComboBoxItem Content="{DynamicResource tree}" BorderThickness="0"/>
+            <ComboBoxItem Content="{DynamicResource tree2}" BorderThickness="0"/>
+            <ComboBoxItem Content="{DynamicResource tree3}" BorderThickness="0"/>
+            <ComboBoxItem Content="{DynamicResource spruce}" BorderThickness="0"/>
+            <ComboBoxItem Content="{DynamicResource watercurtain}" BorderThickness="0"/>
+            <ComboBoxItem Content="{DynamicResource water2}" BorderThickness="0"/>
+            <ComboBoxItem Content="{DynamicResource clothes}" BorderThickness="0"/>
+            <ComboBoxItem Content="{DynamicResource clothes2}" BorderThickness="0"/>
+            <ComboBoxItem Content="{DynamicResource clotheswind}" BorderThickness="0"/>
+            <ComboBoxItem Content="{DynamicResource clotheswind2}" BorderThickness="0"/>
+            <ComboBoxItem Content="{DynamicResource signboard}" BorderThickness="0"/>
+            <ComboBoxItem Content="{DynamicResource signboard2}" BorderThickness="0"/>
+            <ComboBoxItem Content="{DynamicResource truck}" BorderThickness="0"/>
         </ComboBox>
 
-        <GroupBox HorizontalAlignment="Left" Height="321" Margin="191,132,0,0" VerticalAlignment="Top" Width="358" Grid.Column="2" FontSize="18" Style="{DynamicResource GroupBoxStyle}">
+        <GroupBox HorizontalAlignment="Left" Height="326" Margin="191,132,0,0" VerticalAlignment="Top" Width="358" Grid.Column="2" FontSize="18" Style="{DynamicResource GroupBoxStyle}">
             <GroupBox.Header>
-                <Label FontWeight="Bold" FontFamily="./#Aurora BdCn BT" FontSize="22" Content="Presets Parameters"/>
+                <Label FontWeight="Bold" FontFamily="./#ApicalC" FontSize="22" Content="{DynamicResource title}"/>
             </GroupBox.Header>
             <StackPanel>
-                <Label Content="Count of objects:" FontFamily="./#Aurora BdCn BT" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="17"/>
-                <Label Content="Type of animation:" FontFamily="./#Aurora BdCn BT" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="17"/>
-                <Label Content="Frequency of animation:" FontFamily="./#Aurora BdCn BT" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="17"/>
-                <Label Content="Unknown parameter 1:" FontFamily="./#Aurora BdCn BT" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="17"/>
-                <Label Content="Unknown parameter 2:" FontFamily="./#Aurora BdCn BT" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="17"/>
-                <Label Content="Unknown parameter 3:" FontFamily="./#Aurora BdCn BT" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="17"/>
-                <Button x:Name="ApplySettingsButton" FontFamily="./#Aurora BdCn BT" Content="Apply settings" Margin="90,11,90,0" RenderTransformOrigin="-0.027,0.499" Click="ApplyPresetSettings_Click" Width="130" Height="25" FontSize="17" IsEnabled="False" Style="{DynamicResource ApplySettingsButtonStyle}"/>
+                <Label Content="{DynamicResource objectscount}" FontFamily="./#ApicalC" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="17"/>
+                <Label Content="{DynamicResource typeofanim}" FontFamily="./#ApicalC" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="17"/>
+                <Label Content="{DynamicResource animfrq}" FontFamily="./#ApicalC" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="17"/>
+                <Label Content="{DynamicResource unk1}" FontFamily="./#ApicalC" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="17"/>
+                <Label Content="{DynamicResource unk2}" FontFamily="./#ApicalC" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="17"/>
+                <Label Content="{DynamicResource unk3}" FontFamily="./#ApicalC" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="17"/>
+                <Button x:Name="ApplySettingsButton" FontFamily="./#ApicalC" Content="{DynamicResource applysettings}" Margin="86,11,82,0" RenderTransformOrigin="-0.027,0.499" Click="ApplyPresetSettings_Click" Height="25" FontSize="17" IsEnabled="False" Style="{DynamicResource ApplySettingsButtonStyle}">
+                    <Button.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="0.376"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Button.RenderTransform>
+                </Button>
             </StackPanel>
         </GroupBox>
 
-        <Button x:Name="ApplyPresetButton" Content="Apply Preset" FontFamily="./#Aurora BdCn BT" FontSize="17" HorizontalAlignment="Left" Margin="423,80,0,0" VerticalAlignment="Top" Width="126" Grid.Column="2" Height="25" Click="ApplyPresetButton_Click" RenderTransformOrigin="0.524,1.155" Style="{DynamicResource ApplyPresetButtonStyle}"/>
-        <Label Content="Groups:" HorizontalAlignment="Left" Margin="30,42,0,0" VerticalAlignment="Top" Height="35" Width="74" FontSize="22" FontWeight="Bold" FontFamily="./#Aurora BdCn BT"/>
-        <Label Content="Objects:" HorizontalAlignment="Left" Margin="3,42,0,0" VerticalAlignment="Top" Height="35" Width="77" FontSize="22" FontWeight="Bold" FontFamily="./#Aurora BdCn BT" Grid.Column="1"/>
+        <Button x:Name="ApplyPresetButton" Content="{DynamicResource applypreset}" FontFamily="./#ApicalC" FontSize="17" HorizontalAlignment="Left" Margin="423,80,0,0" VerticalAlignment="Top" Width="126" Grid.Column="2" Height="25" Click="ApplyPresetButton_Click" RenderTransformOrigin="0.524,1.155" Style="{DynamicResource ApplyPresetButtonStyle}"/>
+        <Label Content="{DynamicResource groups}" HorizontalAlignment="Left" Margin="30,42,0,0" VerticalAlignment="Top" Height="35" Width="97" FontSize="22" FontWeight="Bold" FontFamily="./#ApicalC"/>
+        <Label Content="{DynamicResource objects}" HorizontalAlignment="Left" Margin="3,42,0,0" VerticalAlignment="Top" Height="35" Width="115" FontSize="22" FontWeight="Bold" FontFamily="./#ApicalC" Grid.Column="1"/>
 
-        <Menu HorizontalAlignment="Left" Height="25" VerticalAlignment="Top" Width="1058" Grid.ColumnSpan="3">
-            <MenuItem Header="File" Height="23" Width="41" FontSize="18" Margin="12,0,0,0" FontFamily="./#Aurora BdCn BT">
-                <MenuItem x:Name="FileNew" InputGestureText="Ctrl+N" Header="New File..."  Margin="0,0,0,3" Click="CreateFile_Click" FontFamily="./#Aurora BdCn BT"/>
-                <MenuItem x:Name="FileOpen" InputGestureText="Ctrl+O" Header="Open" Margin="0,0,0,3" Click="OpenFile_Click" FontFamily="./#Aurora BdCn BT"/>
+        <Menu HorizontalAlignment="Left" Height="25" VerticalAlignment="Top" Width="1024" Grid.ColumnSpan="3">
+            <MenuItem x:Name="File" Header="{DynamicResource file}" Height="23" Width="41" FontSize="18" Margin="12,0,0,0" FontFamily="./#ApicalC">
+                <MenuItem x:Name="FileNew" InputGestureText="Ctrl+N" Header="{DynamicResource newFile}"  Margin="0,0,0,3" Click="CreateFile_Click" FontFamily="./#ApicalC"/>
+                <MenuItem x:Name="FileOpen" InputGestureText="Ctrl+O" Header="{DynamicResource open}" Margin="0,0,0,3" Click="OpenFile_Click" FontFamily="./#ApicalC"/>
                 <Separator />
-                <MenuItem x:Name="Save" InputGestureText="Ctrl+S" Header="Save" Click="SaveFile_Click" IsEnabled="False" FontFamily="./#Aurora BdCn BT"/>
-                <MenuItem x:Name="SaveAs" InputGestureText="Ctrl + Alt + S" Header="Save As..." Click="SaveAsFile_Click" IsEnabled="False" FontFamily="./#Aurora BdCn BT"/>
+                <MenuItem x:Name="Save" InputGestureText="Ctrl+S" Header="{DynamicResource save}" Click="SaveFile_Click" IsEnabled="False" FontFamily="./#ApicalC"/>
+                <MenuItem x:Name="SaveAs" InputGestureText="Ctrl + Alt + S" Header="{DynamicResource saveAs}" Click="SaveAsFile_Click" IsEnabled="False" FontFamily="./#ApicalC"/>
                 <Separator />
-                <MenuItem x:Name="Exit" Header="Exit" Click="Exit_Click" FontFamily="./#Aurora BdCn BT"/>
+                <MenuItem x:Name="Exit" Header="{DynamicResource exit}" Click="Exit_Click" FontFamily="./#ApicalC"/>
             </MenuItem>
-            <MenuItem Header="Insert" FontSize="18" Margin="0" FontFamily="./#Aurora BdCn BT">
-                <MenuItem x:Name="InsertGroup" Header="Insert Group" InputGestureText="Alt + G" Margin="0,0,0,3" Click="InsertGroup_Click" IsEnabled="False" FontFamily="./#Aurora BdCn BT"/>
-                <MenuItem x:Name="InsertObject" Header="Insert Object" InputGestureText="Alt + O" Click="InsertObject_Click" IsEnabled="False" FontFamily="./#Aurora BdCn BT"/>
+            <MenuItem Header="{DynamicResource insert}" FontSize="18" Margin="0" FontFamily="./#ApicalC">
+                <MenuItem x:Name="InsertGroup" Header="{DynamicResource insertgroup}" InputGestureText="Alt + G" Margin="0,0,0,3" Click="InsertGroup_Click" IsEnabled="False" FontFamily="./#ApicalC"/>
+                <MenuItem x:Name="InsertObject" Header="{DynamicResource insertobject}" InputGestureText="Alt + O" Click="InsertObject_Click" IsEnabled="False" FontFamily="./#ApicalC"/>
             </MenuItem>
-            <MenuItem Header="About" FontSize="18" Margin="3,0,0,0" FontFamily="./#Aurora BdCn BT">
-                <MenuItem x:Name="AboutUs" Header="Authors" InputGestureText="F1" Click="Authors_Click" FontFamily="./#Aurora BdCn BT"/>
-                <MenuItem x:Name="CheckUpdates" Header="Check for updates" Click="CheckUpdates_Click" FontFamily="./#Aurora BdCn BT"/>
+            <MenuItem x:Name="SwitchLang" Header="{DynamicResource switchlang}" FontFamily="./#ApicalC" FontSize="18"/>
+            <MenuItem Header="{DynamicResource about}" FontSize="18" Margin="3,0,0,0" FontFamily="./#ApicalC">
+                <MenuItem x:Name="AboutUs" Header="{DynamicResource authors}" InputGestureText="F1" Click="Authors_Click" FontFamily="./#ApicalC"/>
+                <MenuItem x:Name="CheckUpdates" Header="{DynamicResource checkUpdates}" Click="CheckUpdates_Click" FontFamily="./#ApicalC"/>
             </MenuItem>
         </Menu>
 
-        <TextBox x:Name="CountOfObjects" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="386,179,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False" Style="{DynamicResource CountOfObjectsStyle}"/>
-        <TextBox x:Name="TypeOfAnim" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="386,218,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Style="{DynamicResource TypeOfAnimStyle}"/>
-        <TextBox x:Name="AnimFrq" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="386,258,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Style="{DynamicResource AnimFrqStyle}"/>
-        <TextBox x:Name="Unk1" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="386,297,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Style="{DynamicResource Unk1Style}"/>
-        <TextBox x:Name="Unk2" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="386,336,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Style="{DynamicResource Unk2Style}"/>
-        <TextBox x:Name="Unk3" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="386,374,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Style="{DynamicResource Unk3Style}"/>
-        <Label x:Name="StatusLabel" HorizontalAlignment="Left" Margin="30,458,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.096,-0.191" FontSize="18" Width="968" Grid.ColumnSpan="3" FontFamily="./#Aurora BdCn BT" Height="27"/>
+        <TextBox x:Name="CountOfObjects" FontFamily="./#ApicalC" FontSize="17" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="386,182,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False" Style="{DynamicResource CountOfObjectsStyle}"/>
+        <TextBox x:Name="TypeOfAnim" FontFamily="./#ApicalC" FontSize="17" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="386,221,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Style="{DynamicResource TypeOfAnimStyle}"/>
+        <TextBox x:Name="AnimFrq" FontFamily="./#ApicalC" FontSize="17" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="386,262,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Style="{DynamicResource AnimFrqStyle}"/>
+        <TextBox x:Name="Unk1" FontFamily="./#ApicalC" FontSize="17" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="386,302,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Style="{DynamicResource Unk1Style}"/>
+        <TextBox x:Name="Unk2" FontFamily="./#ApicalC" FontSize="17" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="386,341,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Style="{DynamicResource Unk2Style}"/>
+        <TextBox x:Name="Unk3" FontFamily="./#ApicalC" FontSize="17" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="386,381,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Style="{DynamicResource Unk3Style}"/>
+        <Label x:Name="StatusLabel" HorizontalAlignment="Left" Margin="30,458,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.096,-0.191" FontSize="18" Width="968" Grid.ColumnSpan="3" FontFamily="./#ApicalC" Height="33"/>
 
 
     </Grid>
