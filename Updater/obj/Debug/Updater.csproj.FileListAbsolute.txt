@@ -7,7 +7,6 @@ C:\Program Files (x86)\!Mafia Projects, since 2021\RmorfBinEditorWPF\Updater\obj
 C:\Program Files (x86)\!Mafia Projects, since 2021\RmorfBinEditorWPF\Updater\obj\Debug\Updater.exe
 C:\Program Files (x86)\!Mafia Projects, since 2021\RmorfBinEditorWPF\Updater\obj\Debug\Updater.pdb
 C:\Program Files (x86)\!Mafia Projects, since 2021\RmorfBinEditorWPF\Updater\obj\Debug\Updater.Main.resources
-C:\Program Files (x86)\!Mafia Projects, since 2021\RmorfBinEditorWPF\Updater\obj\Debug\Updater.csproj.AssemblyReference.cache
 E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\Updater\bin\Debug\Updater.exe.config
 E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\Updater\bin\Debug\Updater.exe
 E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\Updater\bin\Debug\Updater.pdb
@@ -17,3 +16,9 @@ E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\Updater\obj\Debug\Updater.
 E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\Updater\obj\Debug\Updater.csproj.CoreCompileInputs.cache
 E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\Updater\obj\Debug\Updater.exe
 E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\Updater\obj\Debug\Updater.pdb
+C:\Program Files (x86)\!Mafia Projects, since 2021\RmorfBinEditorWPF\Updater\bin\Debug\DotNetZip.dll
+C:\Program Files (x86)\!Mafia Projects, since 2021\RmorfBinEditorWPF\Updater\bin\Debug\Newtonsoft.Json.dll
+C:\Program Files (x86)\!Mafia Projects, since 2021\RmorfBinEditorWPF\Updater\bin\Debug\DotNetZip.pdb
+C:\Program Files (x86)\!Mafia Projects, since 2021\RmorfBinEditorWPF\Updater\bin\Debug\DotNetZip.xml
+C:\Program Files (x86)\!Mafia Projects, since 2021\RmorfBinEditorWPF\Updater\bin\Debug\Newtonsoft.Json.xml
+C:\Program Files (x86)\!Mafia Projects, since 2021\RmorfBinEditorWPF\Updater\obj\Debug\Updater.csproj.CopyComplete
