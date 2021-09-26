@@ -687,6 +687,7 @@ namespace RmorfBinEditorWPF
         {
             switch (PresetsBox.Text) {
                 case "Flag":
+                case "Флаг":
                     TypeOfAnim.Text = "128";
                     AnimFrq.Text = "160";
                     Unk1.Text = "1";
@@ -695,6 +696,7 @@ namespace RmorfBinEditorWPF
                     break;
 
                 case "Flag (Parnik)":
+                case "Флаг (Пароход)":
                     TypeOfAnim.Text = "128";
                     AnimFrq.Text = "170";
                     Unk1.Text = "1";
@@ -703,6 +705,7 @@ namespace RmorfBinEditorWPF
                     break;
 
                 case "Flag (Parnik) #2":
+                case "Флаг (Пароход) #2":
                     TypeOfAnim.Text = "128";
                     AnimFrq.Text = "200";
                     Unk1.Text = "1";
@@ -711,6 +714,7 @@ namespace RmorfBinEditorWPF
                     break;
 
                 case "Flag (Racing Circuit)":
+                case "Флаг (Пароход) #3":
                     TypeOfAnim.Text = "128";
                     AnimFrq.Text = "100";
                     Unk1.Text = "1";
@@ -719,6 +723,7 @@ namespace RmorfBinEditorWPF
                     break;
 
                 case "Tree":
+                case "Дерево":
                     TypeOfAnim.Text = "0";
                     AnimFrq.Text = "500";
                     Unk1.Text = "1001";
@@ -727,6 +732,7 @@ namespace RmorfBinEditorWPF
                     break;
 
                 case "Tree #2":
+                case "Дерево #2":
                     TypeOfAnim.Text = "0";
                     AnimFrq.Text = "500";
                     Unk1.Text = "1001";
@@ -735,6 +741,7 @@ namespace RmorfBinEditorWPF
                     break;
 
                 case "Tree #3":
+                case "Дерево #3":
                     TypeOfAnim.Text = "0";
                     AnimFrq.Text = "800";
                     Unk1.Text = "401";
@@ -743,6 +750,7 @@ namespace RmorfBinEditorWPF
                     break;
 
                 case "Spruce":
+                case "Ель":
                     TypeOfAnim.Text = "0";
                     AnimFrq.Text = "400";
                     Unk1.Text = "1001";
@@ -751,6 +759,7 @@ namespace RmorfBinEditorWPF
                     break;
 
                 case "Water/Curtain":
+                case "Вода/Занавесы":
                     TypeOfAnim.Text = "128";
                     AnimFrq.Text = "1000";
                     Unk1.Text = "1";
@@ -759,6 +768,7 @@ namespace RmorfBinEditorWPF
                     break;
 
                 case "Water #2":
+                case "Вода #2":
                     TypeOfAnim.Text = "1";
                     AnimFrq.Text = "2000";
                     Unk1.Text = "1";
@@ -767,6 +777,7 @@ namespace RmorfBinEditorWPF
                     break;
 
                 case "Clothes":
+                case "Одежда":
                     TypeOfAnim.Text = "129";
                     AnimFrq.Text = "1000";
                     Unk1.Text = "1001";
@@ -775,6 +786,7 @@ namespace RmorfBinEditorWPF
                     break;
 
                 case "Clothes #2":
+                case "Одежда #2":
                     TypeOfAnim.Text = "0";
                     AnimFrq.Text = "1000";
                     Unk1.Text = "1";
@@ -783,6 +795,7 @@ namespace RmorfBinEditorWPF
                     break;
 
                 case "Clothes (Strong Wind)":
+                case "Одежда (на ветру)":
                     TypeOfAnim.Text = "0";
                     AnimFrq.Text = "100";
                     Unk1.Text = "301";
@@ -791,6 +804,7 @@ namespace RmorfBinEditorWPF
                     break;
 
                 case "Clothes (Strong Wind) #2":
+                case "Одежда (на ветру) #2":
                     TypeOfAnim.Text = "128";
                     AnimFrq.Text = "200";
                     Unk1.Text = "601";
@@ -799,6 +813,7 @@ namespace RmorfBinEditorWPF
                     break;
 
                 case "Signboard":
+                case "Вывеска":
                     TypeOfAnim.Text = "0";
                     AnimFrq.Text = "1000";
                     Unk1.Text = "201";
@@ -807,6 +822,7 @@ namespace RmorfBinEditorWPF
                     break;
 
                 case "Signboard #2":
+                case "Вывеска #2":
                     TypeOfAnim.Text = "0";
                     AnimFrq.Text = "800";
                     Unk1.Text = "601";
@@ -815,6 +831,7 @@ namespace RmorfBinEditorWPF
                     break;
 
                 case "Truck (MISE09)":
+                case "Кузов грузовика (MISE09)":
                     TypeOfAnim.Text = "0";
                     AnimFrq.Text = "150";
                     Unk1.Text = "51";
@@ -823,6 +840,7 @@ namespace RmorfBinEditorWPF
                     break;
 
                 case "Unknown/None":
+                case "Неизвестный/Ничего":
                     TypeOfAnim.Text = "0";
                     AnimFrq.Text = "0";
                     Unk1.Text = "0";
