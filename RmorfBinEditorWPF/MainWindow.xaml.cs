@@ -19,7 +19,7 @@ namespace RmorfBinEditorWPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        string CurrentVersion = "Beta 0.5";
+        string CurrentVersion = "Beta 0.5.1";
         string NewVersion = null;
 
         MessageBoxResult res;

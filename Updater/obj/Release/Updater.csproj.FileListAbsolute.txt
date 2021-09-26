@@ -16,3 +16,4 @@ E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\Updater\obj\Release\Update
 E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\Updater\obj\Release\Updater.csproj.CoreCompileInputs.cache
 E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\Updater\obj\Release\Updater.exe
 E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\Updater\obj\Release\Updater.pdb
+C:\Program Files (x86)\!Mafia Projects, since 2021\RmorfBinEditorWPF\Updater\obj\Release\Updater.csproj.AssemblyReference.cache
