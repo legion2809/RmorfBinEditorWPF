@@ -1,0 +1,63 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+    <!-- "File" menu section -->
+    <system:String x:Key="file">Файл</system:String>
+    <system:String x:Key="newFile">Создать файл...</system:String>
+    <system:String x:Key="open">Открыть</system:String>
+    <system:String x:Key="save">Сохранить</system:String>
+    <system:String x:Key="saveAs">Сохранить как...</system:String>
+    <system:String x:Key="exit">Выход из программы</system:String>
+
+    <!-- "Insert" menu section -->
+    <system:String x:Key="insert">Добавить</system:String>
+    <system:String x:Key="insertgroup">Добавить группу</system:String>
+    <system:String x:Key="insertobject">Добавить объект</system:String>
+
+    <!-- "About" menu section -->
+    <system:String x:Key="about">Справка</system:String>
+    <system:String x:Key="authors">Авторы</system:String>
+    <system:String x:Key="checkUpdates">Проверка на наличие обновлений</system:String>
+
+    <!-- Labels of listboxes -->
+    <system:String x:Key="groups">Группы:</system:String>
+    <system:String x:Key="objects">Объекты:</system:String>
+
+    <!-- Context menu labels -->
+    <system:String x:Key="rename">Переименовать</system:String>
+    <system:String x:Key="delete">Удалить</system:String>
+
+    <!-- Presets list in combobox -->
+    <system:String x:Key="unknown">Неизвестный/Ничего</system:String>
+    <system:String x:Key="flag">Флаг</system:String>
+    <system:String x:Key="flagparnik">Флаг (Пароход)</system:String>
+    <system:String x:Key="flagparnik2">Флаг (Пароход) #2</system:String>
+    <system:String x:Key="tree">Дерево</system:String>
+    <system:String x:Key="tree2">Дерево #2</system:String>
+    <system:String x:Key="tree3">Дерево #3</system:String>
+    <system:String x:Key="spruce">Ель</system:String>
+    <system:String x:Key="watercurtain">Вода/Занавесы</system:String>
+    <system:String x:Key="water2">Вода #2</system:String>
+    <system:String x:Key="clothes">Одежда</system:String>
+    <system:String x:Key="clothes2">Одежда #2</system:String>
+    <system:String x:Key="clotheswind">Одежда (на ветру)</system:String>
+    <system:String x:Key="clotheswind2">Одежда (на ветру) #2</system:String>
+    <system:String x:Key="signboard">Вывеска</system:String>
+    <system:String x:Key="signboard2">Вывеска #2</system:String>
+    <system:String x:Key="truck">Кузов грузовика (MISE09)</system:String>
+
+    <!-- Content of buttons -->
+    <system:String x:Key="applypreset">Применить пресет</system:String>
+    <system:String x:Key="applysettings">Применить настройки</system:String>
+
+    <!-- Title of groupbox and labels in it -->
+    <system:String x:Key="title">Параметры пресетов</system:String>
+
+    <system:String x:Key="objectscount">Кол-во объектов:</system:String>
+    <system:String x:Key="typeofanim">Тип анимации:</system:String>
+    <system:String x:Key="animfrq">Частота анимации:</system:String>
+    <system:String x:Key="unk1">Неизвестный параметр 1:</system:String>
+    <system:String x:Key="unk2">Неизвестный параметр 2:</system:String>
+    <system:String x:Key="unk3">Неизвестный параметр 3:</system:String>
+
+</ResourceDictionary>

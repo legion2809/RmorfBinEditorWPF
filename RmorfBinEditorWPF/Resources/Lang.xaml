@@ -1,0 +1,63 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+    <!-- "File" menu section -->
+    <system:String x:Key="file">File</system:String>
+    <system:String x:Key="newFile">New File...</system:String>
+    <system:String x:Key="open">Open</system:String>
+    <system:String x:Key="save">Save</system:String>
+    <system:String x:Key="saveAs">Save As...</system:String>
+    <system:String x:Key="exit">Exit</system:String>
+
+    <!-- "Insert" menu section -->
+    <system:String x:Key="insert">Insert</system:String>
+    <system:String x:Key="insertgroup">Insert Group</system:String>
+    <system:String x:Key="insertobject">Insert Object</system:String>
+
+    <!-- "About" menu section -->
+    <system:String x:Key="about">About</system:String>
+    <system:String x:Key="authors">Authors</system:String>
+    <system:String x:Key="checkUpdates">Check for updates</system:String>
+    
+    <!-- Labels of listboxes -->
+    <system:String x:Key="groups">Groups:</system:String>
+    <system:String x:Key="objects">Objects:</system:String>
+    
+    <!-- Context menu labels -->
+    <system:String x:Key="rename">Rename</system:String>
+    <system:String x:Key="delete">Delete</system:String>
+
+    <!-- Presets list in combobox -->
+    <system:String x:Key="unknown">Unknown/None</system:String>
+    <system:String x:Key="flag">Flag</system:String>
+    <system:String x:Key="flagparnik">Flag (Parnik)</system:String>
+    <system:String x:Key="flagparnik2">Flag (Parnik) #2</system:String>
+    <system:String x:Key="tree">Tree</system:String>
+    <system:String x:Key="tree2">Tree #2</system:String>
+    <system:String x:Key="tree3">Tree #3</system:String>
+    <system:String x:Key="spruce">Spruce</system:String>
+    <system:String x:Key="watercurtain">Water/Curtain</system:String>
+    <system:String x:Key="water2">Water #2</system:String>
+    <system:String x:Key="clothes">Clothes</system:String>
+    <system:String x:Key="clothes2">Clothes #2</system:String>
+    <system:String x:Key="clotheswind">Clothes (Strong Wind)</system:String>
+    <system:String x:Key="clotheswind2">Clothes (Strong Wind) #2</system:String>
+    <system:String x:Key="signboard">Signboard</system:String>
+    <system:String x:Key="signboard2">Signboard #2</system:String>
+    <system:String x:Key="truck">Truck (MISE09)</system:String>
+    
+    <!-- Content of buttons -->
+    <system:String x:Key="applypreset">Apply preset</system:String>
+    <system:String x:Key="applysettings">Apply settings</system:String>
+    
+    <!-- Title of groupbox and labels in it -->
+    <system:String x:Key="title">Presets Parameters</system:String>
+
+    <system:String x:Key="objectscount">Count of objects:</system:String>
+    <system:String x:Key="typeofanim">Type of animation:</system:String>
+    <system:String x:Key="animfrq">Frequency of animation:</system:String>
+    <system:String x:Key="unk1">Unknown parameter 1:</system:String>
+    <system:String x:Key="unk2">Unknown parameter 2:</system:String>
+    <system:String x:Key="unk3">Unknown parameter 3:</system:String>
+    
+</ResourceDictionary>

@@ -817,7 +817,7 @@
             </StackPanel>
         </GroupBox>
 
-        <Button x:Name="ApplyPresetButton" Content="Apply Preset" FontFamily="./#Aurora BdCn BT" FontSize="17" HorizontalAlignment="Left" Margin="423,80,0,0" VerticalAlignment="Top" Width="126" Grid.Column="2" Height="25" Click="ApplyPresetButton_Click" RenderTransformOrigin="0.524,1.155" Style="{DynamicResource ApplyPresetButtonStyle}"/>
+        <Button x:Name="ApplyPresetButton" Content="Apply preset" FontFamily="./#Aurora BdCn BT" FontSize="17" HorizontalAlignment="Left" Margin="423,80,0,0" VerticalAlignment="Top" Width="126" Grid.Column="2" Height="25" Click="ApplyPresetButton_Click" RenderTransformOrigin="0.524,1.155" Style="{DynamicResource ApplyPresetButtonStyle}"/>
         <Label Content="Groups:" HorizontalAlignment="Left" Margin="30,42,0,0" VerticalAlignment="Top" Height="35" Width="74" FontSize="22" FontWeight="Bold" FontFamily="./#Aurora BdCn BT"/>
         <Label Content="Objects:" HorizontalAlignment="Left" Margin="3,42,0,0" VerticalAlignment="Top" Height="35" Width="77" FontSize="22" FontWeight="Bold" FontFamily="./#Aurora BdCn BT" Grid.Column="1"/>
 
