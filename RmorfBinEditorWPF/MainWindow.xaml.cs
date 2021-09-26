@@ -11,6 +11,7 @@ using System.Net;
 using System.Diagnostics;
 using System.ComponentModel;
 using System.Globalization;
+using Newtonsoft.Json;
 
 namespace RmorfBinEditorWPF
 {
@@ -19,8 +20,10 @@ namespace RmorfBinEditorWPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        string CurrentVersion = "Beta 0.5.1";
+        string CurrentVersion = "Beta 0.6";
         string NewVersion = null;
+
+        string pastebin;
 
         MessageBoxResult res;
 
@@ -1389,7 +1392,10 @@ namespace RmorfBinEditorWPF
             {
                 WebClient WC = new WebClient();
 
-                NewVersion = WC.DownloadString("https://pastebin.com/raw/Rn6NX04n");
+                pastebin = WC.DownloadString("https://pastebin.com/raw/Rn6NX04n");
+                dynamic json = JsonConvert.DeserializeObject(pastebin);
+
+                NewVersion = json["latest_version"];
 
                 if (CurrentVersion != NewVersion) {
                     switch (App.Language.ToString()) {
