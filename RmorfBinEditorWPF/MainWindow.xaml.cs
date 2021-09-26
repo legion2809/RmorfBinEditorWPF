@@ -192,22 +192,6 @@ namespace RmorfBinEditorWPF
         #endregion
 
         #region Localization stuff
-        /*private void SetLanguage(string culture)
-        {
-            ResourceDictionary dict = new ResourceDictionary();
-
-            switch (culture) {
-                case "en-US":
-                    dict.Source = new Uri("..\\Resources\\Lang.xaml", UriKind.Relative);
-                    break;
-                case "ru-RU":
-                    dict.Source = new Uri("..\\Resources\\Lang.ru-RU.xaml", UriKind.Relative);
-                    break;
-            }
-
-            Application.Current.Resources.MergedDictionaries.Add(dict);
-        }*/
-
         private void LanguageChanged(object sender, EventArgs e)
         {
             CultureInfo curr_lang = App.Language;
@@ -284,8 +268,6 @@ namespace RmorfBinEditorWPF
                         break;
                 }
 
-                
-
                 switch (res) 
                 {
                     case MessageBoxResult.Yes:
@@ -335,20 +317,43 @@ namespace RmorfBinEditorWPF
                         byte[] sizeout = BitConverter.GetBytes(size);
                         bw.Write(sizeout, 0, 4);
                     }
-                    StatusLabel.Content = $"New file created, its location - ({path})";
+
+                    switch (App.Language.ToString()) {
+                        case "en-US":
+                            StatusLabel.Content = $"New file created, its location - ({path})";
+                            break;
+                        case "ru-RU":
+                            StatusLabel.Content = $"Создан новый файл, его местоположение - ({path})";
+                            break;
+                    }
 
                     EnableButtons();
 
                     discord.UpdatePresence("Editing a file");
                 }
                 catch (FormatException) {
-                    MessageBox.Show("Wrong type of data!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                    switch (App.Language.ToString()) {
+                        case "en-US":
+                            MessageBox.Show("Wrong type of data!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            break;
+                        case "ru-RU":
+                            MessageBox.Show("Неверный тип данных!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                            break;
+                    }
                     ErrorCatched();
                 }
             }
 
             ObjectsList.Items.Clear();
-            PresetsBox.Text = "Unknown/None";
+            switch (App.Language.ToString()) {
+                case "en-US":
+                    PresetsBox.Text = "Unknown/None";
+                    break;
+                case "ru-RU":
+                    PresetsBox.Text = "Неизвестный/Ничего";
+                    break;
+            }
             VisualizeGroup();
         }
 
@@ -399,31 +404,69 @@ namespace RmorfBinEditorWPF
                                     rgrouplist.Add(new RmorfBinGroup(grMc, grTOA, grFrq, grU3, grU4, grU5, obj_nameslist));
                                 }
 
-                                StatusLabel.Content = $"File opened - ({path})";
+                                switch (App.Language.ToString()) {
+                                    case "en-US":
+                                        StatusLabel.Content = $"File opened - ({path})";
+                                        break;
+                                    case "ru-RU":
+                                        StatusLabel.Content = $"Открыт файл - ({path})";
+                                        break;
+                                }
 
                                 EnableButtons();
 
                                 discord.UpdatePresence("Editing a file");
                             }
                             catch {
-                                MessageBox.Show("Couldn't parse!\nMaybe, you opened wrong file.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                                switch (App.Language.ToString()) {
+                                    case "en-US":
+                                        MessageBox.Show("Couldn't parse!\nMaybe, you opened wrong file.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                                        break;
+                                    case "ru-RU":
+                                        MessageBox.Show("Невозможно спарсить файл!\nВозможно, вы открыли не тот файл.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                                        break;
+                                }
                                 ErrorCatched();
                             }
                         }
                         else {
-                            MessageBox.Show("File is wrong!.\nWrong constant.", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                            switch (App.Language.ToString()) {
+                                case "en-US":
+                                    MessageBox.Show("File is wrong!.\nWrong constant.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                                    break;
+                                case "ru-RU":
+                                    MessageBox.Show("Неверный файл!.\nНеверная константа.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                                    break;
+                            }
                             ErrorCatched();
                         }
                     }
                 }
                 catch (Exception ex) {
-                    MessageBox.Show(ex.Message, "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                    switch (App.Language.ToString()) {
+                        case "en-US":
+                            MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            break;
+                        case "ru-RU":
+                            MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                            break;
+                    }
                     ErrorCatched();
                 }
             }
 
             ObjectsList.Items.Clear();
-            PresetsBox.Text = "Unknown/None";
+            switch (App.Language.ToString()) {
+                case "en-US":
+                    PresetsBox.Text = "Unknown/None";
+                    break;
+                case "ru-RU":
+                    PresetsBox.Text = "Неизвестный/Ничего";
+                    break;
+            }
             VisualizeGroup();
         }
 
@@ -464,18 +507,43 @@ namespace RmorfBinEditorWPF
                     bw.Write(sizeout, 0, 4);
                 }
                 isFileChanged = false;
-                StatusLabel.Content = $"File saved - ({path})";
+                
+
+                switch (App.Language.ToString()) {
+                    case "en-US":
+                        StatusLabel.Content = $"File saved - ({path})";
+                        break;
+                    case "ru-RU":
+                        StatusLabel.Content = $"Файл сохранен - ({path})";
+                        break;
+                }
             }
             catch (Exception ex) {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                switch (App.Language.ToString()) {
+                    case "en-US":
+                        MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        break;
+                    case "ru-RU":
+                        MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                        break;
+                }
             }
         }
 
         private void CreateFile_Click(object sender, RoutedEventArgs e)
         {
             if (isFileChanged) {
-                var res = MessageBox.Show("Do you wish save changes to " + path + "?",
-                    "rmorf.bin Editor", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
+                switch (App.Language.ToString()) {
+                    case "en-US":
+                        res = MessageBox.Show("Do you wish save changes to " + path + "?",
+                        "Rmorf.bin Editor", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
+                        break;
+
+                    case "ru-RU":
+                        res = MessageBox.Show("Хотите ли вы сохранить изменения в " + path + "?",
+                        "Rmorf.bin Editor", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
+                        break;
+                }
 
                 switch (res) {
                     case MessageBoxResult.Yes:
@@ -495,8 +563,17 @@ namespace RmorfBinEditorWPF
         private void OpenFile_Click(object sender, RoutedEventArgs e)
         {
             if (isFileChanged) {
-                var res = MessageBox.Show("Do you wish save changes to " + path + "?",
-                    "rmorf.bin Editor", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
+                switch (App.Language.ToString()) {
+                    case "en-US":
+                        res = MessageBox.Show("Do you wish save changes to " + path + "?",
+                        "Rmorf.bin Editor", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
+                        break;
+
+                    case "ru-RU":
+                        res = MessageBox.Show("Хотите ли вы сохранить изменения в " + path + "?",
+                        "Rmorf.bin Editor", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
+                        break;
+                }
 
                 switch (res) {
                     case MessageBoxResult.Yes:
@@ -562,10 +639,25 @@ namespace RmorfBinEditorWPF
                     }
 
                     isFileChanged = false;
-                    StatusLabel.Content = $"File successfully saved, its location - ({path})";
+
+                    switch (App.Language.ToString()) {
+                        case "en-US":
+                            StatusLabel.Content = $"File successfully saved, its location - ({path})";
+                            break;
+                        case "ru-RU":
+                            StatusLabel.Content = $"Файл успешно сохранен, его местоположение - ({path})";
+                            break;
+                    }
                 }
                 catch (Exception ex) {
-                    MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    switch (App.Language.ToString()) {
+                        case "en-US":
+                            MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            break;
+                        case "ru-RU":
+                            MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                            break;
+                    }
                 }
             }
         }
@@ -610,8 +702,16 @@ namespace RmorfBinEditorWPF
                 ObjectsList.Items.Clear();
                 PresetsBox.Text = "Unknown/None";
                 isFileChanged = true;
-                StatusLabel.Content = $"File changed - ({path}*)";
 
+                switch (App.Language.ToString()) {
+                    case "en-US":
+                        StatusLabel.Content = $"File changed - ({path}*)";
+                        break;
+                    case "ru-RU":
+                        StatusLabel.Content = $"Файл был изменен - ({path}*)";
+                        break;
+                }
+                
                 discord.UpdatePresence("Editing a file");
             }
         }
@@ -633,7 +733,7 @@ namespace RmorfBinEditorWPF
 
             if (rgrouplist != null && obj >= 0) {
                 string objname = Interaction.InputBox("Type the name of the new object:", "Insert Object", "Scene2.bin Object.Morfable Mesh");
-                if (objname == "") {
+                if (objname == string.Empty) {
                     MessageBox.Show("You haven't typed the name of the object!", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
                 else {
@@ -645,7 +745,14 @@ namespace RmorfBinEditorWPF
                     VisualizeObject(obj);
 
                     isFileChanged = true;
-                    StatusLabel.Content = $"File changed - ({path})*";
+                    switch (App.Language.ToString()) {
+                        case "en-US":
+                            StatusLabel.Content = $"File changed - ({path}*)";
+                            break;
+                        case "ru-RU":
+                            StatusLabel.Content = $"Файл был изменен - ({path}*)";
+                            break;
+                    }
 
                     discord.UpdatePresence("Editing a file");
                 }
@@ -665,7 +772,14 @@ namespace RmorfBinEditorWPF
                 ObjectsList.Items.Clear();
                 PresetsBox.Text = "Unknown/None";
                 isFileChanged = true;
-                StatusLabel.Content = $"File changed - ({path})*";
+                switch (App.Language.ToString()) {
+                    case "en-US":
+                        StatusLabel.Content = $"File changed - ({path}*)";
+                        break;
+                    case "ru-RU":
+                        StatusLabel.Content = $"Файл был изменен - ({path}*)";
+                        break;
+                }
             }
         }
 
@@ -684,7 +798,14 @@ namespace RmorfBinEditorWPF
                 VisualizeObject(group);
 
                 isFileChanged = true;
-                StatusLabel.Content = $"File changed - ({path})*";
+                switch (App.Language.ToString()) {
+                    case "en-US":
+                        StatusLabel.Content = $"File changed - ({path}*)";
+                        break;
+                    case "ru-RU":
+                        StatusLabel.Content = $"Файл был изменен - ({path}*)";
+                        break;
+                }
             }
         }
 
@@ -695,14 +816,21 @@ namespace RmorfBinEditorWPF
 
             if (rgrouplist != null && group >= 0 && obj >= 0) {
                 string new_name = Interaction.InputBox("Type the new name of the object:", "Rename Object", ObjectsList.SelectedItem.ToString());
-                if (new_name == null) {
+                if (new_name == string.Empty) {
                     MessageBox.Show("You haven't typed anything!", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
                 else {
                     rgrouplist[group].objNames[obj] = new_name;
                     VisualizeObject(group);
                     isFileChanged = true;
-                    StatusLabel.Content = $"File changed - ({path})*";
+                    switch (App.Language.ToString()) {
+                        case "en-US":
+                            StatusLabel.Content = $"File changed - ({path}*)";
+                            break;
+                        case "ru-RU":
+                            StatusLabel.Content = $"Файл был изменен - ({path}*)";
+                            break;
+                    }
                 }
             }
         }
@@ -907,10 +1035,24 @@ namespace RmorfBinEditorWPF
                     VisualizeComboBox();
 
                     isFileChanged = true;
-                    StatusLabel.Content = $"File changed - ({path})*";
+                    switch (App.Language.ToString()) {
+                        case "en-US":
+                            StatusLabel.Content = $"File changed - ({path}*)";
+                            break;
+                        case "ru-RU":
+                            StatusLabel.Content = $"Файл был изменен - ({path}*)";
+                            break;
+                    }
                 }
                 catch (Exception ex) {
-                    MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    switch (App.Language.ToString()) {
+                        case "en-US":
+                            MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            break;
+                        case "ru-RU":
+                            MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                            break;
+                    }
                 }
             }
         }
@@ -945,7 +1087,15 @@ namespace RmorfBinEditorWPF
         private void VisualizeObject(int selected)
         {
             ObjectsList.Items.Clear();
-            PresetsBox.Text = "Unknown/None";
+
+            switch (App.Language.ToString()) {
+                case "en-US":
+                    PresetsBox.Text = "Unknown/None";
+                    break;
+                case "ru-RU":
+                    PresetsBox.Text = "Неизвестный/Ничего";
+                    break;
+            }
 
             if (selected >= 0 && rgrouplist[selected].objNames != null) {
                 for (int i = 0; i < rgrouplist[selected].objNames.Count; i++) {
@@ -1050,7 +1200,6 @@ namespace RmorfBinEditorWPF
                     MessageBox.Show($"Rmorf.bin Editor {CurrentVersion}\nАвторы: Firefox3860, Smelson and Legion.\n(С) {DateTime.Now.Year}. Из России и Казахстана с любовью!", "О нас",
                     MessageBoxButton.OK, MessageBoxImage.Information);
                     break;
-
             }
         }
 
@@ -1102,7 +1251,14 @@ namespace RmorfBinEditorWPF
             }
             catch
             {
-                MessageBox.Show("Something went wrong!\nMaybe, your Internet connection is disabled.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                switch (App.Language.ToString()) {
+                    case "en-US":
+                        MessageBox.Show("Something went wrong!\nMaybe, your Internet connection is disabled.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        break;
+                    case "ru-RU":
+                        MessageBox.Show("Что-то не пошло не так!\nВозможно, у вас нет Интернет-соединения.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                        break;
+                }
             }
         }
 
