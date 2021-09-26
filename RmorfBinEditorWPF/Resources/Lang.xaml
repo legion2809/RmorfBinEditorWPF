@@ -35,6 +35,7 @@
     <system:String x:Key="flag">Flag</system:String>
     <system:String x:Key="flagparnik">Flag (Parnik)</system:String>
     <system:String x:Key="flagparnik2">Flag (Parnik) #2</system:String>
+    <system:String x:Key="racing">Flag (Racing Circuit)</system:String>
     <system:String x:Key="tree">Tree</system:String>
     <system:String x:Key="tree2">Tree #2</system:String>
     <system:String x:Key="tree3">Tree #3</system:String>

@@ -35,6 +35,7 @@
     <system:String x:Key="flag">Флаг</system:String>
     <system:String x:Key="flagparnik">Флаг (Пароход)</system:String>
     <system:String x:Key="flagparnik2">Флаг (Пароход) #2</system:String>
+    <system:String x:Key="racing">Флаг (Гоночный Трек)</system:String>
     <system:String x:Key="tree">Дерево</system:String>
     <system:String x:Key="tree2">Дерево #2</system:String>
     <system:String x:Key="tree3">Дерево #3</system:String>

@@ -787,6 +787,7 @@
             <ComboBoxItem Content="{DynamicResource flag}" BorderThickness="0"/>
             <ComboBoxItem Content="{DynamicResource flagparnik}" BorderThickness="0"/>
             <ComboBoxItem Content="{DynamicResource flagparnik2}" BorderThickness="0"/>
+            <ComboBoxItem Content="{DynamicResource racing}" BorderThickness="0"/>
             <ComboBoxItem Content="{DynamicResource tree}" BorderThickness="0"/>
             <ComboBoxItem Content="{DynamicResource tree2}" BorderThickness="0"/>
             <ComboBoxItem Content="{DynamicResource tree3}" BorderThickness="0"/>
@@ -802,7 +803,7 @@
             <ComboBoxItem Content="{DynamicResource truck}" BorderThickness="0"/>
         </ComboBox>
 
-        <GroupBox HorizontalAlignment="Left" Height="321" Margin="191,132,0,0" VerticalAlignment="Top" Width="358" Grid.Column="2" FontSize="18" Style="{DynamicResource GroupBoxStyle}">
+        <GroupBox HorizontalAlignment="Left" Height="326" Margin="191,132,0,0" VerticalAlignment="Top" Width="358" Grid.Column="2" FontSize="18" Style="{DynamicResource GroupBoxStyle}">
             <GroupBox.Header>
                 <Label FontWeight="Bold" FontFamily="./#ApicalC" FontSize="22" Content="{DynamicResource title}"/>
             </GroupBox.Header>
@@ -813,7 +814,7 @@
                 <Label Content="{DynamicResource unk1}" FontFamily="./#ApicalC" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="17"/>
                 <Label Content="{DynamicResource unk2}" FontFamily="./#ApicalC" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="17"/>
                 <Label Content="{DynamicResource unk3}" FontFamily="./#ApicalC" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="17"/>
-                <Button x:Name="ApplySettingsButton" FontFamily="./#ApicalC" Content="{DynamicResource applysettings}" Margin="90,11,90,0" RenderTransformOrigin="-0.027,0.499" Click="ApplyPresetSettings_Click" Width="145" Height="25" FontSize="17" IsEnabled="False" Style="{DynamicResource ApplySettingsButtonStyle}">
+                <Button x:Name="ApplySettingsButton" FontFamily="./#ApicalC" Content="{DynamicResource applysettings}" Margin="86,11,82,0" RenderTransformOrigin="-0.027,0.499" Click="ApplyPresetSettings_Click" Height="25" FontSize="17" IsEnabled="False" Style="{DynamicResource ApplySettingsButtonStyle}">
                     <Button.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -851,12 +852,12 @@
             </MenuItem>
         </Menu>
 
-        <TextBox x:Name="CountOfObjects" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="386,179,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False" Style="{DynamicResource CountOfObjectsStyle}"/>
-        <TextBox x:Name="TypeOfAnim" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="386,218,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Style="{DynamicResource TypeOfAnimStyle}"/>
-        <TextBox x:Name="AnimFrq" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="386,258,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Style="{DynamicResource AnimFrqStyle}"/>
-        <TextBox x:Name="Unk1" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="386,297,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Style="{DynamicResource Unk1Style}"/>
-        <TextBox x:Name="Unk2" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="386,336,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Style="{DynamicResource Unk2Style}"/>
-        <TextBox x:Name="Unk3" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="386,374,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Style="{DynamicResource Unk3Style}"/>
+        <TextBox x:Name="CountOfObjects" FontFamily="./#ApicalC" FontSize="17" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="386,182,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False" Style="{DynamicResource CountOfObjectsStyle}"/>
+        <TextBox x:Name="TypeOfAnim" FontFamily="./#ApicalC" FontSize="17" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="386,221,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Style="{DynamicResource TypeOfAnimStyle}"/>
+        <TextBox x:Name="AnimFrq" FontFamily="./#ApicalC" FontSize="17" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="386,262,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Style="{DynamicResource AnimFrqStyle}"/>
+        <TextBox x:Name="Unk1" FontFamily="./#ApicalC" FontSize="17" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="386,302,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Style="{DynamicResource Unk1Style}"/>
+        <TextBox x:Name="Unk2" FontFamily="./#ApicalC" FontSize="17" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="386,341,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Style="{DynamicResource Unk2Style}"/>
+        <TextBox x:Name="Unk3" FontFamily="./#ApicalC" FontSize="17" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="386,381,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Style="{DynamicResource Unk3Style}"/>
         <Label x:Name="StatusLabel" HorizontalAlignment="Left" Margin="30,458,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.096,-0.191" FontSize="18" Width="968" Grid.ColumnSpan="3" FontFamily="./#ApicalC" Height="33"/>
 
 
