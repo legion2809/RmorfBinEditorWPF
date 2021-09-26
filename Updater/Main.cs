@@ -10,11 +10,17 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using System.Net;
 using System.IO;
+using System.Threading;
+using Newtonsoft.Json;
+using System.IO.Compression;
 
 namespace Updater
 {
     public partial class Main : Form
     {
+        string pastebin;
+        string link;
+
         public Main()
         {
             InitializeComponent();
@@ -26,13 +32,20 @@ namespace Updater
             {
                 this.Visible = false;
 
+                Thread.Sleep(300);
+
                 WebClient WC = new WebClient();
 
-                WC.DownloadFile("https://github.com/legion2809/RmorfBinEditorWPF/blob/main/RmorfBinEditorWPF/Version%20for%20Updater/Rmorf.bin%20Editor.exe?raw=true", "Rmorf.bin Editor New.exe");
+                pastebin = WC.DownloadString("https://pastebin.com/raw/Rn6NX04n");
 
-                File.Move("Rmorf.bin Editor.exe", "Rmorf.bin Editor.exe.old");
+                dynamic json = JsonConvert.DeserializeObject(pastebin);
+                link = json["link"];
 
-                File.Move("Rmorf.bin Editor New.exe", "Rmorf.bin Editor.exe");
+                WC.DownloadFile(link, "Rmorf.bin Editor.zip");
+
+                ZipFile.ExtractToDirectory("Rmorf.bin Editor.zip", @"./extract");
+
+                File.Delete("Rmorf.bin Editor.zip");
 
                 Process.Start("Rmorf.bin Editor.exe");
 
