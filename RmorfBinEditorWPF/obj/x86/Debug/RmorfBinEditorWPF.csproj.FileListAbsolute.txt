@@ -36,7 +36,10 @@ E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\RmorfBinEditorWPF\obj\x86\
 E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\RmorfBinEditorWPF\obj\x86\Debug\RmorfBinEditorWPF.csproj.CopyComplete
 E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\RmorfBinEditorWPF\obj\x86\Debug\RmorfBinEditorWPF.exe
 E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\RmorfBinEditorWPF\obj\x86\Debug\RmorfBinEditorWPF.pdb
-C:\Program Files (x86)\!Mafia Projects, since 2021\RmorfBinEditorWPF\RmorfBinEditorWPF\obj\x86\Debug\RmorfBinEditorWPF.csproj.CopyComplete
 E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\RmorfBinEditorWPF\obj\x86\Debug\Resources\Lang.ru-RU.baml
 E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\RmorfBinEditorWPF\obj\x86\Debug\Resources\Lang.baml
 E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\RmorfBinEditorWPF\obj\x86\Debug\App.baml
+C:\Program Files (x86)\!Mafia Projects, since 2021\RmorfBinEditorWPF\RmorfBinEditorWPF\obj\x86\Debug\RmorfBinEditorWPF.csproj.AssemblyReference.cache
+C:\Program Files (x86)\!Mafia Projects, since 2021\RmorfBinEditorWPF\RmorfBinEditorWPF\obj\x86\Debug\Resources\Lang.ru-RU.baml
+C:\Program Files (x86)\!Mafia Projects, since 2021\RmorfBinEditorWPF\RmorfBinEditorWPF\obj\x86\Debug\Resources\Lang.baml
+C:\Program Files (x86)\!Mafia Projects, since 2021\RmorfBinEditorWPF\RmorfBinEditorWPF\obj\x86\Debug\App.baml
