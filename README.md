@@ -5,7 +5,7 @@ Rmorf.bin Editor is a program which purposed to animate morph objects in Mafia: 
 * Flags (MISE10-LETISTE, MISE16-LETISTE, MISE14-PARNIK, MISE06-AUTODROM)
 * Water (MISE15-PRISTAV, MISE18-PRISTAV)
 * Trees (MISE09-PREJIMKA)
-* Clothes (MIS,E13-ZRADCE)
+* Clothes (MISE13-ZRADCE)
 * Signboards (MISE04-MOTOREST)
 * Truck's carcass (MISE09-PREJIMKA, MISE09-KRAJINA), etc.
 
