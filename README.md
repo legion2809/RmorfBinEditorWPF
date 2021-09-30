@@ -25,6 +25,9 @@ Rmorf.bin Editor is a program which purposed to animate morph objects in Mafia: 
 * `Ctrl + Alt + S` - Save as...
 * `Ctrl + G` - Insert group
 * `Ctrl + J` - Insert object
+* `Ctrl + Del` - Delete group
+* `Del` - Delete object
+* `F2` - Rename object
 * `F1` - About us
 * `Alt + F4` - you know what does it mean ;)
 
