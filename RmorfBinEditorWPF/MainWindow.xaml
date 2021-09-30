@@ -752,6 +752,9 @@
         <CommandBinding Command="{x:Static local:MainWindow.saveAsCommand}" CanExecute="SaveAs_CanExecute" Executed="SaveAs_Executed"/>
         <CommandBinding Command="{x:Static local:MainWindow.insertGroup}" CanExecute="InsertGroup_CanExecute" Executed="InsertGroup_Executed"/>
         <CommandBinding Command="{x:Static local:MainWindow.insertObject}" CanExecute="InsertObject_CanExecute" Executed="InsertObject_Executed"/>
+        <CommandBinding Command="{x:Static local:MainWindow.renameCommand}" CanExecute="RenameObject_CanExecute" Executed="RenameObject_Executed"/>
+        <CommandBinding Command="{x:Static local:MainWindow.deleteObjectCommand}" CanExecute="DeleteObject_CanExecute" Executed="DeleteObject_Executed"/>
+        <CommandBinding Command="{x:Static local:MainWindow.deleteGroupCommand}" CanExecute="DeleteGroup_CanExecute" Executed="DeleteGroup_Executed"/>
     </Window.CommandBindings>
 
     <Window.InputBindings>
@@ -768,7 +771,7 @@
         <ListBox x:Name="GroupsList" FontFamily="./#ApicalC" FontSize="18" HorizontalAlignment="Left" Height="371" Margin="30,82,0,0" VerticalAlignment="Top" Width="251" SelectionChanged="GroupsList_SelectionChanged" Style="{DynamicResource GroupsListStyle}">
             <ListBox.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Header="{DynamicResource delete}" Click="DeleteGroup_Click"/>
+                    <MenuItem x:Name="DeleteGroup" Header="{DynamicResource delete}" Click="DeleteGroup_Click" InputGestureText="Ctrl + Del"/>
                 </ContextMenu>
             </ListBox.ContextMenu>
         </ListBox>
@@ -776,8 +779,8 @@
         <ListBox x:Name="ObjectsList" FontFamily="./#ApicalC" FontSize="18" HorizontalAlignment="Left" Height="371" Margin="3,82,0,0" VerticalAlignment="Top" Width="251" Grid.ColumnSpan="2" Grid.Column="1" Style="{DynamicResource ObjectsListStyle}">
             <ListBox.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Header="{DynamicResource rename}" Click="RenameObject_Click"/>
-                    <MenuItem Header="{DynamicResource delete}" Click="DeleteObject_Click"/>
+                    <MenuItem x:Name="RenameObject" Header="{DynamicResource rename}" Click="RenameObject_Click" InputGestureText="F2"/>
+                    <MenuItem x:Name="DeleteObject" Header="{DynamicResource delete}" Click="DeleteObject_Click" InputGestureText="Del"/>
                 </ContextMenu>
             </ListBox.ContextMenu>
         </ListBox>

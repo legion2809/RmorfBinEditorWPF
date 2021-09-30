@@ -22,7 +22,7 @@ namespace RmorfBinEditorWPF
     {
         #region Main variables
         // Version control system :D
-        string CurrentVersion = "Beta 0.6";
+        string CurrentVersion = "1.0.1";
         string NewVersion = null;
 
         string pastebin; // Will contains the link to latest ver. of program
@@ -56,6 +56,10 @@ namespace RmorfBinEditorWPF
         public static RoutedCommand insertGroup = new RoutedCommand();
         public static RoutedCommand insertObject = new RoutedCommand();
 
+        public static RoutedCommand renameCommand = new RoutedCommand();
+        public static RoutedCommand deleteObjectCommand = new RoutedCommand();
+        public static RoutedCommand deleteGroupCommand = new RoutedCommand();
+
         public static RoutedCommand aboutCommand = new RoutedCommand();
 
         public MainWindow()
@@ -86,6 +90,9 @@ namespace RmorfBinEditorWPF
 
             insertGroup.InputGestures.Add(new KeyGesture(Key.G, ModifierKeys.Control));
             insertObject.InputGestures.Add(new KeyGesture(Key.J, ModifierKeys.Control));
+            renameCommand.InputGestures.Add(new KeyGesture(Key.F2));
+            deleteGroupCommand.InputGestures.Add(new KeyGesture(Key.Delete, ModifierKeys.Control));
+            deleteObjectCommand.InputGestures.Add(new KeyGesture(Key.Delete));
         }
 
         // "New File..."
@@ -142,7 +149,7 @@ namespace RmorfBinEditorWPF
             SaveAs.RaiseEvent(new RoutedEventArgs(MenuItem.ClickEvent));
         }
 
-        // Insert group
+        // Insert and delete group
         private void InsertGroup_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             if (Save.IsEnabled == false) {
@@ -158,7 +165,17 @@ namespace RmorfBinEditorWPF
             InsertGroup.RaiseEvent(new RoutedEventArgs(MenuItem.ClickEvent));
         }
 
-        // Insert object
+        private void DeleteGroup_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void DeleteGroup_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            DeleteGroup.RaiseEvent(new RoutedEventArgs(MenuItem.ClickEvent));
+        }
+
+        // Insert, delete and rename object
         private void InsertObject_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             if (Save.IsEnabled == false) {
@@ -172,6 +189,26 @@ namespace RmorfBinEditorWPF
         private void InsertObject_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             InsertObject.RaiseEvent(new RoutedEventArgs(MenuItem.ClickEvent));
+        }
+
+        private void RenameObject_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void DeleteObject_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void DeleteObject_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            DeleteObject.RaiseEvent(new RoutedEventArgs(MenuItem.ClickEvent));
+        }
+
+        private void RenameObject_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            RenameObject.RaiseEvent(new RoutedEventArgs(MenuItem.ClickEvent));
         }
 
         // About
