@@ -817,16 +817,7 @@
                 <Label Content="{DynamicResource unk1}" FontFamily="./#ApicalC" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="17"/>
                 <Label Content="{DynamicResource unk2}" FontFamily="./#ApicalC" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="17"/>
                 <Label Content="{DynamicResource unk3}" FontFamily="./#ApicalC" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="17"/>
-                <Button x:Name="ApplySettingsButton" FontFamily="./#ApicalC" Content="{DynamicResource applysettings}" Margin="86,11,82,0" RenderTransformOrigin="-0.027,0.499" Click="ApplyPresetSettings_Click" Height="25" FontSize="17" IsEnabled="False" Style="{DynamicResource ApplySettingsButtonStyle}">
-                    <Button.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform/>
-                            <SkewTransform/>
-                            <RotateTransform Angle="0.376"/>
-                            <TranslateTransform/>
-                        </TransformGroup>
-                    </Button.RenderTransform>
-                </Button>
+                <Button x:Name="ApplySettingsButton" FontFamily="./#ApicalC" Content="{DynamicResource applysettings}" Margin="86,11,76,0" RenderTransformOrigin="-0.027,0.499" Click="ApplyPresetSettings_Click" Height="25" FontSize="17" IsEnabled="False" Style="{DynamicResource ApplySettingsButtonStyle}"/>
             </StackPanel>
         </GroupBox>
 
