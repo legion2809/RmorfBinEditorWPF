@@ -48,3 +48,8 @@ C:\Program Files (x86)\!Mafia Projects, since 2021\RmorfBinEditorWPF\RmorfBinEdi
 C:\Program Files (x86)\!Mafia Projects, since 2021\RmorfBinEditorWPF\RmorfBinEditorWPF\bin\x86\Release\DotNetZip.pdb
 C:\Program Files (x86)\!Mafia Projects, since 2021\RmorfBinEditorWPF\RmorfBinEditorWPF\bin\x86\Release\DotNetZip.xml
 C:\Program Files (x86)\!Mafia Projects, since 2021\RmorfBinEditorWPF\RmorfBinEditorWPF\obj\x86\Release\RmorfBinEditorWPF.csproj.CopyComplete
+E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\RmorfBinEditorWPF\bin\x86\Release\DotNetZip.dll
+E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\RmorfBinEditorWPF\bin\x86\Release\Newtonsoft.Json.dll
+E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\RmorfBinEditorWPF\bin\x86\Release\DotNetZip.pdb
+E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\RmorfBinEditorWPF\bin\x86\Release\DotNetZip.xml
+E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\RmorfBinEditorWPF\bin\x86\Release\Newtonsoft.Json.xml

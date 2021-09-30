@@ -41,3 +41,8 @@ E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\RmorfBinEditorWPF\obj\Debu
 E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\RmorfBinEditorWPF\obj\Debug\Resources\Lang.baml
 E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\RmorfBinEditorWPF\obj\Debug\App.baml
 E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\RmorfBinEditorWPF\obj\Debug\RmorfBinEditorWPF.csproj.AssemblyReference.cache
+E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\RmorfBinEditorWPF\bin\Debug\DotNetZip.dll
+E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\RmorfBinEditorWPF\bin\Debug\Newtonsoft.Json.dll
+E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\RmorfBinEditorWPF\bin\Debug\DotNetZip.pdb
+E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\RmorfBinEditorWPF\bin\Debug\DotNetZip.xml
+E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\RmorfBinEditorWPF\bin\Debug\Newtonsoft.Json.xml
