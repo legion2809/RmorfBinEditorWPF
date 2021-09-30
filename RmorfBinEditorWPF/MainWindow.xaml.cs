@@ -20,14 +20,16 @@ namespace RmorfBinEditorWPF
     /// </summary>
     public partial class MainWindow : Window
     {
+        #region Main variables
+        // Version control system :D
         string CurrentVersion = "Beta 0.6";
         string NewVersion = null;
 
-        string pastebin;
+        string pastebin; // Will contains the link to latest ver. of program
 
-        MessageBoxResult res;
+        MessageBoxResult res; // For alerting windows
 
-        RmorfBinHead rhead;
+        RmorfBinHead rhead; // Rmorf.bin file's header's preferences
         List<RmorfBinGroup> rgrouplist; // Will contains groups' list that have been created
 
         // For Discord RPC stuff
@@ -45,6 +47,7 @@ namespace RmorfBinEditorWPF
         private uint grMc, grTOA, grFrq, grU3, grU4, grU5; // RmorfBinGroup preferences
         private List<string> obj_nameslist; // For storing object names' list
         private bool isFileChanged; // For logging file's changing
+        #endregion
 
         #region Shortcut keys for "Save", "Open" and etc.
         public static RoutedCommand exitCommand = new RoutedCommand();
@@ -81,8 +84,8 @@ namespace RmorfBinEditorWPF
             exitCommand.InputGestures.Add(new KeyGesture(Key.F4, ModifierKeys.Alt));
             aboutCommand.InputGestures.Add(new KeyGesture(Key.F1));
 
-            insertGroup.InputGestures.Add(new KeyGesture(Key.G, ModifierKeys.Alt));
-            insertObject.InputGestures.Add(new KeyGesture(Key.O, ModifierKeys.Alt));
+            insertGroup.InputGestures.Add(new KeyGesture(Key.G, ModifierKeys.Control));
+            insertObject.InputGestures.Add(new KeyGesture(Key.J, ModifierKeys.Control));
         }
 
         // "New File..."

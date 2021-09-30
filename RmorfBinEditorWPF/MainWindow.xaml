@@ -842,8 +842,8 @@
                 <MenuItem x:Name="Exit" Header="{DynamicResource exit}" Click="Exit_Click" FontFamily="./#ApicalC"/>
             </MenuItem>
             <MenuItem Header="{DynamicResource insert}" FontSize="18" Margin="0" FontFamily="./#ApicalC">
-                <MenuItem x:Name="InsertGroup" Header="{DynamicResource insertgroup}" InputGestureText="Alt + G" Margin="0,0,0,3" Click="InsertGroup_Click" IsEnabled="False" FontFamily="./#ApicalC"/>
-                <MenuItem x:Name="InsertObject" Header="{DynamicResource insertobject}" InputGestureText="Alt + O" Click="InsertObject_Click" IsEnabled="False" FontFamily="./#ApicalC"/>
+                <MenuItem x:Name="InsertGroup" Header="{DynamicResource insertgroup}" InputGestureText="Ctrl + G" Margin="0,0,0,3" Click="InsertGroup_Click" IsEnabled="False" FontFamily="./#ApicalC"/>
+                <MenuItem x:Name="InsertObject" Header="{DynamicResource insertobject}" InputGestureText="Ctrl + J" Click="InsertObject_Click" IsEnabled="False" FontFamily="./#ApicalC"/>
             </MenuItem>
             <MenuItem x:Name="SwitchLang" Header="{DynamicResource switchlang}" FontFamily="./#ApicalC" FontSize="18"/>
             <MenuItem Header="{DynamicResource about}" FontSize="18" Margin="3,0,0,0" FontFamily="./#ApicalC">
