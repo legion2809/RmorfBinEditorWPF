@@ -1,6 +1,8 @@
 # Rmorf.bin Editor
 Rmorf.bin Editor is a program which purposed to animate morph objects in Mafia: TCOLH
 
+One more important thing: **this program will support only Windows 10 and Windows 11**.
+
 ## What is morph objects?
 * Flags (MISE10-LETISTE, MISE16-LETISTE, MISE14-PARNIK, MISE06-AUTODROM)
 * Water (MISE15-PRISTAV, MISE18-PRISTAV)
