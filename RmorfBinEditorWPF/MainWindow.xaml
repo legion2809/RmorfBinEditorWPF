@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:RmorfBinEditorWPF"
         xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2" x:Class="RmorfBinEditorWPF.MainWindow"
         mc:Ignorable="d"
-        Title="Rmorf.bin Editor" Height="530.124" Width="1029.681" FontSize="14" ResizeMode="NoResize" Icon="Untitled-1_1.ico"
+        Title="Rmorf.bin Editor" Height="530.124" Width="1029.681" FontSize="14" ResizeMode="CanMinimize" Icon="Untitled-1_1.ico"
         Loaded="Window_Loaded"
         Closed="Window_Closed"
         Closing="Window_Closing">
