@@ -22,7 +22,7 @@ namespace RmorfBinEditorWPF
     {
         #region Main variables
         // Version control system :D
-        string CurrentVersion = "1.0.1";
+        string CurrentVersion = "1.0.2";
         string NewVersion = null;
 
         string pastebin; // Will contains the link to latest ver. of program
@@ -601,7 +601,7 @@ namespace RmorfBinEditorWPF
                 switch (res) {
                     case MessageBoxResult.Yes:
                         SaveFile();
-                        OpenFile();
+                        CreateFile();
                         break;
                     case MessageBoxResult.No:
                         CreateFile();
