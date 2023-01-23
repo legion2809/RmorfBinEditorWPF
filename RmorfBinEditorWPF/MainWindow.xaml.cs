@@ -906,7 +906,7 @@ namespace RmorfBinEditorWPF
                         new_name = Interaction.InputBox("Type the new name of the object:", "Rename Object", ObjectsList.SelectedItem.ToString());
                         break;
                     case "ru-RU":
-                        new_name = Interaction.InputBox("Введите новое имя объекта:", "Переименовать объект", "Scene2.bin Object.Morfable Mesh");
+                        new_name = Interaction.InputBox("Введите новое имя объекта:", "Переименовать объект", ObjectsList.SelectedItem.ToString());
                         break;
                 }
 
