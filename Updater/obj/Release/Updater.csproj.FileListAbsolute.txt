@@ -23,3 +23,11 @@ C:\Program Files (x86)\!Mafia Projects, since 2021\RmorfBinEditorWPF\Updater\bin
 C:\Program Files (x86)\!Mafia Projects, since 2021\RmorfBinEditorWPF\Updater\bin\Release\Newtonsoft.Json.xml
 C:\Program Files (x86)\!Mafia Projects, since 2021\RmorfBinEditorWPF\Updater\obj\Release\Updater.csproj.CopyComplete
 C:\Program Files (x86)\!Mafia Projects, since 2021\RmorfBinEditorWPF\Updater\obj\Release\Updater.csproj.AssemblyReference.cache
+E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\Updater\bin\Release\DotNetZip.dll
+E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\Updater\bin\Release\Newtonsoft.Json.dll
+E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\Updater\bin\Release\DotNetZip.pdb
+E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\Updater\bin\Release\DotNetZip.xml
+E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\Updater\bin\Release\Newtonsoft.Json.xml
+E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\Updater\obj\Release\Updater.csproj.AssemblyReference.cache
+E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\Updater\obj\Release\Updater.csproj.SuggestedBindingRedirects.cache
+E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\Updater\obj\Release\Updater.csproj.CopyComplete
