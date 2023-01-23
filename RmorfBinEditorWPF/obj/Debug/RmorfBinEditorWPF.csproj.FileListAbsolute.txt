@@ -46,3 +46,4 @@ E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\RmorfBinEditorWPF\bin\Debu
 E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\RmorfBinEditorWPF\bin\Debug\DotNetZip.pdb
 E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\RmorfBinEditorWPF\bin\Debug\DotNetZip.xml
 E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\RmorfBinEditorWPF\bin\Debug\Newtonsoft.Json.xml
+E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\RmorfBinEditorWPF\obj\Debug\RmorfBinEditorWPF.csproj.SuggestedBindingRedirects.cache
