@@ -22,7 +22,7 @@ namespace RmorfBinEditorWPF
     {
         #region Main variables
         // Version control system :D
-        string CurrentVersion = "1.0.2";
+        string CurrentVersion = "1.0.3";
         string NewVersion = null;
 
         string pastebin; // Will contains the link to latest ver. of program
