@@ -771,7 +771,7 @@
         <ListBox x:Name="GroupsList" FontFamily="./#ApicalC" FontSize="18" HorizontalAlignment="Left" Height="371" Margin="30,82,0,0" VerticalAlignment="Top" Width="251" SelectionChanged="GroupsList_SelectionChanged" Style="{DynamicResource GroupsListStyle}">
             <ListBox.ContextMenu>
                 <ContextMenu>
-                    <MenuItem x:Name="DeleteGroup" Header="{DynamicResource delete}" Click="DeleteGroup_Click" InputGestureText="Ctrl + Del"/>
+                    <MenuItem x:Name="DeleteGroup" Header="{DynamicResource delete}" FontFamily="./#ApicalC" FontSize="18" Click="DeleteGroup_Click" InputGestureText="Ctrl + Del"/>
                 </ContextMenu>
             </ListBox.ContextMenu>
         </ListBox>
@@ -779,8 +779,8 @@
         <ListBox x:Name="ObjectsList" FontFamily="./#ApicalC" FontSize="18" HorizontalAlignment="Left" Height="371" Margin="3,82,0,0" VerticalAlignment="Top" Width="251" Grid.ColumnSpan="2" Grid.Column="1" Style="{DynamicResource ObjectsListStyle}">
             <ListBox.ContextMenu>
                 <ContextMenu>
-                    <MenuItem x:Name="RenameObject" Header="{DynamicResource rename}" Click="RenameObject_Click" InputGestureText="F2"/>
-                    <MenuItem x:Name="DeleteObject" Header="{DynamicResource delete}" Click="DeleteObject_Click" InputGestureText="Del"/>
+                    <MenuItem x:Name="RenameObject" FontFamily="./#ApicalC" FontSize="18" Header="{DynamicResource rename}" Click="RenameObject_Click" InputGestureText="F2"/>
+                    <MenuItem x:Name="DeleteObject" FontFamily="./#ApicalC" FontSize="18" Header="{DynamicResource delete}" Click="DeleteObject_Click" InputGestureText="Del"/>
                 </ContextMenu>
             </ListBox.ContextMenu>
         </ListBox>
