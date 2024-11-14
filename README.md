@@ -3,12 +3,12 @@ Rmorf.bin Editor is a program which purposed to animate morph objects in "Mafia:
 
 *Basically, this program should work properly only on Windows 10, 11.*
 
-## What are morph objects?
-* Flags (MISE10-LETISTE, MISE16-LETISTE, MISE14-PARNIK, MISE06-AUTODROM)
-* Water (MISE15-PRISTAV, MISE18-PRISTAV)
-* Trees (MISE09-PREJIMKA)
-* Clothes (MISE13-ZRADCE)
-* Signboards (MISE04-MOTOREST)
+## Which objects are considered as "morph objects"?
+* Flags (MISE10-LETISTE, MISE16-LETISTE, MISE14-PARNIK, MISE06-AUTODROM);
+* Water (MISE15-PRISTAV, MISE18-PRISTAV);
+* Trees (MISE09-PREJIMKA);
+* Clothes (MISE13-ZRADCE);
+* Signboards (MISE04-MOTOREST);
 * Truck's carcass (MISE09-PREJIMKA, MISE09-KRAJINA), etc.
 
 ### An example:
@@ -36,9 +36,9 @@ Rmorf.bin Editor is a program which purposed to animate morph objects in "Mafia:
 ## Self-updater
 The program has a self-updater, so you don't need to download the program manually from the repository's "Releases" section.
 
-Usage: 
+*Usage:* 
 1. Open the Editor, go to `About` - `Check for updates`;
-2. If the new of version is available, you can update the program whenever you want.
+2. If the new version is available, you can update the program whenever you want.
 
 ## Supported languages
 
@@ -49,4 +49,4 @@ Any other languages can be added someday, definitely.
 ## Special thanks to:
 - **Firefox3860** - huge contribution (Base of the program)
 - **Asa** - for testing, bugreports, advices and .GIF images.
-- **Mafia Community** - for being so loyal to the wondeful game such as Mafia: The City of Lost Heaven.
+- **Mafia Community** - for being so loyal to the wondeful game such as "Mafia: The City of Lost Heaven".
