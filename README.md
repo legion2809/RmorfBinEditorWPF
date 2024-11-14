@@ -1,9 +1,9 @@
 # Rmorf.bin Editor
-Rmorf.bin Editor is a program which purposed to animate morph objects in Mafia: TCOLH
+Rmorf.bin Editor is a program which purposed to animate morph objects in "Mafia: The City of Lost Heaven".
 
 *Basically, this program should work properly only on Windows 10, 11.*
 
-## What is morph objects?
+## What are morph objects?
 * Flags (MISE10-LETISTE, MISE16-LETISTE, MISE14-PARNIK, MISE06-AUTODROM)
 * Water (MISE15-PRISTAV, MISE18-PRISTAV)
 * Trees (MISE09-PREJIMKA)
@@ -15,10 +15,10 @@ Rmorf.bin Editor is a program which purposed to animate morph objects in Mafia: 
 
 ![Witam](https://raw.githubusercontent.com/legion2809/RmorfBinEditorWPF/main/Gifs/AMflag1.gif)
 
-## What can it do?
-* Create a file from scratch
-* Open a file and change it (changing groups, adding objects in them, etc.)
-* Save a file after changes
+## What can this program do?
+* Create a file (rmorf.bin) from scratch
+* Open a file and edit it (changing groups, adding objects in them, etc.)
+* Save a file after made changes
 
 ## Hotkeys
 * `Ctrl + N` - New file
@@ -33,20 +33,20 @@ Rmorf.bin Editor is a program which purposed to animate morph objects in Mafia: 
 * `F1` - About us
 * `Alt + F4` - you know what does it mean ;)
 
-## Self-Updater
-The program has a Self-Updater.
+## Self-updater
+The program has a self-updater, so you don't need to download the program manually from the repository's "Releases" section.
 
 Usage: 
-1. Open the Editor, go to `About` - `Check for updates`
-2. If it has found a new version, you can update whenever you want.
+1. Open the Editor, go to `About` - `Check for updates`;
+2. If the new of version is available, you can update the program whenever you want.
 
 ## Supported languages
 
-At the moment it supports English and Russian languages.
+At the moment "Rmorf.bin Editor" supports English and Russian languages.
 
-Any other languages can be added in the future.
+Any other languages can be added someday, definitely.
 
-## Special thanks
-- **Firefox3860** - Huge contribution (Base of the program)
-- **Asa** -  For testing, bugreports, advices and .GIF images.
-- **Mafia Community** - For being so loyal to the Mafia Game
+## Special thanks to:
+- **Firefox3860** - huge contribution (Base of the program)
+- **Asa** - for testing, bugreports, advices and .GIF images.
+- **Mafia Community** - for being so loyal to the wondeful game such as Mafia: The City of Lost Heaven.
