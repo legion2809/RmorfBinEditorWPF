@@ -1,0 +1,16 @@
+# Build results
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+[Ff]onts/
+[Ii]con/
+
+# Visual Studio 2015/2017 cache/options directory
+.vs/
+
+# User-specific files
+*.suo
+
+# Solution file
+.sln

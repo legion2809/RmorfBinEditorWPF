@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Threading;
 using System.Globalization;
 
 namespace RmorfBinEditorWPF
@@ -14,8 +13,16 @@ namespace RmorfBinEditorWPF
     /// </summary>
     public partial class App : Application
     {
-        private static List<CultureInfo> m_Languages = new List<CultureInfo>();
+        private static readonly List<CultureInfo> m_Languages = new List<CultureInfo>();
 
+        // Global exception handling
+        private void Application_DispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
+        {
+            MessageBox.Show($"An error occured: {e.Exception.Message.ToString()}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            e.Handled = true;
+        }
+
+        #region App localization-related code
         public static List<CultureInfo> Languages {
             get {
                 return m_Languages;
@@ -86,5 +93,6 @@ namespace RmorfBinEditorWPF
             RmorfBinEditorWPF.Properties.Settings.Default.DefaultLanguage = Language;
             RmorfBinEditorWPF.Properties.Settings.Default.Save();
         }
+        #endregion
     }
 }

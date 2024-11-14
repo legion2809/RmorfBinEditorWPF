@@ -305,11 +305,9 @@ namespace RmorfBinEditorWPF
 
         private void Window_Closing(object sender, CancelEventArgs e)
         {
-            if (isFileChanged == true) 
-            {
-                
-                switch (App.Language.ToString())
-                {
+            if (isFileChanged == true) {
+
+                switch (App.Language.ToString()) {
                     case "en-US":
                         res = MessageBox.Show("Do you wish save changes to " + path + "?",
                         "Rmorf.bin Editor", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
@@ -321,8 +319,7 @@ namespace RmorfBinEditorWPF
                         break;
                 }
 
-                switch (res) 
-                {
+                switch (res) {
                     case MessageBoxResult.Yes:
                         SaveFile();
                         break;
@@ -525,62 +522,51 @@ namespace RmorfBinEditorWPF
 
         private void SaveFile()
         {
-            try {
-                using (FileStream fs = new FileStream(path, FileMode.Create))
-                using (BinaryWriter bw = new BinaryWriter(fs)) {
-                    bw.Write(headfS);
-                    bw.Write(headKey);
-                    bw.Write(headaGC);
+            using (FileStream fs = new FileStream(path, FileMode.Create))
+            using (BinaryWriter bw = new BinaryWriter(fs)) {
+                bw.Write(headfS);
+                bw.Write(headKey);
+                bw.Write(headaGC);
 
-                    for (int i = 0; i < rgrouplist.Count; i++) {
-                        bw.Write(rgrouplist[i].morfCount);
-                        bw.Write(rgrouplist[i].animType);
-                        bw.Write(rgrouplist[i].animFrequency);
-                        bw.Write(rgrouplist[i].unknown3);
-                        bw.Write(rgrouplist[i].unknown4);
-                        bw.Write(rgrouplist[i].unknown5);
+                for (int i = 0; i < rgrouplist.Count; i++) {
+                    bw.Write(rgrouplist[i].morfCount);
+                    bw.Write(rgrouplist[i].animType);
+                    bw.Write(rgrouplist[i].animFrequency);
+                    bw.Write(rgrouplist[i].unknown3);
+                    bw.Write(rgrouplist[i].unknown4);
+                    bw.Write(rgrouplist[i].unknown5);
 
-                        for (int j = 0; j < rgrouplist[i].objNames.Count; j++) {
-                            string name = rgrouplist[i].objNames[j];
-                            byte[] arr = Encoding.ASCII.GetBytes(name);
+                    for (int j = 0; j < rgrouplist[i].objNames.Count; j++) {
+                        string name = rgrouplist[i].objNames[j];
+                        byte[] arr = Encoding.ASCII.GetBytes(name);
 
-                            bw.Write(arr);
-                            bw.Write(rgrouplist[i].nullb);
-                        }
+                        bw.Write(arr);
+                        bw.Write(rgrouplist[i].nullb);
                     }
-
-                    bw.Seek(0, SeekOrigin.End);
-                    bw.Write(endofFile);
-                    bw.Seek(0, SeekOrigin.Begin);
-
-                    FileInfo info = new FileInfo(path);
-                    long size = info.Length;
-                    byte[] sizeout = BitConverter.GetBytes(size);
-
-                    bw.Write(sizeout, 0, 4);
                 }
-                isFileChanged = false;
-                
 
-                switch (App.Language.ToString()) {
-                    case "en-US":
-                        StatusLabel.Content = $"File saved - ({path})";
-                        break;
-                    case "ru-RU":
-                        StatusLabel.Content = $"Файл сохранен - ({path})";
-                        break;
-                }
+                bw.Seek(0, SeekOrigin.End);
+                bw.Write(endofFile);
+                bw.Seek(0, SeekOrigin.Begin);
+
+                FileInfo info = new FileInfo(path);
+                long size = info.Length;
+                byte[] sizeout = BitConverter.GetBytes(size);
+
+                bw.Write(sizeout, 0, 4);
             }
-            catch (Exception ex) {
-                switch (App.Language.ToString()) {
-                    case "en-US":
-                        MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                        break;
-                    case "ru-RU":
-                        MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                        break;
-                }
+            isFileChanged = false;
+
+
+            switch (App.Language.ToString()) {
+                case "en-US":
+                    StatusLabel.Content = $"File saved - ({path})";
+                    break;
+                case "ru-RU":
+                    StatusLabel.Content = $"Файл сохранен - ({path})";
+                    break;
             }
+
         }
 
         private void CreateFile_Click(object sender, RoutedEventArgs e)
@@ -773,7 +759,7 @@ namespace RmorfBinEditorWPF
                         StatusLabel.Content = $"Файл был изменен - ({path}*)";
                         break;
                 }
-                
+
                 discord.UpdatePresence("Editing a file");
             }
         }
@@ -1428,8 +1414,7 @@ namespace RmorfBinEditorWPF
 
         private void CheckUpdatesMethod()
         {
-            try
-            {
+            try {
                 WebClient WC = new WebClient();
 
                 pastebin = WC.DownloadString("https://pastebin.com/raw/Rn6NX04n");
@@ -1464,11 +1449,10 @@ namespace RmorfBinEditorWPF
                         case "ru-RU":
                             MessageBox.Show($"Вы используете последнюю версию программы ({CurrentVersion})!", $"Rmorf.bin Editor {CurrentVersion}", MessageBoxButton.OK, MessageBoxImage.Information);
                             break;
-                    }   
+                    }
                 }
             }
-            catch
-            {
+            catch {
                 switch (App.Language.ToString()) {
                     case "en-US":
                         MessageBox.Show("Something went wrong!\nMaybe, your Internet connection is disabled.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
