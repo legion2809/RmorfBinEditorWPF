@@ -47,3 +47,31 @@ E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\RmorfBinEditorWPF\obj\Debu
 E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\RmorfBinEditorWPF\obj\Debug\Rmorf.bin Editor.g.resources
 E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\RmorfBinEditorWPF\obj\Debug\Rmorf.bin Editor.exe
 E:\Downloads\Documents\Git-projects\RmorfBinEditorWPF\RmorfBinEditorWPF\obj\Debug\Rmorf.bin Editor.pdb
+E:\Dev\Projects\Git-Repos\RmorfBinEditorWPF\RmorfBinEditorWPF\obj\Debug\RmorfBinEditorWPF.csproj.AssemblyReference.cache
+E:\Dev\Projects\Git-Repos\RmorfBinEditorWPF\RmorfBinEditorWPF\obj\Debug\Resources\Lang.ru-RU.baml
+E:\Dev\Projects\Git-Repos\RmorfBinEditorWPF\RmorfBinEditorWPF\obj\Debug\Resources\Lang.baml
+E:\Dev\Projects\Git-Repos\RmorfBinEditorWPF\RmorfBinEditorWPF\obj\Debug\MainWindow.g.cs
+E:\Dev\Projects\Git-Repos\RmorfBinEditorWPF\RmorfBinEditorWPF\obj\Debug\App.g.cs
+E:\Dev\Projects\Git-Repos\RmorfBinEditorWPF\RmorfBinEditorWPF\obj\Debug\Rmorf.bin Editor_MarkupCompile.cache
+E:\Dev\Projects\Git-Repos\RmorfBinEditorWPF\RmorfBinEditorWPF\obj\Debug\Rmorf.bin Editor_MarkupCompile.lref
+E:\Dev\Projects\Git-Repos\RmorfBinEditorWPF\RmorfBinEditorWPF\obj\Debug\Rmorf.bin Editor.exe
+E:\Dev\Projects\Git-Repos\RmorfBinEditorWPF\RmorfBinEditorWPF\obj\Debug\Rmorf.bin Editor.pdb
+E:\Dev\Projects\Git-Repos\RmorfBinEditorWPF\RmorfBinEditorWPF\bin\Debug\Rmorf.bin Editor.exe.config
+E:\Dev\Projects\Git-Repos\RmorfBinEditorWPF\RmorfBinEditorWPF\bin\Debug\Rmorf.bin Editor.exe
+E:\Dev\Projects\Git-Repos\RmorfBinEditorWPF\RmorfBinEditorWPF\bin\Debug\Rmorf.bin Editor.pdb
+E:\Dev\Projects\Git-Repos\RmorfBinEditorWPF\RmorfBinEditorWPF\bin\Debug\DotNetZip.dll
+E:\Dev\Projects\Git-Repos\RmorfBinEditorWPF\RmorfBinEditorWPF\bin\Debug\Microsoft.WindowsAPICodePack.dll
+E:\Dev\Projects\Git-Repos\RmorfBinEditorWPF\RmorfBinEditorWPF\bin\Debug\Microsoft.WindowsAPICodePack.Shell.dll
+E:\Dev\Projects\Git-Repos\RmorfBinEditorWPF\RmorfBinEditorWPF\bin\Debug\Newtonsoft.Json.dll
+E:\Dev\Projects\Git-Repos\RmorfBinEditorWPF\RmorfBinEditorWPF\bin\Debug\DotNetZip.pdb
+E:\Dev\Projects\Git-Repos\RmorfBinEditorWPF\RmorfBinEditorWPF\bin\Debug\DotNetZip.xml
+E:\Dev\Projects\Git-Repos\RmorfBinEditorWPF\RmorfBinEditorWPF\bin\Debug\Microsoft.WindowsAPICodePack.xml
+E:\Dev\Projects\Git-Repos\RmorfBinEditorWPF\RmorfBinEditorWPF\bin\Debug\Microsoft.WindowsAPICodePack.Shell.xml
+E:\Dev\Projects\Git-Repos\RmorfBinEditorWPF\RmorfBinEditorWPF\bin\Debug\Newtonsoft.Json.xml
+E:\Dev\Projects\Git-Repos\RmorfBinEditorWPF\RmorfBinEditorWPF\obj\Debug\App.baml
+E:\Dev\Projects\Git-Repos\RmorfBinEditorWPF\RmorfBinEditorWPF\obj\Debug\MainWindow.baml
+E:\Dev\Projects\Git-Repos\RmorfBinEditorWPF\RmorfBinEditorWPF\obj\Debug\Rmorf.bin Editor.g.resources
+E:\Dev\Projects\Git-Repos\RmorfBinEditorWPF\RmorfBinEditorWPF\obj\Debug\RmorfBinEditorWPF.Properties.Resources.resources
+E:\Dev\Projects\Git-Repos\RmorfBinEditorWPF\RmorfBinEditorWPF\obj\Debug\RmorfBinEditorWPF.csproj.GenerateResource.cache
+E:\Dev\Projects\Git-Repos\RmorfBinEditorWPF\RmorfBinEditorWPF\obj\Debug\RmorfBinEditorWPF.csproj.CoreCompileInputs.cache
+E:\Dev\Projects\Git-Repos\RmorfBinEditorWPF\RmorfBinEditorWPF\obj\Debug\RmorfBin.B2DE43C6.Up2Date
